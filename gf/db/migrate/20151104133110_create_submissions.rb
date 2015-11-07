@@ -3,6 +3,9 @@ class CreateSubmissions < ActiveRecord::Migration
     create_table :submissions do |t|
 
       t.timestamps null: false
+      t.string :title
+      t.string :author
+      
     end
   end
 end
