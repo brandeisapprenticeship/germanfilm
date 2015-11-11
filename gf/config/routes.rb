@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   root 'assignments#index'
 
-  root 'submissions#index'
+  #root 'submissions#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
