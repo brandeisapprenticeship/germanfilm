@@ -2,13 +2,68 @@
 <html>
 <head>
   <title>Gf</title>
+  
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>	
-<%= yield %>
+<body>
+<% if user_signed_in? %>
+  
+<% if current_user.admin? %>
+  <div class="navbar navbar-static-top">  <!--WHY ISN'T IT STAYING STATIC???-->
+    
+    <!--<nav class="navbar navbar-default">-->
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <h1> German Film </h1>
+        <a class="navbar-brand" href="#">Home</a>
+        <a class="navbar-brand" href="#">Gradebook</a>
+       </div> <!---FIX THIS!! -->
+      
+        <li>
+          <%= link_to('Sign Out', destroy_user_session_path, :method => :delete) %>
+        </li>
+        
+     
+      </div>
+    
+    </div>
+    
+  <%= yield %>
+  </div>
+<%end%>
+<%if !current_user.admin? %>
+  <div class="navbar navbar-static-top">  <!--WHY ISN'T IT STAYING STATIC???-->
+    
+    <!--<nav class="navbar navbar-default">-->
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <h1> German Film </h1>
+        <a class="navbar-brand" href="#">Home</a>
+        <a class="navbar-brand" href="#">My Assignments</a>
+        <a class="navbar-brand" href="#">Vocabulary</a>
+        <a class="navbar-brand" href="#">Bookmarks</a>
+      </div>
+     
+    </div>
+  <%= yield %>
+  <div class="btn-group btn-group-lg" role="group" aria-label="...">
+    <button type="button" class="btn btn-default">Sign Out</button>
+  </div>
+  </div>
+<% end %>  
 
+
+<% end %> 
+
+<% if !user_signed_in? %>
+  <li>
+    <%= link_to('Sign In', destroy_user_session_path, :method => :delete) %>
+  </li>
+<% end %>
 </body>
 </html>
 
