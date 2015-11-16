@@ -58,10 +58,17 @@
 
 
 <% end %> 
+<!-- maybe move up...
+<% if user_signed_in? %>
+  <li>
+    <%= link_to('Sign Out', destroy_user_session_path, :method => :delete) %>
+  </li>
+<% end %> -->
+
 
 <% if !user_signed_in? %>
   <li>
-    <%= link_to('Sign In', destroy_user_session_path, :method => :delete) %>
+    <%= link_to('Login', "devise/sessions#new", :as => :login) %>
   </li>
 <% end %>
 </body>
