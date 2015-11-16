@@ -8,6 +8,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if !user_signed_in? %>
+  <li>
+<!--<<<<<<< HEAD
+    <%= link_to('Login', "devise/sessions#new", :as => :login) %>
+    <%= link_to('Sign In', new_user_session_path) %> 
+=======
+>>>>>>> eacdcd774b44e826bb71cbd444f6f8234dddf85e-->
+  </li>
+<% end %>
+
 <% if user_signed_in? %>
   
 <% if current_user.admin? %>
@@ -58,12 +68,15 @@
 
 
 <% end %> 
-
-<% if !user_signed_in? %>
+<!-- maybe move up...
+<% if user_signed_in? %>
   <li>
-    <%= link_to('Sign In', new_user_session_path) %>
+    <%= link_to('Sign Out', destroy_user_session_path, :method => :delete) %>
   </li>
-<% end %>
+<% end %> -->
+
+
+
 </body>
 </html>
 
