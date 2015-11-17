@@ -1,9 +1,9 @@
 <!-- admin submission of assignment details -->
 
 <h1>New Assignment</h1>
-
+<br>
 <div class="input-group">
-  <span class="input-group-addon" id="basic-addon1"></span>
+  <span class="input-group-addon" id="basic-addon1">Film Title:</span>
   <input type="text" class="form-control" placeholder="Film Title" aria-describedby="basic-addon1">
 </div>
 <br>
@@ -14,7 +14,6 @@ Description: <br>
 <br> <br>
 
 Deadline:
-
 <div ng-controller="DatepickerDemoCtrl">
         <div class="col-md-6">
             <p class="input-group">
@@ -24,9 +23,13 @@ Deadline:
     </div>
    
 </div>
+<br><br>
+<!-- <div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%= render 'form' %></button>
 
+</div> -->
 
 <%= render 'form' %>
+<!-- back button: -->
+<!-- <%= link_to 'Back', assignments_path %> -->
 
-
-<%= link_to 'Back', assignments_path %>

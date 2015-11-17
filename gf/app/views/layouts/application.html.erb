@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dh</title>
+  <title>GER 130A</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -17,7 +17,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "German Film", assignments_path, class:"navbar-brand" %>
+      <%= link_to "German Culture Through Film", assignments_path, class:"navbar-brand" %>
     </div>
 
 
@@ -27,11 +27,18 @@
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
          <li><%= link_to "Home", assignments_path %></li>
-         <li><%= link_to "My Submissions", submissions_path %></li>
-         <li><%= link_to "Class Vocabulary", assignments_path %></li>
-         <!-- change path!: -->
-         <li><%= link_to "My Bookmarks", assignments_path %></li> 
-       <% end %>
+             <% if !current_user.admin?%>
+                 <li><%= link_to "My Submissions", submissions_path %></li>
+                 <li><%= link_to "Class Vocabulary", assignments_path %></li>
+                 <!-- change path!: -->
+                 <li><%= link_to "My Bookmarks", assignments_path %></li> 
+             <%end%>
+            <% if current_user.admin? %>
+                  <!-- change path!: -->
+                  <li><%= link_to "Grade Book", assignments_path %></li> 
+           <% end %>
+         <%end%>
+       
       </ul>
 
       
