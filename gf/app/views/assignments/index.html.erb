@@ -7,13 +7,17 @@
   <button type="button" class="btn btn-default"><%= link_to 'Create New Assignment', new_assignment_path %> </button>
 </div>
 <!-- table for assignments -->
-<table>
-  <!-- header -->
-  <thead>
+
+  <!-- Table -->
+  <table class="table">
+    <thead>
     <tr>
-      <th colspan="9">Film Title   | </th><th colspan="3">Due Date    | </th><th colspan="3"><%= link_to 'View Submissions', submissions_path %>  |  </th><th colspan="3">Submit/Edit Assignment</th>
+      <th colspan="9">Film Title </th><th colspan="3">Due Date </th><th colspan="3"><th > View Submission</th><th colspan="3">Submit/Edit Assignment</th>
     </tr>
-  </thead>
+     </thead>
+  </table>
+</div>
+ 
 
   <tbody>
    <% @assignments.each do |assignment| %>

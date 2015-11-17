@@ -4,7 +4,7 @@
 
 <div class="input-group">
   <span class="input-group-addon" id="basic-addon1"></span>
-  Film Title: <input type="text" class="form-control" placeholder="Film Title" aria-describedby="basic-addon1">
+  <input type="text" class="form-control" placeholder="Film Title" aria-describedby="basic-addon1">
 </div>
 <br>
 Description: <br>
@@ -13,10 +13,9 @@ Description: <br>
 </textarea>
 <br> <br>
 
-
+Deadline:
 
 <div ng-controller="DatepickerDemoCtrl">
-   Deadline:
         <div class="col-md-6">
             <p class="input-group">
               <input type="date" class="form-control" uib-datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
