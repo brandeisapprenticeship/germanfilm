@@ -16,7 +16,7 @@ class AssignmentsController < ApplicationController
   def new
     @assignment = Assignment.new
   end
-
+  
   # GET /assignments/1/edit
   def edit
   end
