@@ -3,9 +3,11 @@
 <!--<h1>German Film</h1>-->
 
 <!--create assignment button -->
+<% if current_user.admin? %>
 <div class="btn-group" role="group" aria-label="...">
   <button type="button" class="btn btn-default"><%= link_to 'Create New Assignment', new_assignment_path %> </button>
 </div>
+<%end%>
 <!-- table for assignments -->
 
   <!-- Table -->
