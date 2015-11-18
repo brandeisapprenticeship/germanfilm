@@ -60,6 +60,10 @@ class AssignmentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def gradebook
+    @users = User.where(admin:false)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

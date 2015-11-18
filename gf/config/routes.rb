@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'assignments/gradebook'
   resources :comments
   resources :submissions
   resources :assignments
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   #root 'submissions#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+  
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

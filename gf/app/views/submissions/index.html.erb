@@ -1,21 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Class Submissions (admin) </h1>
+
+
+<% if !current_user.admin? %>
+<h1>My Submissions</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Student Name    | </th><th> Submission   | </th><th>Number of Bookmarks    | </th><th>Grade Out of 10 </th>
+      <th> Submission Title  | </th><th>Grade Out of 10 </th>
     </tr>
   </thead>
 
   <tbody>
     <% @submissions.each do |submission| %>
-      
+    
     <% end %>
   </tbody>
 </table>
+<%end%>
 
 <br>
-
 <%= link_to 'New Submission', new_submission_path %>
