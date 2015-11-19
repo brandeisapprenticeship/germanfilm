@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GER 130A Gradebook</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if current_user.admin? %>
+<h1>Gradebook for Class Submissions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student Name    | </th><th> Email   | </th><th>Total Number of Bookmarks    | </th>
+      <%@assignments = Assignment.where(post_id: self.id)%>
+     <% @assignments.each do |assignment|%>
+          <th> Grade Out of 10   | </th>
+      <%end>
+      <th> Average Grade </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <td>user.name</td>
+      <td>user.email</td>
+      
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+</body>
+</html>
