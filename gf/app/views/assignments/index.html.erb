@@ -25,11 +25,12 @@
    <% @assignments.each do |assignment| %>
     
       <tr>
-        <td> skjgsoigj </td>
-        <td> lkgng </td>
-        <!-- <td><%= link_to 'Show', assignment %></td>
-        <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
-        <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        <td> <%= assignment.name %></td>
+        <td> <%= assignment.deadline.strftime("%A, %B, %d at %I:%M %p") %></td>
+        <td><%= link_to 'Show Assignment', assignment %></td>
+        <td><%= link_to 'Edit Assignment', edit_assignment_path(assignment) %></td>
+        <!--<td><%= link_to 'Destroy Assignment', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+       <br>
       </tr>
     <% end %> 
   </tbody>
