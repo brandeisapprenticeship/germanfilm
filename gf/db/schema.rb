@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20151104133122) do
     t.string   "title",      limit: 255
     t.string   "author",     limit: 255
     t.integer  "grade",      limit: 4
+    t.string   "notecard",   limit: 255
+    t.string   "vocabulary", limit: 255
   end
 
   create_table "users", force: :cascade do |t|

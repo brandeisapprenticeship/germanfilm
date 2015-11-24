@@ -6,6 +6,8 @@ class CreateSubmissions < ActiveRecord::Migration
       t.string :title
       t.string :author
       t.integer :grade
+      t.string :notecard
+      t.string :vocabulary
 
     end
   end
