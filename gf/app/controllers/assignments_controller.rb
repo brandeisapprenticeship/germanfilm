@@ -61,6 +61,10 @@ class AssignmentsController < ApplicationController
     end
   end
 
+  def show_name
+    @assignment = Assignment.name
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_assignment

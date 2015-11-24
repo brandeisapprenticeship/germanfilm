@@ -31,7 +31,7 @@
         <% if current_user.admin? %> 
         <td><%= link_to 'Edit Assignment', edit_assignment_path(assignment) %></td>
         <% else %>
-        <td><%=link_to 'Submit', assignment%></td>
+        <td><%=link_to 'Submit', new_submission_path%></td>
         <%end%>
         <!--<td><%= link_to 'Destroy Assignment', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
        <br>
