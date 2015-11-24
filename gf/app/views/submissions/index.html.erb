@@ -1,13 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Class Submissions (admin) </h1>
-
-<table>
-  <thead>
+<h1>Class Submissions </h1>
+<table class="table">
+    <thead>
     <tr>
-      <th>Student Name    | </th><th> Submission   | </th><th>Number of Bookmarks    | </th><th>Grade Out of 10 </th>
+      <th colspan="9">Student Name </th><th colspan="3">Submission </th><th colspan="3"><th > Number Of Bookmarks</th><th colspan="3"><%if current_user.admin? %> Grade Out of 10 <%end%></th>
     </tr>
-  </thead>
+     </thead>
 
   <tbody>
     <% @submissions.each do |submission| %>

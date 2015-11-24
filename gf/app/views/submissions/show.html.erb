@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_submission_path(@submission) %> |
-<%= link_to 'Back', submissions_path %>
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_submission_path(@submission) %> </button>
+</div>
+
+<h1> <%= @submission.title %></h1>
+<h3> <%= @submission.notecard %>  </h3>
+<h2> <%= @submission.vocabulary%></h2>
+
