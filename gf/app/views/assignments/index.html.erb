@@ -14,7 +14,7 @@
   <table class="table">
     <thead>
     <tr>
-      <th colspan="9">Film Title </th><th colspan="3">Due Date </th><th colspan="3"><th > View Submission</th><th colspan="3">Edit Assignment</th>
+      <th colspan="9">Film Title </th><th colspan="3">Due Date </th><th colspan="3"><th > View Submissions</th><th colspan="3">Edit Assignment</th>
     </tr>
      </thead>
   <!--</table>-->
@@ -27,7 +27,7 @@
       <tr>
         <td> <%= assignment.name %></td>
         <td> <%= assignment.deadline.strftime("%A, %B, %d at %I:%M %p") %></td>
-        <td><%= link_to 'Show Assignment', assignment %></td>
+        <td><%= link_to 'Show Submissions', assignment %></td> <!-- NEED TO CHANGE LINK -->
         <td><%= link_to 'Edit Assignment', edit_assignment_path(assignment) %></td>
         <!--<td><%= link_to 'Destroy Assignment', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
        <br>
