@@ -28,7 +28,11 @@
         <td> <%= assignment.name %></td>
         <td> <%= assignment.deadline.strftime("%A, %B, %d at %I:%M %p") %></td>
         <td><%= link_to 'Show Submissions', assignment %></td> <!-- NEED TO CHANGE LINK -->
+        <% if current_user.admin? %> 
         <td><%= link_to 'Edit Assignment', edit_assignment_path(assignment) %></td>
+        <% else %>
+        <td><%=link_to 'Submit', assignment%></td>
+        <%end%>
         <!--<td><%= link_to 'Destroy Assignment', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
        <br>
       </tr>
