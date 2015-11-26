@@ -37,6 +37,11 @@
       <%= f.text_area :vocabulary, :cols => "120", :rows => "10" %>
     </div>   
 
+<!--will it acknowledge this?? -->
+<div class="submission-author">
+  <% @submission.author = current_user.name %>
+</div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
