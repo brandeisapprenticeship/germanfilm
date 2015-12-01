@@ -1,10 +1,12 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Class Submissions </h1>
 <table class="table">
     <thead>
     <tr>
-      <th colspan="9">Student Name </th><th colspan="3">Submission </th><th colspan="3"><th > Number Of Bookmarks</th><th colspan="3"><%if current_user.admin? %> Grade Out of 10 <%end%></th>
+      <th>Student Name </th>
+      <th>Submission </th>
+      <th > Number Of Bookmarks</th>
+      <th><%if current_user.admin? %> Grade Out of 10 <%end%></th>
     </tr>
      </thead>
 
@@ -24,5 +26,6 @@
 </table>
 
 <br>
+<!-- <%= link_to 'New Submission', new_submission_path %> -->
 
-<%= link_to 'New Submission', new_submission_path %>
+
