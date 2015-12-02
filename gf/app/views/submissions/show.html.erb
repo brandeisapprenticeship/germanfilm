@@ -2,7 +2,8 @@
 
 <div class="btn-group" role="group" aria-label="...">
 	<th>
-		<%if current_user%>  <!-- needs to be for author only -->
+		
+		<%if current_user.id == @submission.author%>  <!-- needs to be for author only -->
 		<button type="button" class="btn btn-default"><%= link_to 'Edit Submission', edit_submission_path(@submission) %> </button> 
 		<%end%>
 	</th>
@@ -10,6 +11,7 @@
   <button type="button" class="btn btn-default"><%= link_to 'Return to Class Submissions', submissions_path %> </button>
 </div>
 
+<h1><%= @submission.author%></h1>
 <h1> <%= @submission.title %></h1>
 <h3> <%= @submission.notecard %>  </h3>
 <h2> <%= @submission.vocabulary%></h2>
