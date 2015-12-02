@@ -60,7 +60,15 @@ class SubmissionsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def mysubmiss
+    if (!Submission.where(user_id: current_user.id).empty?)
+      @submission = Submission.find(current_user.id)
+    else 
+      @submission = "No Submissions Here"
+    end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_submission

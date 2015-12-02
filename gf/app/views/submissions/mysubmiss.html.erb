@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<p id="notice"><%= notice %></p>
+<h1>My Submissions </h1>
+<!-- flskslfj -->
+<table class="table">
+    <thead>
+    <tr>
+      <th>Submission Title </th>
+      <th > Number Of Bookmarks</th>
+      <th>Grade Out of 10</th>
+    </tr>
+     </thead>
+
+  <tbody>
+    <% @submission.each do |submission| %>
+      <tr>
+        <td> <%= current_user.name %></td>
+        <td><%= link_to submission.title, submission%></td>
+        <td><%= 'number of bookmarks here' %></td>
+        <td><%='grade here'%></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- <%= link_to 'New Submission', new_submission_path %> -->
