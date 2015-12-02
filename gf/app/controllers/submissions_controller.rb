@@ -66,7 +66,7 @@ class SubmissionsController < ApplicationController
     if (!Submission.where(author: current_user.id).empty?)
       @submission = Submission.where(author: current_user.id)
     else 
-      @submission = "No Submissions Here"
+      @submission = nil
     end
   end
   
