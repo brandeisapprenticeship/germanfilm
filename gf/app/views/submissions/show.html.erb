@@ -11,8 +11,9 @@
   <button type="button" class="btn btn-default"><%= link_to 'Return to Class Submissions', submissions_path %> </button>
 </div>
 
-<h1><%= @submission.author%></h1>
 <h1> <%= @submission.title %></h1>
-<h3> <%= @submission.notecard %>  </h3>
+<h3>Author: <%= @submission.name%></h3>
+
+<h1> <%= @submission.notecard %>  </h1>
 <h2> <%= @submission.vocabulary%></h2>
 
