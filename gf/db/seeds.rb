@@ -8,3 +8,4 @@
 User.create(name: 'Bess', email: 'elalsh22@brandeis.edu', password: '12345678', admin: true)
 User.create(name: 'Amy', email: 'ashein@brandeis.edu', password: '12345678', admin: true)
 User.create(name: 'S1', email: 'ealshvang@brandeis.edu', password: '12345678', admin: false)
+User.create(name: "Student2", email: 'asf@abc.com', password: '12345678', admin: false)
