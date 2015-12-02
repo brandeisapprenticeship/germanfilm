@@ -15,7 +15,6 @@
   <tbody>
     <% @submission.each do |submission| %>
       <tr>
-        <td> <%= current_user.name %></td>
         <td><%= link_to submission.title, submission%></td>
         <td><%= 'number of bookmarks here' %></td>
         <td><%='grade here'%></td>

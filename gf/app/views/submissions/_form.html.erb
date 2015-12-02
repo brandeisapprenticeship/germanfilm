@@ -37,12 +37,12 @@
       <%= f.text_area :vocabulary, :cols => "120", :rows => "10" %>
     </div>   
 
-<!--why isn't it worrkinnnggg -->
+
 <div class="form-group">
   <%= f.hidden_field  :author, value: current_user.id %>
   <%=f.hidden_field :name, value: current_user.name %>
 </div>
-
+<!--is it adding the whole submission to current user's submissions? -->
   <div class="actions">
     <%= f.submit %>
   </div>

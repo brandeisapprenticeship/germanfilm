@@ -63,8 +63,8 @@ class SubmissionsController < ApplicationController
   end
   
   def mysubmiss
-    if (!Submission.where(user_id: current_user.id).empty?)
-      @submission = Submission.find(current_user.id)
+    if (!Submission.where(author: current_user.id).empty?)
+      @submission = Submission.where(author: current_user.id)
     else 
       @submission = "No Submissions Here"
     end
