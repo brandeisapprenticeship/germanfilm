@@ -37,9 +37,9 @@
       <%= f.text_area :vocabulary, :cols => "120", :rows => "10" %>
     </div>   
 
-<!--will it acknowledge this?? -->
-<div class="submission-author">
-  <% @submission.author = current_user.id %>
+<!--why isn't it worrkinnnggg -->
+<div class="form-group">
+  <%= f.hidden_field  :author, value: current_user.id %>
 </div>
 
   <div class="actions">
