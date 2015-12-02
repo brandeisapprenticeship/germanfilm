@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
-<h1>Class Submissions </h1>
-<!-- flskslfj -->
+
+<h1>Class Submissions for </h1>
+
 <table class="table">
     <thead>
     <tr>
@@ -14,7 +15,7 @@
   <tbody>
     <% @submissions.each do |submission| %>
       <tr>
-        <td> <%= current_user.name %></td>
+        <td> <%= submission.name %></td>
         <td><%= link_to submission.title, submission%></td>
         <td><%= 'number of bookmarks here' %></td>
         <%if current_user.admin?%>
