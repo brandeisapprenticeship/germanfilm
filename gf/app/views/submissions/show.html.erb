@@ -12,8 +12,23 @@
 </div>
 
 <h1> <%= @submission.title %></h1>
-<h3>Author: <%= @submission.name%></h3>
+<h4>Author: <%= @submission.name%></h4s>
+<h2> place for audio</h2>
+<!-- this border though-->
+<table border="2px" style="white-space: pre-wrap" padding="200px" >
+	<thead ><tr><h1> Notecard: </h1></tr></thead>
+	<tbody>
+		<tr>
+		<td ><h4><%= @submission.notecard %></h4></td>
+    </tr>
+    </tbody>
+    <br>
+</table>
+<br>
 
-<h1> <%= @submission.notecard %>  </h1>
-<h2> <%= @submission.vocabulary%></h2>
+<h2> Vocabulary: </h2>
+<br>
+<%= @submission.vocabulary%>
+
+<h2> Grade: <%= @submission.grade %></h2>
 
