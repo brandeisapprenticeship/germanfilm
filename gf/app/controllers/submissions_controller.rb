@@ -26,7 +26,7 @@ class SubmissionsController < ApplicationController
   # POST /submissions.json
   def create
     @submission = Submission.new(submission_params)
-
+    @submission.audio = submission_params[:audio]
     respond_to do |format|
       if @submission.save
         format.html { redirect_to @submission, notice: 'Submission was successfully created.' }
@@ -78,6 +78,6 @@ class SubmissionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def submission_params
-       params.require(:submission).permit(:title, :notecard, :vocabulary, :author, :name)
+       params.require(:submission).permit(:title, :notecard, :vocabulary, :author, :name, :audio, :grade, :assignment_id, :user_id)
     end
 end
