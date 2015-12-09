@@ -13,7 +13,11 @@
 
 <h1> <%= @submission.title %></h1>
 <h4>Author: <%= @submission.name%></h4s>
-<h2> Audio: <%= audio_tag(@submission.audio) if @submission.audio? %></h2>
+<h2> Audio: </h2>
+
+<audio controls>
+	<source src= <%=@submission.audio_url%> type="audio/mp4"> <!--needs to be mp3-->
+</audio>
 <!-- this border though-->
 <table border="2px" style="white-space: pre-wrap" padding="200px" >
 	<thead ><tr><h1> Notecard: </h1></tr></thead>
