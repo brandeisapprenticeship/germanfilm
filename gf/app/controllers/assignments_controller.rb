@@ -65,6 +65,16 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.name
   end
   
+  def gradebook
+    @users = User.all
+    @assignment = Assignment.all
+    #if (!Submission.where(author: current_user.id).empty?)
+     # @submission = Submission.where(author: current_user.id)
+    #else 
+     # @submission = nil
+    #end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_assignment
