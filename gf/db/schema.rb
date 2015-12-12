@@ -27,17 +27,26 @@ ActiveRecord::Schema.define(version: 20151204233105) do
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "title",         limit: 255
-    t.string   "name",          limit: 255
-    t.integer  "author",        limit: 4
-    t.integer  "grade",         limit: 4
-    t.text     "notecard",      limit: 65535
-    t.string   "vocabulary",    limit: 255
-    t.integer  "assignment_id", limit: 4
-    t.integer  "user_id",       limit: 4
-    t.string   "audio",         limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "title",           limit: 255
+    t.string   "name",            limit: 255
+    t.integer  "author",          limit: 4
+    t.integer  "grade",           limit: 4
+    t.text     "notecard",        limit: 65535
+    t.string   "vocab_english_1", limit: 255
+    t.string   "vocab_english_2", limit: 255
+    t.string   "vocab_english_3", limit: 255
+    t.string   "vocab_english_4", limit: 255
+    t.string   "vocab_english_5", limit: 255
+    t.string   "vocab_ger_1",     limit: 255
+    t.string   "vocab_ger_2",     limit: 255
+    t.string   "vocab_ger_3",     limit: 255
+    t.string   "vocab_ger_4",     limit: 255
+    t.string   "vocab_ger_5",     limit: 255
+    t.integer  "assignment_id",   limit: 4
+    t.integer  "user_id",         limit: 4
+    t.string   "audio",           limit: 255
   end
 
   create_table "users", force: :cascade do |t|

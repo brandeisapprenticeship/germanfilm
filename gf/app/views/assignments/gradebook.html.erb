@@ -25,6 +25,13 @@
         <td> <%= user.name %></td>
         <td> <%= user.email %></td>
 <!--need to get the grade per assignment for each user submission-->
+        <%@assignment.each do |assignment| %>
+        <%@submission.each do |submission| %>
+            <% if submission.author == user.id?%>
+                <td><%= submission.grade %></td>
+            <%end%>
+        <%end%>
+        <%end%>
         <td><%=%></td>
 
        <br>
