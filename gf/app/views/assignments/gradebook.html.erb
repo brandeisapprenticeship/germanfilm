@@ -11,12 +11,13 @@
       <th>Student Name </th>
       <th>Email </th>
       <% @assignment.each do |assignment| %>
-          1<th> Grade for <%= assignment.name%> </th>
+          <th> Grade for <%= assignment.name%> </th>
       <%end%>
       <th> Average Grade </th>
     </tr>
      </thead>
 
+ 
 
   <tbody>
    <% @users.each do |user| %>
@@ -24,6 +25,13 @@
         <td> <%= user.name %></td>
         <td> <%= user.email %></td>
 <!--need to get the grade per assignment for each user submission-->
+        <%@assignment.each do |assignment| %>
+        <%@submission.each do |submission| %>
+            <% if submission.author == user.id?%>
+                <td><%= submission.grade %></td>
+            <%end%>
+        <%end%>
+        <%end%>
         <td><%=%></td>
 
        <br>
@@ -35,5 +43,3 @@
 
 <br>
 <%end%>
-
-

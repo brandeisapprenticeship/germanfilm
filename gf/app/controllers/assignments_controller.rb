@@ -1,5 +1,6 @@
 class AssignmentsController < ApplicationController
   before_action :set_assignment, only: [:show, :edit, :update, :destroy]
+  helper_method :get_submission
 
   # GET /assignments
   # GET /assignments.json
@@ -64,6 +65,21 @@ class AssignmentsController < ApplicationController
   def show_name
     @assignment = Assignment.name
   end
+  
+  def gradebook
+    @users = User.where(admin: false)
+    @assignment = Assignment.all
+    @submission = Submission.where(assignment_id: @assignment_id)
+    #if (!Submission.where(author: current_user.id).empty?)
+     # @submission = Submission.where(author: current_user.id)
+    #else 
+     # @submission = nil
+    #end
+  end
+  
+  #def get_submission
+   # @submission = 
+  #end
   
   private
     # Use callbacks to share common setup or constraints between actions.
