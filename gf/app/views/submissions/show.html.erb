@@ -40,8 +40,6 @@
 <br>
 <br>
 
-
-
 <div class="btn-group" role="group" aria-label="...">
   <button type="button" class="btn btn-default"><%=@submission.vocab_english_2%> </button>
 </div>
@@ -64,4 +62,16 @@
 
 
 <h2> Grade: <%= @submission.grade %></h2>
+<!-- but we want != -->
+<% if current_user.id = @submission.author %>
+<div class="form-group">
+    
+    <div class='col-md-10'>
+      <br>
+      <%= text_area :comment, :cols => "500", :rows => "10"%>
+    </div>
 
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%= link_to 'Comment', new_comment_path %> </button>
+</div>
+<%end%>
