@@ -2,7 +2,7 @@
 
 <p id="notice"><%= notice %></p>
 <h1>My Submissions </h1>
-<!-- flskslfj -->
+
 <table class="table">
     <thead>
     <tr>
@@ -13,12 +13,12 @@
      </thead>
 
   <tbody>
-    <%if @submisson != nil %>
+    <%if @submission != nil %>
     <% @submission.each do |submission| %>
       <tr>
         <td><%= link_to submission.title, submission%></td>
         <td><%= 'number of bookmarks here' %></td>
-        <td><%='grade here'%></td>
+        <td><%=submission.grade%></td>
 
       </tr>
       <%end%>

@@ -8,7 +8,16 @@ class CreateSubmissions < ActiveRecord::Migration
       t.integer :author
       t.integer :grade
       t.text :notecard
-      t.string :vocabulary
+      t.string :vocab_english_1
+      t.string :vocab_english_2
+      t.string :vocab_english_3
+      t.string :vocab_english_4
+      t.string :vocab_english_5
+      t.string :vocab_ger_1
+      t.string :vocab_ger_2
+      t.string :vocab_ger_3
+      t.string :vocab_ger_4
+      t.string :vocab_ger_5
       t.integer :assignment_id
       t.integer :user_id
 

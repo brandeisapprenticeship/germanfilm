@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<p id="notice"><%= notice %></p>
+
+<!--create assignment button -->
+<% if current_user.admin? %>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Student Name </th>
+      <th>Email </th>
+      <% @assignment.each do |assignment| %>
+          <th> Grade for <%= assignment.name%> </th>
+      <%end%>
+      <th> Average Grade </th>
+    </tr>
+     </thead>
+
+ 
+
+  <tbody>
+   <% @users.each do |user| %>
+      <tr>
+        <td> <%= user.name %></td>
+        <td> <%= user.email %></td>
+<!--need to get the grade per assignment for each user submission-->
+        <%@assignment.each do |assignment| %>
+        <%@submission.each do |submission| %>
+            <% if submission.author == user.id?%>
+                <td><%= submission.grade %></td>
+            <%end%>
+        <%end%>
+        <%end%>
+        <td><%=%></td>
+
+       <br>
+      </tr>
+
+    <%end%>
+  </tbody>
+</table>
+
+<br>
+<%end%>

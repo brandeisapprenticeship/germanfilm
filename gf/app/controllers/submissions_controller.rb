@@ -78,6 +78,8 @@ class SubmissionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def submission_params
-       params.require(:submission).permit(:title, :notecard, :vocabulary, :author, :name, :audio, :grade, :assignment_id, :user_id)
+       params.require(:submission).permit(:title, :notecard, 
+        :vocab_english_1,:vocab_english_2,:vocab_english_3, :vocab_english_4,:vocab_english_5,:vocab_ger_1,:vocab_ger_2,:vocab_ger_3,:vocab_ger_4,:vocab_ger_5,
+       :author, :name, :audio, :grade, :assignment_id, :user_id)
     end
 end
