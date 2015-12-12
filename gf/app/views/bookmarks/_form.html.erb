@@ -1,0 +1,20 @@
+<%= form_for(@bookmark) do |f| %>
+  <% if @bookmark.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+
+      <ul>
+      <% @bookmark.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="form-group">
+  <%= f.hidden_field  :author, value: current_user.id %>
+  <%=f.hidden_field :count, value: count+=1 %>
+</div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

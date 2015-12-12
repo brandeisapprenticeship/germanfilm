@@ -34,6 +34,15 @@
 <h2> Vocabulary: </h2>
 <br>
 <%= @submission.vocabulary%>
-
+<%if current_user.admin? or @submission.author = current_user.id? %>
 <h2> Grade: <%= @submission.grade %></h2>
+<%end%>
 
+<%if @submission.author != current_user.id? %>
+<div class="btn-group" role="group" aria-label="...">
+	<h2>
+		<button type="button" class="btn btn-default"><%= link_to 'Bookmark This!', new_bookmark_path %> </button> 
+	</h2>
+</div>
+
+<%end%>

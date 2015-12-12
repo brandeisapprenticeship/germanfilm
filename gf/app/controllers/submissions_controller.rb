@@ -65,9 +65,12 @@ class SubmissionsController < ApplicationController
   def mysubmiss
     if (!Submission.where(author: current_user.id).empty?)
       @submission = Submission.where(author: current_user.id)
+      @bookmark = Bookmark.where(submission_id: @submission.id)
     else 
       @submission = nil
+      @bookmark = nil
     end
+    
   end
   
   private
