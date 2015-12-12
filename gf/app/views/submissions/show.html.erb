@@ -24,7 +24,7 @@
 	<tbody>
 		<tr>
 			<!--stop showing <p></p> signs!!--> 
-		<td ><h4><%= @submission.notecard %></h4></td>
+		<td><%= @submission.notecard %></td>
     </tr>
     </tbody>
     <br>
@@ -32,8 +32,36 @@
 <br>
 
 <h2> Vocabulary: </h2>
+<!-- change color on click? -->
+<!-- add change for german words -->
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%=@submission.vocab_english_1%> </button>
+</div>
 <br>
-<%= @submission.vocabulary%>
+<br>
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%=@submission.vocab_english_2%> </button>
+</div>
+<br>
+<br>
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%=@submission.vocab_english_3%> </button>
+</div>
+<br>
+
+<br>
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%=@submission.vocab_english_4%> </button>
+</div>
+<br>
+<br>
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%=@submission.vocab_english_5%> </button>
+</div>
+
+
+
 <%if current_user.admin? or @submission.author = current_user.id? %>
 <h2> Grade: <%= @submission.grade %></h2>
 <%end%>
@@ -46,3 +74,15 @@
 </div>
 
 <%end%>
+
+<div class="form-group">
+    
+    <div class='col-md-10'>
+      <br>
+      <%= text_area :comment, :cols => "500", :rows => "10"%>
+    </div>
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%= link_to 'Comment', new_comment_path %> </button>
+</div>
+

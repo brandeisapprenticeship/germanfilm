@@ -13,3 +13,6 @@ class ApplicationController < ActionController::Base
 	  devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation, :admin) } 
   end  
 end
+def grid
+  @tasks_grid = initialize_grid(Task.where(active: true))
+end

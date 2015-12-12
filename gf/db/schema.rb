@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(version: 20151212202722) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "comment",    limit: 65535
   end
 
   create_table "submissions", force: :cascade do |t|

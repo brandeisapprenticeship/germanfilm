@@ -12,7 +12,7 @@
   <% end %>
 <div class="form-group">
   <%= f.hidden_field  :author, value: current_user.id %>
-  <%=f.hidden_field :count, value: count+=1 %>
+  <%=f.hidden_field :submission, value: submission_id %>
 </div>
   <div class="actions">
     <%= f.submit %>
