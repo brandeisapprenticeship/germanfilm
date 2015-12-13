@@ -86,14 +86,28 @@
 
 <%if current_user.admin?%>
       <%= form_for(@submission) do |f| %>
-      <div class="field">
         <%= f.label :grade %><br>
         <%= f.number_field :grade %>
-      </div>
-      <div class="actions">
         <%= f.submit "Save Grade" %>
-      </div>
       <%end%>
+<%end%>
+
+<%if current_user.admin?%>
+  <%if @gradecomments.empty?%>
+      <%= form_for(GradeComment.new) do |f| %>
+        <%= f.text_area :comment %>
+        <%= f.hidden_field :user_id, value: current_user.id%>
+        <%= f.hidden_field :submission_id, value: @submission.id%>
+        <%= f.submit %>
+      <%end%>
+  <%else%>
+      <%= form_for(@gradecomments.first) do |f| %>
+        <%= f.text_area :comment %>
+        <%= f.hidden_field :user_id, value: current_user.id%>
+        <%= f.hidden_field :submission_id, value: @submission.id%>
+        <%= f.submit %>
+      <%end%>
+  <%end%>
 <%end%>
 
 <%if (@submission.user_id != current_user.id && !Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>

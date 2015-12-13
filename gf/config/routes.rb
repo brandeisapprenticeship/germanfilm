@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :grade_comments
   resources :bookmarks
   get 'submissions/mysubmiss'
   get 'assignments/gradebook'
