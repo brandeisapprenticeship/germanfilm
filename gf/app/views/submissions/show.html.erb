@@ -40,8 +40,6 @@
 <br>
 <br>
 
-
-
 <div class="btn-group" role="group" aria-label="...">
   <button type="button" class="btn btn-default"><%=@submission.vocab_english_2%> </button>
 </div>
@@ -51,6 +49,7 @@
   <button type="button" class="btn btn-default"><%=@submission.vocab_english_3%> </button>
 </div>
 <br>
+
 <br>
 <div class="btn-group" role="group" aria-label="...">
   <button type="button" class="btn btn-default"><%=@submission.vocab_english_4%> </button>
@@ -63,5 +62,29 @@
 
 
 
+<%if current_user.admin? or @submission.author = current_user.id? %>
 <h2> Grade: <%= @submission.grade %></h2>
+<%end%>
+
+<%if @submission.author != current_user.id? %>
+<%= form_for(Bookmark.new) do |f| %>
+<div class="form-group">
+  <%= f.hidden_field  :author, value: current_user.id %>
+  <%=f.hidden_field :submission, value: @submission.id %>
+  <%= f.submit "Bookmark This!"%>
+</div>
+<% end %>
+
+<%end%>
+
+<div class="form-group">
+    
+    <div class='col-md-10'>
+      <br>
+      <%= text_area :comment, :cols => "500", :rows => "10"%>
+    </div>
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%= link_to 'Comment', new_comment_path %> </button>
+</div>
 

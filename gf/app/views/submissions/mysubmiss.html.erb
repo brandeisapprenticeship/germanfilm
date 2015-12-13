@@ -17,9 +17,8 @@
     <% @submission.each do |submission| %>
       <tr>
         <td><%= link_to submission.title, submission%></td>
-        <td><%= 'number of bookmarks here' %></td>
-        <td><%=submission.grade%></td>
-
+        <td><%= @bookmark.count %></td>
+        <td><%= submission.grade%></td>
       </tr>
       <%end%>
   <%end%>
