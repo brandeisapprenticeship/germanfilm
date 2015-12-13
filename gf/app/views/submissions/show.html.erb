@@ -62,8 +62,8 @@
 
 
 <h2> Grade: <%= @submission.grade %></h2>
-<!-- but we want != -->
-<% if current_user.id = @submission.author %>
+
+
 <div class="form-group">
     
     <div class='col-md-10'>
@@ -74,4 +74,4 @@
 <div class="btn-group" role="group" aria-label="...">
   <button type="button" class="btn btn-default"><%= link_to 'Comment', new_comment_path %> </button>
 </div>
-<%end%>
+
