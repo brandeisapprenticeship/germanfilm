@@ -16,10 +16,12 @@ class SubmissionsController < ApplicationController
   # GET /submissions/new
   def new
     @submission = Submission.new
+    @assignment = Assignment.find(params[:assignment_id])
   end
 
   # GET /submissions/1/edit
   def edit
+    @assignment = Assignment.find(@submission.assignment_id)
   end
 
   # POST /submissions

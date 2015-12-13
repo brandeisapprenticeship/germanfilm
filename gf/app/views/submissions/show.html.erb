@@ -23,8 +23,7 @@
 	<thead ><tr><h1> Notecard: </h1></tr></thead>
 	<tbody>
 		<tr>
-			<!--stop showing <p></p> signs!!--> 
-		<td><%= @submission.notecard %></td>
+		<td width="40%"><%= @submission.notecard.html_safe %></td>
     </tr>
     </tbody>
     <br>
@@ -34,28 +33,25 @@
 <h2> Vocabulary: </h2>
 <!-- change color on click? -->
 <!-- add change for german words -->
-<div class="btn-group" role="group" aria-label="...">
+<div class="vocab-eng" role="group" aria-label="...">
   <button type="button" class="btn btn-default"><%=@submission.vocab_english_1%> </button>
 </div>
-<br>
-<br>
-
-<div class="btn-group" role="group" aria-label="...">
+<div class="vocab-eng" role="group" aria-label="...">
   <button type="button" class="btn btn-default"><%=@submission.vocab_english_2%> </button>
 </div>
 <br>
 <br>
-<div class="btn-group" role="group" aria-label="...">
+<div class="vocab-eng" role="group" aria-label="...">
   <button type="button" class="btn btn-default"><%=@submission.vocab_english_3%> </button>
 </div>
 <br>
 <br>
-<div class="btn-group" role="group" aria-label="...">
+<div class="vocab-eng" role="group" aria-label="...">
   <button type="button" class="btn btn-default"><%=@submission.vocab_english_4%> </button>
 </div>
 <br>
 <br>
-<div class="btn-group" role="group" aria-label="...">
+<div class="vocab-eng" role="group" aria-label="...">
   <button type="button" class="btn btn-default"><%=@submission.vocab_english_5%> </button>
 </div>
 
@@ -72,4 +68,7 @@
 			<%=f.submit "Save Comment"%>
 		<%end%>
 </div>
+
+
+
 

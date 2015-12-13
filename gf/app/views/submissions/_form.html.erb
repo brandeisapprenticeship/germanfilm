@@ -12,9 +12,11 @@
   <% end %>
 
 
-
+<h1><%=@assignment.name%></h1>
+<h3><%=@assignment.description.html_safe%></h3>
+<%=f.hidden_field :assignment_id, value: @assignment.id%>
+<%=f.hidden_field :user_id, value: current_user.id%>
 <div class="form-group">
-  <!-- assignment information need to be put in -->
   
 <br> <br>
 
@@ -49,12 +51,10 @@
  <div class="form-group">
     <%= f.label :"English Vocab 1", class:'control-label col-md-2' %>
     <div class='col-md-10'>
-      <br>
       <%= f.text_field :vocab_english_1, :cols => "120", :rows => "10" %>
     </div> 
      <%= f.label :"English Vocab 2", class:'control-label col-md-2' %>
     <div class='col-md-10'>
-      <br>
       <%= f.text_field :vocab_english_2, :cols => "120", :rows => "10" %>
     </div>  
   </div> 
@@ -64,56 +64,48 @@
  <!-- <div class="form-group"> -->
     <%= f.label :"English Vocab 3", class:'control-label col-md-2' %>
     <div class='col-md-10'>
-      <br>
       <%= f.text_field :vocab_english_3, :cols => "120", :rows => "10" %>
     </div>
     <!-- </div> -->
  <div class="form-group">
     <%= f.label :"English Vocab 4", class:'control-label col-md-2' %>
     <div class='col-md-10'>
-      <br>
       <%= f.text_field :vocab_english_4, :cols => "120", :rows => "10" %>
     </div>
     </div>
  <div class="form-group">
     <%= f.label :"English Vocab 5", class:'control-label col-md-2' %>
     <div class='col-md-10'>
-      <br>
       <%= f.text_field :vocab_english_5, :cols => "120", :rows => "10" %>
     </div>
     </div>
  <div class="form-group">
     <%= f.label :"German Vocab 1", class:'control-label col-md-2' %>
     <div class='col-md-10'>
-      <br>
       <%= f.text_field :vocab_ger_1, :cols => "120", :rows => "10" %>
     </div>
     </div>
  <div class="form-group">
     <%= f.label :"German Vocab 2", class:'control-label col-md-2' %>
     <div class='col-md-10'>
-      <br>
       <%= f.text_field :vocab_ger_2, :cols => "120", :rows => "10" %>
     </div>
     </div>
  <div class="form-group">
     <%= f.label :"German Vocab 3", class:'control-label col-md-2' %>
     <div class='col-md-10'>
-      <br>
       <%= f.text_field :vocab_ger_3, :cols => "120", :rows => "10" %>
     </div>
     </div>
  <div class="form-group">
     <%= f.label :"German Vocab 4", class:'control-label col-md-2' %>
     <div class='col-md-10'>
-      <br>
       <%= f.text_field :vocab_ger_4, :cols => "120", :rows => "10" %>
     </div>
     </div>
  <div class="form-group">
     <%= f.label :"German Vocab 5", class:'control-label col-md-2' %>
     <div class='col-md-10'>
-      <br>
       <%= f.text_field :vocab_ger_5, :cols => "120", :rows => "10" %>
     </div>
   </div>
