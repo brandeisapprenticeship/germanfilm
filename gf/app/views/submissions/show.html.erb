@@ -84,6 +84,18 @@
 <h2> Grade: <%= @submission.grade %></h2>
 <%end%>
 
+<%if current_user.admin?%>
+      <%= form_for(@submission) do |f| %>
+      <div class="field">
+        <%= f.label :grade %><br>
+        <%= f.number_field :grade %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Save Grade" %>
+      </div>
+      <%end%>
+<%end%>
+
 <%if (@submission.user_id != current_user.id && !Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
 <%= form_for(Bookmark.new) do |f| %>
 <div class="form-group">

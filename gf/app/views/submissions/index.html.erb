@@ -22,18 +22,8 @@
         <%if current_user.admin?%>
           <%if submission.grade != nil %>
               <td><%= submission.grade%></td>
-          <%else%>
-              <%= form_for(Grade.new) do |f| %>
-              <div class="field">
-                <%= f.label :grade %><br>
-                <%= f.number_field :grade %>
-              </div>
-              <div class="actions">
-                <%= f.submit %>
-              </div>
           <%end%>
-          <%end%>
-          <%end%>
+        <%end%>
       </tr>
     <% end %>
   </tbody>
