@@ -28,15 +28,16 @@
       <tr>
         <td> <%= assignment.name %></td>
         <td> <%= assignment.deadline.strftime("%A, %B, %d at %I:%M %p") %></td>
-        <td><%= link_to 'Link to Class Submissions', submissions_path%></td> <!-- I think it's right now?? -->
+        <td><%= link_to 'Link to Class Submissions', {:controller => "submissions", :action => "index", :assignment_id => assignment.id}%></td>
         <% if current_user.admin? %> 
         <td><%= link_to 'Edit Assignment', edit_assignment_path(assignment) %></td>
         <% else %>
         <!-- doesn't work: -->
-        <%if @submission.blank?%>
-          <td><%=link_to 'Submit Assignment', new_submission_path%></td>
+        <%if Submission.where(assignment_id: assignment.id, user_id: current_user.id).blank?%>
+          <td><%=link_to 'Submit Assignment', {:controller => "submissions", :action => "new", :assignment_id => assignment.id}%></td>
         <% else %>
-          <td><%=link_to 'Edit Submission', edit_submission_path%></td>
+          <%@submission = Submission.where(assignment_id: assignment.id, user_id: current_user.id).first%>
+          <td><%=link_to 'Edit Submission', edit_submission_path(@submission)%></td>
         <%end%>
         <%end%>
         <!--<td><%= link_to 'Destroy Assignment', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->

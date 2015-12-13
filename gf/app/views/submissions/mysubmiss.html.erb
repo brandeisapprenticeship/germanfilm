@@ -8,7 +8,6 @@
     <tr>
       <th>Submission Title </th>
       <th > Number Of Bookmarks</th>
-      <th>Grade Out of 10</th>
     </tr>
      </thead>
 
@@ -17,8 +16,12 @@
     <% @submission.each do |submission| %>
       <tr>
         <td><%= link_to submission.title, submission%></td>
+<<<<<<< HEAD
         <td><%= @bookmark.count %></td>
         <td><%= submission.grade%></td>
+=======
+        <td><%= 'number of bookmarks here' %></td>
+>>>>>>> 4dd63472c8d95ef81d14505cf7fe5c0b6c403b3b
       </tr>
       <%end%>
   <%end%>

@@ -1,0 +1,12 @@
+<h1>Class Vocabulary</h1>
+<%@assignments.each do |assignment|%>
+	<h3><%=assignment.name%></h3>
+	<%@submissions = Submission.where(assignment_id: assignment.id)%>
+	<%@submissions.each do |submission|%>
+		<%=submission.vocab_english_1%>, <%=submission.vocab_ger_1%><br>
+		<%=submission.vocab_english_2%>, <%=submission.vocab_ger_2%><br>
+		<%=submission.vocab_english_3%>, <%=submission.vocab_ger_3%><br>
+		<%=submission.vocab_english_4%>, <%=submission.vocab_ger_4%><br>
+		<%=submission.vocab_english_5%>, <%=submission.vocab_ger_5%><br>
+	<%end%>
+<%end%>

@@ -4,22 +4,30 @@ class SubmissionsController < ApplicationController
   # GET /submissions
   # GET /submissions.json
   def index
+<<<<<<< HEAD
     @submissions = Submission.all
     @assignment = Assignment.all
+=======
+    @assignment = Assignment.find(params[:assignment_id])
+    @submissions = Submission.where(assignment_id: @assignment.id)
+>>>>>>> 4dd63472c8d95ef81d14505cf7fe5c0b6c403b3b
   end
 
   # GET /submissions/1
   # GET /submissions/1.json
   def show
+    @comments = Comment.where(submission_id: @submission.id)
   end
 
   # GET /submissions/new
   def new
     @submission = Submission.new
+    @assignment = Assignment.find(params[:assignment_id])
   end
 
   # GET /submissions/1/edit
   def edit
+    @assignment = Assignment.find(@submission.assignment_id)
   end
 
   # POST /submissions
