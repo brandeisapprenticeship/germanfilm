@@ -34,7 +34,7 @@
             <td></td>
           <%end%>
         <%end%>
-        <td><%=sum / @assignments.count%></td>
+        <td><%=sum / @assignments.count unless @assignments.count == 0%></td>
 
        <br>
       </tr>

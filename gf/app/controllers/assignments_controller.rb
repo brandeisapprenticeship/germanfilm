@@ -68,19 +68,8 @@ class AssignmentsController < ApplicationController
   
   def gradebook
     @users = User.where(admin: false)
-<<<<<<< HEAD
-    @assignment = Assignment.all
-    @assignment = Assignment.find(params[:id])
-    @submission = Submission.where(assignment_id: @assignment.id)
-=======
     @assignments = Assignment.all
     @submission = Submission.where(assignment_id: @assignment_id)
-    #if (!Submission.where(author: current_user.id).empty?)
-     # @submission = Submission.where(author: current_user.id)
-    #else 
-     # @submission = nil
-    #end
->>>>>>> 4dd63472c8d95ef81d14505cf7fe5c0b6c403b3b
   end
 
   def classvocab
