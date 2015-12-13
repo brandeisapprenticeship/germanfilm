@@ -11,6 +11,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions/1
   # GET /submissions/1.json
   def show
+    @comments = Comment.where(submission_id: @submission.id)
   end
 
   # GET /submissions/new

@@ -8,7 +8,7 @@
 		<%end%>
 	</th>
   
-  <button type="button" class="btn btn-default"><%= link_to 'Return to Class Submissions', submissions_path %> </button>
+  <button type="button" class="btn btn-default"><%= link_to 'Return to Class Submissions', {:controller => "submissions", :action => "index", :assignment_id => @submission.assignment_id} %> </button>
 </div>
 
 <h1> <%= @submission.title %></h1>
@@ -55,19 +55,52 @@
   <button type="button" class="btn btn-default"><%=@submission.vocab_english_5%> </button>
 </div>
 
+<div class="vocab-ger" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%=@submission.vocab_ger_1%> </button>
+</div>
+<div class="vocab-ger" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%=@submission.vocab_ger_2%> </button>
+</div>
+<br>
+<br>
+<div class="vocab-ger" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%=@submission.vocab_ger_3%> </button>
+</div>
+<br>
+<br>
+<div class="vocab-ger" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%=@submission.vocab_ger_4%> </button>
+</div>
+<br>
+<br>
+<div class="vocab-ger" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%=@submission.vocab_ger_5%> </button>
+</div>
+
 
 
 <h2> Grade: <%= @submission.grade %></h2>
 
+<h2>Comments:</h2>
+<%@comments.each do |comment|%>
+	<div>
+		<%=comment.comment%>
+		<%=User.find(comment.user_id).name%>
+	</div>
+<%end%>
 
 <%=form_for(Comment.new) do |f|%>
 			<%=f.label :comment, 'Add a Comment'%><br>
 			<%=f.text_area :comment %><br>
 			<%=f.hidden_field :user_id, value: current_user.id%>
+			<%=f.hidden_field :submission_id, value: @submission.id%>
 			
 			<%=f.submit "Save Comment"%>
 		<%end%>
 </div>
+
+
+
 
 
 

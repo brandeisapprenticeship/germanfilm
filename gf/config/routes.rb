@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'submissions/mysubmiss'
   get 'assignments/gradebook'
+  get 'assignments/classvocab'
   resources :comments
   resources :submissions
   resources :assignments

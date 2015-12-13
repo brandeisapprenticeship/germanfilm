@@ -76,6 +76,10 @@ class AssignmentsController < ApplicationController
      # @submission = nil
     #end
   end
+
+  def classvocab
+    @assignments = Assignment.all
+  end
   
   #def get_submission
    # @submission = 
