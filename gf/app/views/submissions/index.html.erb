@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Class Submissions for</h1>  
+<h1>Class Submissions for <%= @assignment.name %></h1>  
 <!-- needs film name -->
 
 <table class="table">
@@ -20,8 +20,18 @@
         <td><%= link_to submission.title, submission%></td>
         <td><%= 'number of bookmarks here' %></td>
         <%if current_user.admin?%>
-          <td><%='grade here'%></td>
-        <%end%>
+          <%if submission.grade != nil %>
+              <td><%= submission.grade%></td>
+          <%else%>
+              <%= form_for(Grade.new) do |f| %>
+              <div class="field">
+                <%= f.label :grade %><br>
+                <%= f.number_field :grade %>
+              </div>
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+          <%end%>
       </tr>
     <% end %>
   </tbody>

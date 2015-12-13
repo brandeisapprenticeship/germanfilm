@@ -67,11 +67,13 @@
 <%end%>
 
 <%if @submission.author != current_user.id? %>
-<div class="btn-group" role="group" aria-label="...">
-	<h2>
-		<button type="button" class="btn btn-default"><%= link_to 'Bookmark This!', new_bookmark_path %> </button> 
-	</h2>
+<%= form_for(Bookmark.new) do |f| %>
+<div class="form-group">
+  <%= f.hidden_field  :author, value: current_user.id %>
+  <%=f.hidden_field :submission, value: @submission.id %>
+  <%= f.submit "Bookmark This!"%>
 </div>
+<% end %>
 
 <%end%>
 

@@ -69,17 +69,15 @@ class AssignmentsController < ApplicationController
   def gradebook
     @users = User.where(admin: false)
     @assignment = Assignment.all
-    @submission = Submission.where(assignment_id: @assignment_id)
-    #if (!Submission.where(author: current_user.id).empty?)
-     # @submission = Submission.where(author: current_user.id)
-    #else 
-     # @submission = nil
-    #end
+    @assignment = Assignment.find(params[:id])
+    @submission = Submission.where(assignment_id: @assignment.id)
   end
   
-  #def get_submission
-   # @submission = 
-  #end
+  def mybookmarks
+    @assignment = Assignment.all
+    @submission = Submission.where(assignment_id: @assignment.id)
+    @bookmarks = Bookmark.where(user_id: current_user.id)
+  end
   
   private
     # Use callbacks to share common setup or constraints between actions.

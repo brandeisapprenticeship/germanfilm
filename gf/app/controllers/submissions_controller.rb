@@ -5,7 +5,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions.json
   def index
     @submissions = Submission.all
-    
+    @assignment = Assignment.all
   end
 
   # GET /submissions/1
