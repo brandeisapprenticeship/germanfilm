@@ -62,8 +62,7 @@
 
 
 <h2> Grade: <%= @submission.grade %></h2>
-<!-- but we want != -->
-<% if current_user.id = @submission.author %>
+
 
 <%=form_for(Comment.new) do |f|%>
 			<%=f.label :comment, 'Add a Comment'%><br>
@@ -73,4 +72,4 @@
 			<%=f.submit "Save Comment"%>
 		<%end%>
 </div>
-<%end%>
+
