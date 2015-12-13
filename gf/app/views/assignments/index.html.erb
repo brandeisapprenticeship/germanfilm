@@ -28,7 +28,7 @@
       <tr>
         <td> <%= assignment.name %></td>
         <td> <%= assignment.deadline.strftime("%A, %B, %d at %I:%M %p") %></td>
-        <td><%= link_to 'Link to Class Submissions', submissions_path%></td> <!-- I think it's right now?? -->
+        <td><%= link_to 'Link to Class Submissions', {:controller => "submissions", :action => "index", :assignment_id => assignment.id}%></td>
         <% if current_user.admin? %> 
         <td><%= link_to 'Edit Assignment', edit_assignment_path(assignment) %></td>
         <% else %>

@@ -29,7 +29,7 @@ class AssignmentsController < ApplicationController
 
     respond_to do |format|
       if @assignment.save
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully created.' }
+        format.html { redirect_to assignments_path, notice: 'Assignment was successfully created.' }
         format.json { render :show, status: :created, location: @assignment }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class AssignmentsController < ApplicationController
   def update
     respond_to do |format|
       if @assignment.update(assignment_params)
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully updated.' }
+        format.html { redirect_to assignments_path, notice: 'Assignment was successfully updated.' }
         format.json { render :show, status: :ok, location: @assignment }
       else
         format.html { render :edit }
@@ -68,7 +68,7 @@ class AssignmentsController < ApplicationController
   
   def gradebook
     @users = User.where(admin: false)
-    @assignment = Assignment.all
+    @assignments = Assignment.all
     @submission = Submission.where(assignment_id: @assignment_id)
     #if (!Submission.where(author: current_user.id).empty?)
      # @submission = Submission.where(author: current_user.id)

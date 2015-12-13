@@ -4,8 +4,8 @@ class SubmissionsController < ApplicationController
   # GET /submissions
   # GET /submissions.json
   def index
-    @submissions = Submission.all
-    
+    @assignment = Assignment.find(params[:assignment_id])
+    @submissions = Submission.where(assignment_id: @assignment.id)
   end
 
   # GET /submissions/1
