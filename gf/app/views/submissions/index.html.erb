@@ -18,7 +18,7 @@
       <tr>
         <td> <%= submission.name %></td>
         <td><%= link_to submission.title, submission%></td>
-        <td><%= 'number of bookmarks here' %></td>
+        <td><%= Bookmark.where(submission_id: submission.id).count %></td>
         <%if current_user.admin?%>
           <%if submission.grade != nil %>
               <td><%= submission.grade%></td>

@@ -16,7 +16,7 @@
     <% @submission.each do |submission| %>
       <tr>
         <td><%= link_to submission.title, submission%></td>
-        <td><%= 'number of bookmarks here' %></td>
+        <td><%= Bookmark.where(submission_id: submission.id).count %></td>
       </tr>
       <%end%>
   <%end%>
