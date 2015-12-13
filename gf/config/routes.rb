@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :bookmarks
   get 'submissions/mysubmiss'
   get 'assignments/gradebook'
-  get 'assignments/mybookmarks'
   get 'assignments/classvocab'
   resources :comments
   resources :submissions

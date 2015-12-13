@@ -3,7 +3,7 @@
 <div class="btn-group" role="group" aria-label="...">
 	<th>
 
-		<%if current_user.id == @submission.author%>  <!-- needs to be for author only -->
+		<%if current_user.id == @submission.user_id%>  <!-- needs to be for author only -->
 		<button type="button" class="btn btn-default"><%= link_to 'Edit Submission', edit_submission_path(@submission) %> </button> 
 		<%end%>
 	</th>
@@ -80,34 +80,22 @@
 
 
 
-<%if current_user.admin? or @submission.author = current_user.id? %>
+<%if current_user.admin? or @submission.user_id == current_user.id %>
 <h2> Grade: <%= @submission.grade %></h2>
-<<<<<<< HEAD
 <%end%>
 
-<%if @submission.author != current_user.id? %>
+<%if (@submission.user_id != current_user.id && !Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
 <%= form_for(Bookmark.new) do |f| %>
 <div class="form-group">
-  <%= f.hidden_field  :author, value: current_user.id %>
-  <%=f.hidden_field :submission, value: @submission.id %>
+  <%= f.hidden_field  :user_id, value: current_user.id %>
+  <%=f.hidden_field :submission_id, value: @submission.id %>
   <%= f.submit "Bookmark This!"%>
 </div>
 <% end %>
 
 <%end%>
 
-<div class="form-group">
-    
-    <div class='col-md-10'>
-      <br>
-      <%= text_area :comment, :cols => "500", :rows => "10"%>
-    </div>
 
-<div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default"><%= link_to 'Comment', new_comment_path %> </button>
-</div>
-
-=======
 
 <h2>Comments:</h2>
 <%@comments.each do |comment|%>
@@ -128,9 +116,3 @@
 </div>
 
 
-
-
-
-
-
->>>>>>> 4dd63472c8d95ef81d14505cf7fe5c0b6c403b3b

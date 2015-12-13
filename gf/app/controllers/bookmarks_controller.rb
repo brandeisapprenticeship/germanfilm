@@ -4,7 +4,8 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.json
   def index
-    @bookmarks = Bookmark.all
+    @assignments = Assignment.all
+    @bookmarks = Bookmark.where(user_id: current_user.id)
   end
 
   # GET /bookmarks/1
@@ -28,7 +29,7 @@ class BookmarksController < ApplicationController
 
     respond_to do |format|
       if @bookmark.save
-        format.html { redirect_to @bookmark, notice: 'Bookmark was successfully created.' }
+        format.html { redirect_to :back, notice: 'Bookmark was successfully created.' }
         format.json { render :show, status: :created, location: @bookmark }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class BookmarksController < ApplicationController
   def update
     respond_to do |format|
       if @bookmark.update(bookmark_params)
-        format.html { redirect_to @bookmark, notice: 'Bookmark was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Bookmark was successfully updated.' }
         format.json { render :show, status: :ok, location: @bookmark }
       else
         format.html { render :edit }

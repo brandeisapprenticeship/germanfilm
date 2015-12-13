@@ -76,11 +76,6 @@ class AssignmentsController < ApplicationController
     @assignments = Assignment.all
   end
   
-  def mybookmarks
-    @assignment = Assignment.all
-    @submission = Submission.where(assignment_id: @assignment.id)
-    @bookmarks = Bookmark.where(user_id: current_user.id)
-  end
   
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,25 +1,31 @@
+<!DOCTYPE HTML>
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Bookmarks</h1>
+<% @assignments.each do |assignment| %>
+  <h2> Assignment:  <%= assignment.name%></h2>
+  <br>
+  <% @bookmarks.each do |bookmark| %>
+    <%if bookmark.submission.assignment == assignment%>
+          <h3><%= bookmark.submission.title%></h3>
+          <h5><%= bookmark.submission.name%></h5>
+          <audio controls>
+          <source src= <%=bookmark.submission.audio_url%> type="audio/mp4"> <!--needs to be mp3-->
+         </audio>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bookmarks.each do |bookmark| %>
-      <tr>
-        <td><%= link_to 'Show', bookmark %></td>
-        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
-        <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Bookmark', new_bookmark_path %>
+        <table border="2px" style="white-space: pre-wrap" padding="200px" >
+          <thead ><tr><h1> Notecard: </h1></tr></thead>
+          <tbody>
+            <tr>
+              <!--stop showing <p></p> signs!!--> 
+            <td><%= bookmark.submission.notecard.html_safe %></td>
+            </tr>
+            </tbody>
+            <br>
+        </table>
+        <br>
+        
+        <%end%>
+        <br>
+      <%end%>
+<%end%>
+ 

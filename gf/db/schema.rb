@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20151212202722) do
   create_table "bookmarks", force: :cascade do |t|
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.integer  "count",         limit: 4
     t.integer  "user_id",       limit: 4
     t.integer  "submission_id", limit: 4
   end
@@ -42,7 +41,6 @@ ActiveRecord::Schema.define(version: 20151212202722) do
     t.datetime "updated_at",                    null: false
     t.string   "title",           limit: 255
     t.string   "name",            limit: 255
-    t.integer  "author",          limit: 4
     t.integer  "grade",           limit: 4
     t.text     "notecard",        limit: 65535
     t.string   "vocab_english_1", limit: 255

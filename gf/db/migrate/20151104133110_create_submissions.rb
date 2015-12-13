@@ -5,7 +5,6 @@ class CreateSubmissions < ActiveRecord::Migration
       t.timestamps null: false
       t.string :title
       t.string :name
-      t.integer :author
       t.integer :grade
       t.text :notecard
       t.string :vocab_english_1
