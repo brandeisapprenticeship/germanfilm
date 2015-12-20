@@ -31,9 +31,10 @@ class SubmissionsController < ApplicationController
   def create
     @submission = Submission.new(submission_params)
     @submission.audio = submission_params[:audio]
+   # @assignment = Assignment.find(params[:assignment_id])
     respond_to do |format|
       if @submission.save
-        format.html { redirect_to :back, notice: 'Submission was successfully created.' }
+        format.html { redirect_to submissions_url(:assignment_id => @assignment.id), notice: 'Submission was successfully created.' }
         format.json { render :show, status: :created, location: @submission }
       else
         format.html { render :new }
@@ -69,10 +70,10 @@ class SubmissionsController < ApplicationController
   def mysubmiss
     if (!Submission.where(user_id: current_user.id).empty?)
       @submission = Submission.where(user_id: current_user.id)
-      @bookmark = Bookmark.where(submission_id: @submission.id)
+      #@bookmark = Bookmark.where(submission_id: @submission.id)
     else 
       @submission = nil
-      @bookmark = nil
+      #@bookmark = nil
     end
     
   end

@@ -16,6 +16,7 @@
 <h3><%=@assignment.description.html_safe%></h3>
 <%=f.hidden_field :assignment_id, value: @assignment.id%>
 <%=f.hidden_field :user_id, value: current_user.id%>
+<%=f.hidden_field :name, value: current_user.name %>
 <div class="form-group">
   
 <br> <br>
@@ -109,11 +110,6 @@
       <%= f.text_field :vocab_ger_5, :cols => "120", :rows => "10" %>
     </div>
   </div>
-
-
-<div class="form-group">
-  <%=f.hidden_field :name, value: current_user.name %>
-</div>
 
   <div class="actions">
     <%= f.submit %>
