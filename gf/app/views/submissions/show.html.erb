@@ -87,7 +87,7 @@
 <%if current_user.admin?%>
   <%= form_for(@submission) do |f| %>
     <%= f.label :grade %><br>
-    <%= f.number_field :grade %>
+    <%= f.number_field :grade, :step => 0.5 %>
     <%= f.submit "Save Grade" %>
   <%end%>
 <%end%>

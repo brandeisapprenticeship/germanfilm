@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20151213173546) do
     t.datetime "updated_at",                    null: false
     t.string   "title",           limit: 255
     t.string   "name",            limit: 255
-    t.integer  "grade",           limit: 4
+    t.float    "grade",           limit: 24
     t.text     "notecard",        limit: 65535
     t.string   "vocab_english_1", limit: 255
     t.string   "vocab_english_2", limit: 255
