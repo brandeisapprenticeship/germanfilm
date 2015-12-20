@@ -31,10 +31,9 @@ class SubmissionsController < ApplicationController
   def create
     @submission = Submission.new(submission_params)
     @submission.audio = submission_params[:audio]
-   # @assignment = Assignment.find(params[:assignment_id])
     respond_to do |format|
       if @submission.save
-        format.html { redirect_to submissions_url(:assignment_id => @assignment.id), notice: 'Submission was successfully created.' }
+        format.html { redirect_to submissions_path(:assignment_id => submission_params[:assignment_id]), notice: 'Submission was successfully created.' }
         format.json { render :show, status: :created, location: @submission }
       else
         format.html { render :new }
