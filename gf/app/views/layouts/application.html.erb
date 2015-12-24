@@ -23,9 +23,10 @@
 
 
     <!-- NAV BAR -->
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <% if user_signed_in? %>
+    <div class="collapse-navbar-collapse">
+      <% if user_signed_in? %>
+      <ul class="nav-navbar-nav">
+        
          <li><%= link_to "Home", assignments_path %></li>
              <% if !current_user.admin?%>
                  <li><%= link_to "My Submissions", submissions_mysubmiss_path %></li>
@@ -37,16 +38,15 @@
                   <!-- change path!: -->
                   <li><%= link_to "Grade Book", assignments_gradebook_path %></li> 
            <% end %>
+         <li id="navbar-right"> <%= link_to('Sign Out', destroy_user_session_path, :method => :delete) %> </li>
          <%end%>
        
       </ul>
 
       
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav=navbar-nav-navbar-right">
         <% if user_signed_in? %>
-        <li>
-          <%= link_to('Sign Out', destroy_user_session_path, :method => :delete) %>
-        </li>
+
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -55,7 +55,11 @@
 <div class="container">
 <%= yield %>
 </div>
-
+<footer class="footer">
+      <div class="container">
+        <p class="text-muted">Please contact <a href='mailto:brandeisapprenticeship@gmail.com'>brandeisapprenticeship@gmail.com</a> with any questions</p>
+      </div>
+    </footer>
 </body>
 </html>
 
