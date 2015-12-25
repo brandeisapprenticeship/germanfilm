@@ -10,7 +10,7 @@
 <!-- table for assignments -->
 
   <!-- Table -->
-  <table class="table">
+  <table class="table" id="assignment-table">
     <thead>
     <tr>
       <th style="color:white">Film Title </th>
@@ -28,16 +28,16 @@
       <tr>
         <td> <%= assignment.name %></td>
         <td> <%= assignment.deadline.strftime("%A, %B, %d at %I:%M %p") %></td>
-        <td><%= link_to 'Link to Class Submissions', {:controller => "submissions", :action => "index", :assignment_id => assignment.id}%></td>
+        <td ><%= link_to 'Link to Class Submissions', {:controller => "submissions", :action => "index", :assignment_id => assignment.id}, style:"color:#E8EE79"%></td>
         <% if current_user.admin? %> 
-        <td><%= link_to 'Edit Assignment', edit_assignment_path(assignment) %></td>
+        <td><%= link_to 'Edit Assignment', edit_assignment_path(assignment), style:"color:#E8EE79" %></td>
         <% else %>
         <!-- doesn't work: -->
         <%if Submission.where(assignment_id: assignment.id, user_id: current_user.id).blank?%>
-          <td><%=link_to 'Submit Assignment', {:controller => "submissions", :action => "new", :assignment_id => assignment.id}%></td>
+          <td><%=link_to 'Submit Assignment', {:controller => "submissions", :action => "new", :assignment_id => assignment.id}, style:"color:#E8EE79"%></td>
         <% else %>
           <%@submission = Submission.where(assignment_id: assignment.id, user_id: current_user.id).first%>
-          <td><%=link_to 'Edit Submission', edit_submission_path(@submission)%></td>
+          <td><%=link_to 'Edit Submission', edit_submission_path(@submission), style:"color:#E8EE79"%></td>
         <%end%>
         <%end%>
         <!--<td><%= link_to 'Destroy Assignment', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->

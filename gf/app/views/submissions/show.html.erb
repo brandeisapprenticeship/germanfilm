@@ -81,14 +81,17 @@
 </div>
 
 
-<div class="grade-info">
+<div class="gradevalue">
   <%if current_user.admin? or @submission.user_id == current_user.id %>
-  <h2 id="gradevalue"> Grade: <%= @submission.grade %></h2>
+  <h2 > Grade: <%= @submission.grade%></h2>
     <%if !@gradecomments.empty?%>
       <%= @gradecomments.first.comment %>
     <%end%>
   <%end%>
   <br><br>
+</div>
+
+<div class="gradeinfo">
   <%if current_user.admin?%>
     <%= form_for(@submission) do |f| %>
       <%= f.label :grade %><br>
@@ -96,21 +99,21 @@
       <%= f.submit "Save Grade" %>
     <%end%>
   <%end%>
-  
+  <br>
   <%if current_user.admin?%>
     <%if @gradecomments.empty?%>
         <%= form_for(GradeComment.new) do |f| %>
           <%= f.text_area :comment %>
           <%= f.hidden_field :user_id, value: current_user.id%>
           <%= f.hidden_field :submission_id, value: @submission.id%>
-          <%= f.submit %>
+          <%= f.submit "Save Comment" %>
         <%end%>
     <%else%>
         <%= form_for(@gradecomments.first) do |f| %>
           <%= f.text_area :comment %>
           <%= f.hidden_field :user_id, value: current_user.id%>
           <%= f.hidden_field :submission_id, value: @submission.id%>
-          <%= f.submit %>
+          <%= f.submit "Save Comment"%>
         <%end%>
     <%end%>
   <%end%>

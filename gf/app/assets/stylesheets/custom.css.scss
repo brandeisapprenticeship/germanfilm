@@ -51,19 +51,19 @@ body {
     text-decoration: none;
 }
 
-.assignments .table {
-    color: #000;
+#assignment-table {
     font-family: verdana;
 }
 
-.grade-info {
+.gradevalue {
     position: absolute;
-    top: 150px;
+    top: 70px;
     right: 110px;
 }
 
-.grade-info #gradevalue {
-    top: 70px;
+.gradeinfo {
+    position: absolute;
+    top: 150px;
     right: 110px;
 }
 
