@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<div class="btn-group" role="group" aria-label="...">
+<div class="btn-group" role="group" aria-label="..."  >
 	<th>
 
 		<%if current_user.id == @submission.user_id%>  <!-- needs to be for author only -->
-		<button type="button" class="btn btn-default"><%= link_to 'Edit Submission', edit_submission_path(@submission) %> </button> 
+		  <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'Edit Submission', edit_submission_path(@submission), style:"color:#7538CF" %> </button> 
 		<%end%>
-	</th>
   
-  <button type="button" class="btn btn-default"><%= link_to 'Return to Class Submissions', {:controller => "submissions", :action => "index", :assignment_id => @submission.assignment_id} %> </button>
+    <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'Return to Class Submissions', {:controller => "submissions", :action => "index", :assignment_id => @submission.assignment_id}, style:"color:#7538CF" %> </button>
+  </th>
 </div>
 
 
 <h1 class="submission-info"> <%= @submission.title %></h1>
-<h4 class="submission-info">Author: <%= @submission.name%></h4s>
+<h4 class="submission-info" id="author-user">Author: <%= @submission.name%></h4>
 
 
 <h2> Audio: </h2>
@@ -22,7 +22,7 @@
 </audio>
 
 <table border="2px" style="white-space: pre-wrap" padding="200px" >
-	<thead ><tr><h1> Notecard: </h1></tr></thead>
+	<thead ><tr><h2> Notecard: </h2></tr></thead>
 	<tbody>
 		<tr>
 		<td width="40%"><%= @submission.notecard.html_safe %></td>
@@ -81,58 +81,64 @@
 </div>
 
 
-
-<%if current_user.admin? or @submission.user_id == current_user.id %>
-<h2> Grade: <%= @submission.grade %></h2>
-<%end%>
-
-<%if current_user.admin?%>
-  <%= form_for(@submission) do |f| %>
-    <%= f.label :grade %><br>
-    <%= f.number_field :grade, :step => 0.5 %>
-    <%= f.submit "Save Grade" %>
+<div class="grade-info">
+  <%if current_user.admin? or @submission.user_id == current_user.id %>
+  <h2 id="gradevalue"> Grade: <%= @submission.grade %></h2>
+    <%if !@gradecomments.empty?%>
+      <%= @gradecomments.first.comment %>
+    <%end%>
   <%end%>
-<%end%>
-
-<%if current_user.admin?%>
-  <%if @gradecomments.empty?%>
-      <%= form_for(GradeComment.new) do |f| %>
-        <%= f.text_area :comment %>
-        <%= f.hidden_field :user_id, value: current_user.id%>
-        <%= f.hidden_field :submission_id, value: @submission.id%>
-        <%= f.submit %>
-      <%end%>
-  <%else%>
-      <%= form_for(@gradecomments.first) do |f| %>
-        <%= f.text_area :comment %>
-        <%= f.hidden_field :user_id, value: current_user.id%>
-        <%= f.hidden_field :submission_id, value: @submission.id%>
-        <%= f.submit %>
-      <%end%>
+  <br><br>
+  <%if current_user.admin?%>
+    <%= form_for(@submission) do |f| %>
+      <%= f.label :grade %><br>
+      <%= f.number_field :grade, :step => 0.5 %>
+      <%= f.submit "Save Grade" %>
+    <%end%>
   <%end%>
-<%end%>
-
-<%if (@submission.user_id != current_user.id && !Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
-<%= form_for(Bookmark.new) do |f| %>
-<div class="form-group">
-  <%= f.hidden_field  :user_id, value: current_user.id %>
-  <%=f.hidden_field :submission_id, value: @submission.id %>
-  <%= f.submit "Bookmark This!"%>
+  
+  <%if current_user.admin?%>
+    <%if @gradecomments.empty?%>
+        <%= form_for(GradeComment.new) do |f| %>
+          <%= f.text_area :comment %>
+          <%= f.hidden_field :user_id, value: current_user.id%>
+          <%= f.hidden_field :submission_id, value: @submission.id%>
+          <%= f.submit %>
+        <%end%>
+    <%else%>
+        <%= form_for(@gradecomments.first) do |f| %>
+          <%= f.text_area :comment %>
+          <%= f.hidden_field :user_id, value: current_user.id%>
+          <%= f.hidden_field :submission_id, value: @submission.id%>
+          <%= f.submit %>
+        <%end%>
+    <%end%>
+  <%end%>
 </div>
-<% end %>
 
-<%end%>
-
+<div id="bookmark">
+  <%if (@submission.user_id != current_user.id && !Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
+  <%= form_for(Bookmark.new) do |f| %>
+  <div class="form-group">
+    <%= f.hidden_field  :user_id, value: current_user.id %>
+    <%=f.hidden_field :submission_id, value: @submission.id %>
+    <%= f.submit "Bookmark This!"%>
+  </div>
+  <% end %>
+  <%end%>
+</div>
 
 
 <h2>Comments:</h2>
 <%@comments.each do |comment|%>
-	<div>
+	<div id="comments">
 		<%=comment.comment%>
-		<%=User.find(comment.user_id).name%>
+		<br><br>
+		<div id="author-user"><%=User.find(comment.user_id).name%></div>
 	</div>
+	<hr style="height: 5px"/>
 <%end%>
-
+<br>
 <%=form_for(Comment.new) do |f|%>
 			<%=f.label :comment, 'Add a Comment'%><br>
 			<%=f.text_area :comment %><br>
@@ -142,5 +148,5 @@
 			<%=f.submit "Save Comment"%>
 		<%end%>
 </div>
-
+<br>
 

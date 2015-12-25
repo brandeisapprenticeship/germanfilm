@@ -13,7 +13,7 @@ body {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 70px;
+  height: 60px;
   background-color: #EFDA2E;
   border-top-style: solid;
   border-top-width: 10px;
@@ -52,7 +52,28 @@ body {
 }
 
 .assignments .table {
-    color: white;
+    color: #000;
     font-family: verdana;
+}
+
+.grade-info {
+    position: absolute;
+    top: 150px;
+    right: 110px;
+}
+
+.grade-info #gradevalue {
+    top: 70px;
+    right: 110px;
+}
+
+#bookmark {
+    position: absolute;
+    top: 160px;
+    left: 450px;
+}
+
+#author-user{
+    font-style: italic;
 }
 
