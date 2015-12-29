@@ -7,6 +7,7 @@ body {
   /* Margin bottom by footer height */
     margin-bottom: 80px;
     background-color: #E3472C;
+    font-family: Verdana, Geneva, sans-serif;
 }
 
 .footer {
@@ -33,7 +34,6 @@ body {
     padding: 0;
     overflow: hidden;
     background-color: #fff;
-    font-family: Verdana, Geneva, sans-serif;
 }
 
 #navbar-right{
@@ -52,24 +52,19 @@ body {
     text-decoration: none;
 }
 
-.table {
-    font-family: Verdana, Geneva, sans-serif;
-}
-
 .gradeinfo {
     position: absolute;
-    top: 150px;
+    top: 85px;
     right: 15px;
 }
 
 .gradeinfo .gradevalue {
     position: absolute;
-    right: 350px;
+    right: 420px;
     width: 300px;
     border: 5px solid black;
     padding: 10px;
     background-color: #E8D879;
-
 }
 
 #bookmark {
