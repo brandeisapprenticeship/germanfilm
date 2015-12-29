@@ -6,8 +6,8 @@
 <table class="table">
     <thead>
     <tr>
-      <th>Submission Title </th>
-      <th > Number Of Bookmarks</th>
+      <th  style="color:white">Submission Title </th>
+      <th  style="color:white"> Number Of Bookmarks</th>
     </tr>
      </thead>
 
@@ -15,8 +15,8 @@
     <%if @submission != nil %>
     <% @submission.each do |submission| %>
       <tr>
-        <td><%= link_to submission.title, submission%></td>
-        <td><%= Bookmark.where(submission_id: submission.id).count %></td>
+        <td><%= link_to submission.title, submission, style:"color:#E8EE79"%></td>
+        <td id="bookmarkcounter"><%= Bookmark.where(submission_id: submission.id).count%></td>
       </tr>
       <%end%>
   <%end%>
