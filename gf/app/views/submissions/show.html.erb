@@ -102,14 +102,14 @@
   <%if current_user.admin?%>
     <%if @gradecomments.empty?%>
         <%= form_for(GradeComment.new) do |f| %>
-          <%= f.text_area :comment, size: "30x10" %>
+          <%= f.text_area :comment, size: "30x10", maxlength: 400  %>
           <%= f.hidden_field :user_id, value: current_user.id%>
           <%= f.hidden_field :submission_id, value: @submission.id%>
           <%= f.submit "Save Comment" %>
         <%end%>
     <%else%>
         <%= form_for(@gradecomments.first) do |f| %>
-          <%= f.text_area :comment, size: "30x10" %>
+          <%= f.text_area :comment, size: "30x10", maxlength: 400 %>
           <%= f.hidden_field :user_id, value: current_user.id%>
           <%= f.hidden_field :submission_id, value: @submission.id%>
           <%= f.submit "Save Comment"%>
