@@ -44,72 +44,76 @@
     <div class='col-md-10'>
       <br>
       <!--make it into Deutsch-->
-      <%= f.cktext_area :notecard, :ckeditor => {:language => 'en'}, maxlength: 1000 %>
+      <%= f.cktext_area :notecard, :ckeditor => {:language => 'de'}, maxlength: 1000 %><br>
     </div>
 </div>
 
 <!-- vocab -->
- <div class="form-group">
-    <%= f.label :"English Vocab 1", class:'control-label col-md-2' %>
-    <div class='col-md-10'>
-      <%= f.text_field :vocab_english_1, :cols => "120", :rows => "10" %>
-    </div> 
-     <%= f.label :"English Vocab 2", class:'control-label col-md-2' %>
-    <div class='col-md-10'>
-      <%= f.text_field :vocab_english_2, :cols => "120", :rows => "10" %>
-    </div>  
-  </div> 
- <!-- <div class="form-group">
-   
-  </div>  --> 
- <!-- <div class="form-group"> -->
-    <%= f.label :"English Vocab 3", class:'control-label col-md-2' %>
-    <div class='col-md-10'>
-      <%= f.text_field :vocab_english_3, :cols => "120", :rows => "10" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+          <%= f.label :"German: Vocab 1", class:'control-label col-md-2' %>
+          <%= f.text_field :vocab_ger_1, :cols => "120", :rows => "10" %>
     </div>
-    <!-- </div> -->
- <div class="form-group">
-    <%= f.label :"English Vocab 4", class:'control-label col-md-2' %>
-    <div class='col-md-10'>
-      <%= f.text_field :vocab_english_4, :cols => "120", :rows => "10" %>
-    </div>
-    </div>
- <div class="form-group">
-    <%= f.label :"English Vocab 5", class:'control-label col-md-2' %>
-    <div class='col-md-10'>
-      <%= f.text_field :vocab_english_5, :cols => "120", :rows => "10" %>
-    </div>
-    </div>
- <div class="form-group">
-    <%= f.label :"German Vocab 1", class:'control-label col-md-2' %>
-    <div class='col-md-10'>
-      <%= f.text_field :vocab_ger_1, :cols => "120", :rows => "10" %>
-    </div>
-    </div>
- <div class="form-group">
-    <%= f.label :"German Vocab 2", class:'control-label col-md-2' %>
-    <div class='col-md-10'>
-      <%= f.text_field :vocab_ger_2, :cols => "120", :rows => "10" %>
-    </div>
-    </div>
- <div class="form-group">
-    <%= f.label :"German Vocab 3", class:'control-label col-md-2' %>
-    <div class='col-md-10'>
-      <%= f.text_field :vocab_ger_3, :cols => "120", :rows => "10" %>
-    </div>
-    </div>
- <div class="form-group">
-    <%= f.label :"German Vocab 4", class:'control-label col-md-2' %>
-    <div class='col-md-10'>
-      <%= f.text_field :vocab_ger_4, :cols => "120", :rows => "10" %>
-    </div>
-    </div>
- <div class="form-group">
-    <%= f.label :"German Vocab 5", class:'control-label col-md-2' %>
-    <div class='col-md-10'>
-      <%= f.text_field :vocab_ger_5, :cols => "120", :rows => "10" %>
+    <div class="col-md-6">
+        <%= f.label :"English: Vocab 1", class:'control-label col-md-2' %>
+        <%= f.text_field :vocab_english_1, :cols => "120", :rows => "10" %>
     </div>
   </div>
+</div> 
+
+<div class="container">
+  <div class="row">
+    <div class='col-md-6'>
+      <%= f.label :"German: Vocab 2", class:'control-label col-md-2' %>
+      <%= f.text_field :vocab_ger_2, :cols => "120", :rows => "10" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.label :"English: Vocab 2", class:'control-label col-md-2' %>
+      <%= f.text_field :vocab_english_2, :cols => "120", :rows => "10" %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class='col-md-6'>
+      <%= f.label :"German: Vocab 3", class:'control-label col-md-2' %>
+      <%= f.text_field :vocab_ger_3, :cols => "120", :rows => "10" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.label :"English: Vocab 3", class:'control-label col-md-2' %>
+      <%= f.text_field :vocab_english_3, :cols => "120", :rows => "10" %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class='col-md-6'>
+      <%= f.label :"German: Vocab 4", class:'control-label col-md-2' %>
+      <%= f.text_field :vocab_ger_4, :cols => "120", :rows => "10" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.label :"English: Vocab 4", class:'control-label col-md-2' %>
+      <%= f.text_field :vocab_english_4, :cols => "120", :rows => "10" %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class='col-md-6'>
+      <%= f.label :"German: Vocab 5", class:'control-label col-md-2' %>
+      <%= f.text_field :vocab_ger_5, :cols => "120", :rows => "10" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.label :"English: Vocab 5", class:'control-label col-md-2' %>
+      <%= f.text_field :vocab_english_5, :cols => "120", :rows => "10" %>
+    </div>
+  </div>
+</div>
+    
 
   <div class="actions">
     <%= f.submit %>

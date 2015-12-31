@@ -4,7 +4,7 @@
 <!--create assignment button -->
 <% if current_user.admin? %>
 <div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default"><%= link_to 'Create New Assignment', new_assignment_path %> </button>
+  <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'Create New Assignment', new_assignment_path, style:"color:#7538CF" %> </button>
 </div>
 <%end%>
 <!-- table for assignments -->
