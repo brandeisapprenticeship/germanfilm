@@ -3,10 +3,77 @@
 	<h3><%=assignment.name%></h3>
 	<%@submissions = Submission.where(assignment_id: assignment.id)%>
 	<%@submissions.each do |submission|%>
-		<%=submission.vocab_english_1%>, <%=submission.vocab_ger_1%><br>
-		<%=submission.vocab_english_2%>, <%=submission.vocab_ger_2%><br>
-		<%=submission.vocab_english_3%>, <%=submission.vocab_ger_3%><br>
-		<%=submission.vocab_english_4%>, <%=submission.vocab_ger_4%><br>
-		<%=submission.vocab_english_5%>, <%=submission.vocab_ger_5%><br>
+		<div class="container">
+		    <div class="row">
+		        <div class="col-sm-2">
+		            <div class="flip">
+		                <div class="card">
+		                    <div class="face front">
+		                        <div class="well well-sm inner"><%=submission.vocab_ger_1%></div>
+		                    </div>
+		                    <div class="face back">
+		                        <div class="well well-sm inner"><%=submission.vocab_english_1%></div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="col-sm-2">
+		            <div class="flip">
+		                <div class="card">
+		                    <div class="face front">
+		                        <div class="well well-sm inner"><%=submission.vocab_ger_2%></div>
+		                    </div>
+		                    <div class="face back">
+		                        <div class="well well-sm inner"><%=submission.vocab_english_2%></div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="col-sm-2">
+		            <div class="flip">
+		                <div class="card">
+		                    <div class="face front">
+		                        <div class="well well-sm inner"><%=submission.vocab_ger_3%></div>
+		                    </div>
+		                    <div class="face back">
+		                        <div class="well well-sm inner"><%=submission.vocab_english_3%></div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="col-sm-2">
+		            <div class="flip">
+		                <div class="card">
+		                    <div class="face front">
+		                        <div class="well well-sm inner"><%=submission.vocab_ger_4%></div>
+		                    </div>
+		                    <div class="face back">
+		                        <div class="well well-sm inner"><%=submission.vocab_english_4%></div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="col-sm-2">
+		            <div class="flip">
+		                <div class="card">
+		                    <div class="face front">
+		                        <div class="well well-sm inner"><%=submission.vocab_ger_5%></div>
+		                    </div>
+		                    <div class="face back">
+		                        <div class="well well-sm inner"><%=submission.vocab_english_5%></div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div><br>
 	<%end%>
 <%end%>
+
+
+<script>
+    $('.flip').click(function(){
+        $(this).find('.card').toggleClass('flipped');
+
+    });
+</script>
