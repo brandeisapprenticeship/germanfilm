@@ -4,9 +4,9 @@
 	<th>
 
 		<%if current_user.id == @submission.user_id%>  <!-- needs to be for author only -->
-		  <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'Edit Submission', edit_submission_path(@submission), style:"color:#7538CF" %> </button> 
-		<%end%>
-  
+    <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'Edit Submission', edit_submission_path(@submission), style:"color:#7538CF" %> </button> 
+    <%end%>
+
     <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'Return to Class Submissions', {:controller => "submissions", :action => "index", :assignment_id => @submission.assignment_id}, style:"color:#7538CF" %> </button>
   </th>
 </div>
@@ -19,16 +19,16 @@
 <h2> Audio: </h2>
 <audio controls>
 	<source src= <%=@submission.audio_url%> type="audio/mp4"> <!--needs to be mp3-->
-</audio>
+  </audio>
 
-<table border="3px solid black" style="white-space: pre-wrap" padding="200px" >
-	<thead ><tr><h2> Notecard: </h2></tr></thead>
-	<tbody>
-		<tr>
-		<td width="40%"><%= @submission.notecard.html_safe %></td>
+  <table border="3px solid black" style="white-space: pre-wrap" padding="200px" >
+   <thead ><tr><h2> Notecard: </h2></tr></thead>
+   <tbody>
+    <tr>
+      <td width="40%"><%= @submission.notecard.html_safe %></td>
     </tr>
-    </tbody>
-    <br>
+  </tbody>
+  <br>
 </table>
 <br>
 
@@ -80,42 +80,62 @@
   <button type="button" class="btn btn-default"><%=@submission.vocab_ger_5%> </button>
 </div>
 
-<div class="gradeinfo">
-  <div class="gradevalue">
-    <%if current_user.admin? or @submission.user_id == current_user.id %>
-    <h2 > Grade: <%= @submission.grade%></h2>
-      <%if !@gradecomments.empty?%>
-        <p><%= @gradecomments.first.comment %></p
-      <%end%>
-    <%end%>
-    <br><br>
+
+<%if current_user.admin? or @submission.user_id == current_user.id %>
+<div class="panel-group gradeinfo gradevalue" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Grade
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <%=form_for(@submission) do |f|%>
+          <%if current_user.admin?%>
+            <%= f.label :grade %><br>
+            <%= f.number_field :grade, :step => 0.5 %>
+            <%= f.submit "Save Grade" %>
+          <%else%>
+            <%= f.label :grade %><br>
+            <%= f.number_field :grade, :step => 0.5, :disabled => true%>
+          <%end%>
+        <%end%>
+        <br>
+        <div class="form-group">
+          <%if @gradecomments.empty?%>
+          <%= form_for(GradeComment.new) do |f| %>
+            <%if current_user.admin?%>
+              <%= f.text_area :comment, size: "30x10", maxlength: 400  %>
+              <%= f.hidden_field :user_id, value: current_user.id%>
+              <%= f.hidden_field :submission_id, value: @submission.id%>
+              <%= f.submit "Save Comment" %>
+            <%else%>
+              <h5>No comment submitted</h5>
+            <%end%>
+          <%end%>
+          <%else%>
+          <%= form_for(@gradecomments.first) do |f| %>
+            <%if current_user.admin?%>
+              <%= f.text_area :comment, size: "30x10", maxlength: 400 %>
+              <%= f.hidden_field :user_id, value: current_user.id%>
+              <%= f.hidden_field :submission_id, value: @submission.id%>
+              <%= f.submit "Save Comment"%>
+            <%else%>
+              <%= f.text_area :comment, size: "30x10", maxlength: 400, readonly: true%>
+            <%end%>
+          <%end%>
+          <%end%>
+        </div>
+        <%end%>
+      </div>
+    </div>
+
   </div>
 
-  <%if current_user.admin?%>
-    <%= form_for(@submission) do |f| %>
-      <%= f.label :grade %><br>
-      <%= f.number_field :grade, :step => 0.5 %>
-      <%= f.submit "Save Grade" %>
-    <%end%>
-  <%end%>
-  <br>
-  <%if current_user.admin?%>
-    <%if @gradecomments.empty?%>
-        <%= form_for(GradeComment.new) do |f| %>
-          <%= f.text_area :comment, size: "30x10", maxlength: 400  %>
-          <%= f.hidden_field :user_id, value: current_user.id%>
-          <%= f.hidden_field :submission_id, value: @submission.id%>
-          <%= f.submit "Save Comment" %>
-        <%end%>
-    <%else%>
-        <%= form_for(@gradecomments.first) do |f| %>
-          <%= f.text_area :comment, size: "30x10", maxlength: 400 %>
-          <%= f.hidden_field :user_id, value: current_user.id%>
-          <%= f.hidden_field :submission_id, value: @submission.id%>
-          <%= f.submit "Save Comment"%>
-        <%end%>
-    <%end%>
-  <%end%>
+
 </div>
 
 <div id="bookmark">
@@ -133,22 +153,22 @@
 
 <h2>Comments:</h2>
 <%@comments.each do |comment|%>
-	<div id="comments">
-		<%=comment.comment%>
-		<br><br>
-		<div id="author-user"><%=User.find(comment.user_id).name%></div>
-	</div>
-	<hr style="height: 5px"/>
+<div id="comments">
+  <%=comment.comment%>
+  <br><br>
+  <div id="author-user"><%=User.find(comment.user_id).name%></div>
+</div>
+<hr style="height: 5px"/>
 <%end%>
 <br>
 <%=form_for(Comment.new) do |f|%>
-			<%=f.label :comment, 'Add a Comment'%><br>
-			<%=f.text_area :comment %><br>
-			<%=f.hidden_field :user_id, value: current_user.id%>
-			<%=f.hidden_field :submission_id, value: @submission.id%>
-			
-			<%=f.submit "Save Comment"%>
-		<%end%>
+  <%=f.label :comment, 'Add a Comment'%><br>
+  <%=f.text_area :comment %><br>
+  <%=f.hidden_field :user_id, value: current_user.id%>
+  <%=f.hidden_field :submission_id, value: @submission.id%>
+
+  <%=f.submit "Save Comment"%>
+<%end%>
 </div>
 <br>
 
