@@ -9,7 +9,7 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+  <% else %>
 
 
 <h1><%=@assignment.name%></h1>
@@ -49,14 +49,17 @@
 </div>
 
 <!-- vocab -->
+<div><b>Vocabulary</b></div>
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-          <%= f.label :"German: Vocab 1", class:'control-label col-md-2' %>
+    <div class="col-md-6" align="right"><b>German Vocab Word</b></div>
+    <div class="col-md-6" align="left"><b>English Translation</b></div>
+    <div class="col-md-6" align="right">
+          <%#= f.label :"German: Vocab 1", class:'control-label col-md-2' %>
           <%= f.text_field :vocab_ger_1, :cols => "120", :rows => "10" %>
     </div>
-    <div class="col-md-6">
-        <%= f.label :"English: Vocab 1", class:'control-label col-md-2' %>
+    <div class="col-md-6" align="left">
+        <%#= f.label :"English: Vocab 1", class:'control-label col-md-2' %>
         <%= f.text_field :vocab_english_1, :cols => "120", :rows => "10" %>
     </div>
   </div>
@@ -64,12 +67,12 @@
 
 <div class="container">
   <div class="row">
-    <div class='col-md-6'>
-      <%= f.label :"German: Vocab 2", class:'control-label col-md-2' %>
+    <div class='col-md-6' align="right">
+      <%#= f.label :"German: Vocab 2", class:'control-label col-md-2' %>
       <%= f.text_field :vocab_ger_2, :cols => "120", :rows => "10" %>
     </div>
-    <div class='col-md-6'>
-      <%= f.label :"English: Vocab 2", class:'control-label col-md-2' %>
+    <div class='col-md-6' align="left">
+      <%#= f.label :"English: Vocab 2", class:'control-label col-md-2' %>
       <%= f.text_field :vocab_english_2, :cols => "120", :rows => "10" %>
     </div>
   </div>
@@ -77,12 +80,12 @@
 
 <div class="container">
   <div class="row">
-    <div class='col-md-6'>
-      <%= f.label :"German: Vocab 3", class:'control-label col-md-2' %>
+    <div class='col-md-6' align="right">
+      <%#= f.label :"German: Vocab 3", class:'control-label col-md-2' %>
       <%= f.text_field :vocab_ger_3, :cols => "120", :rows => "10" %>
     </div>
-    <div class='col-md-6'>
-      <%= f.label :"English: Vocab 3", class:'control-label col-md-2' %>
+    <div class='col-md-6' align="left">
+      <%#= f.label :"English: Vocab 3", class:'control-label col-md-2' %>
       <%= f.text_field :vocab_english_3, :cols => "120", :rows => "10" %>
     </div>
   </div>
@@ -90,12 +93,12 @@
 
 <div class="container">
   <div class="row">
-    <div class='col-md-6'>
-      <%= f.label :"German: Vocab 4", class:'control-label col-md-2' %>
+    <div class='col-md-6' align="right">
+      <%#= f.label :"German: Vocab 4", class:'control-label col-md-2' %>
       <%= f.text_field :vocab_ger_4, :cols => "120", :rows => "10" %>
     </div>
-    <div class='col-md-6'>
-      <%= f.label :"English: Vocab 4", class:'control-label col-md-2' %>
+    <div class='col-md-6' align="left">
+      <%#= f.label :"English: Vocab 4", class:'control-label col-md-2' %>
       <%= f.text_field :vocab_english_4, :cols => "120", :rows => "10" %>
     </div>
   </div>
@@ -103,12 +106,12 @@
 
 <div class="container">
   <div class="row">
-    <div class='col-md-6'>
-      <%= f.label :"German: Vocab 5", class:'control-label col-md-2' %>
+    <div class='col-md-6' align="right">
+      <%#= f.label :"German: Vocab 5", class:'control-label col-md-2' %>
       <%= f.text_field :vocab_ger_5, :cols => "120", :rows => "10" %>
     </div>
-    <div class='col-md-6'>
-      <%= f.label :"English: Vocab 5", class:'control-label col-md-2' %>
+    <div class='col-md-6' align="left">
+      <%#= f.label :"English: Vocab 5", class:'control-label col-md-2' %>
       <%= f.text_field :vocab_english_5, :cols => "120", :rows => "10" %>
     </div>
   </div>
@@ -119,3 +122,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+<%end%>

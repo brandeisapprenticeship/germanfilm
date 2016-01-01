@@ -25,7 +25,7 @@
    <thead ><tr><h2> Notecard: </h2></tr></thead>
    <tbody>
     <tr>
-      <td width="40%"><%= @submission.notecard.html_safe %></td>
+      <td width="500px" height="300px" style="background: white"><%= @submission.notecard.html_safe %></td>
     </tr>
   </tbody>
   <br>
@@ -168,13 +168,13 @@
   <%end%>
 </div>
 
-
+<br>
 <h2>Comments:</h2>
 <%@comments.each do |comment|%>
 <div id="comments">
   <%=comment.comment%>
   <br><br>
-  <div id="author-user"><%=User.find(comment.user_id).name%></div>
+  <div id="author-user">Comment Author: <%=User.find(comment.user_id).name%></div>
 </div>
 <hr style="height: 5px"/>
 <%end%>
