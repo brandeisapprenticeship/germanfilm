@@ -7,12 +7,12 @@
 <table class="table">
     <thead>
     <tr>
-      <th>Student Name </th>
-      <th>Submission Title </th>
-      <th > Number Of Bookmarks</th>
-      <th><%if current_user.admin?%> Submitted At </th>
-      <th> Updated At</th>
-      <th>Grade Out of 10  <%end%></th>
+      <th style="color:white">Student Name </th>
+      <th style="color:white">Submission Title </th>
+      <th style="color:white"> Number Of Bookmarks</th>
+      <th style="color:white"><%if current_user.admin?%> Submitted At </th>
+      <th style="color:white"> Updated At</th>
+      <th style="color:white">Grade Out of 10  <%end%></th>
     </tr>
      </thead>
 
@@ -24,12 +24,12 @@
         <td><%= Bookmark.where(submission_id: submission.id).count %></td>
         <%if current_user.admin?%>
           <%if submission.created_at > @assignment.deadline%>
-            <td style="background-color:red"> <%=submission.created_at.strftime("%m/%d/%Y %I:%M %p")%></td>
-            <td style="background-color:red"> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
+            <td style="background-color:#E8EE79; color:red"> <%=submission.created_at.strftime("%m/%d/%Y %I:%M %p")%></td>
+            <td style="background-color:#E8EE79; color:red"> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
           <%else%>
             <td> <%=submission.created_at.strftime("%m/%d/%Y %I:%M %p")%></td>
               <%if submission.updated_at > @assignment.deadline%>
-                <td style="background-color:red"> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
+                <td style="background-color:#E8EE79; color:red"> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
               <%else%>
                 <td> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
               <%end%>
