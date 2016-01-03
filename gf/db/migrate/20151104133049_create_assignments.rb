@@ -4,7 +4,7 @@ class CreateAssignments < ActiveRecord::Migration
 
       t.timestamps null: false
       t.string :name
-      t.string :description
+      t.text :description
       t.datetime :deadline
     end
   end

@@ -14,10 +14,10 @@
 ActiveRecord::Schema.define(version: 20151213173546) do
 
   create_table "assignments", force: :cascade do |t|
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "name",        limit: 255
-    t.string   "description", limit: 255
+    t.text     "description", limit: 65535
     t.datetime "deadline"
   end
 
@@ -45,9 +45,9 @@ ActiveRecord::Schema.define(version: 20151213173546) do
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.string   "title",           limit: 255,   default: "", null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "title",           limit: 255
     t.string   "name",            limit: 255
     t.float    "grade",           limit: 24
     t.text     "notecard",        limit: 65535
