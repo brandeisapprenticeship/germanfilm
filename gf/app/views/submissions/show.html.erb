@@ -13,16 +13,16 @@
 
 <div id="bookmark">
   <%if (@submission.user_id != current_user.id && !Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
-  <%= form_for(Bookmark.new) do |f| %>
-  <div class="form-group">
-    <%= f.hidden_field  :user_id, value: current_user.id %>
-    <%=f.hidden_field :submission_id, value: @submission.id %>
-    <%= f.submit "Bookmark This!", class:"btn btn-default", style:"background-color:#E8D879"%>
-  </div>
-  <% end %>
-  <%else%>
-  <% @bookmark = Bookmark.where(submission_id: @submission.id, user_id: current_user.id).first%>
-    <%= link_to 'Remove from Bookmarks', @bookmark, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default",style:"background-color:#E8D879"%>
+    <%= form_for(Bookmark.new) do |f| %>
+    <div class="form-group">
+      <%= f.hidden_field  :user_id, value: current_user.id %>
+      <%=f.hidden_field :submission_id, value: @submission.id %>
+      <%= f.submit "Bookmark This!", class:"btn btn-default", style:"background-color:#E8D879"%>
+    </div>
+    <% end %>
+  <%elsif (@submission.user_id != current_user.id && Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
+    <% @bookmark = Bookmark.where(submission_id: @submission.id, user_id: current_user.id).first%>
+      <%= link_to 'Remove from Bookmarks', @bookmark, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default",style:"background-color:#E8D879"%>
   <%end%>
 </div>
 
