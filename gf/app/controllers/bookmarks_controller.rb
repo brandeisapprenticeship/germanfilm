@@ -29,7 +29,7 @@ class BookmarksController < ApplicationController
 
     respond_to do |format|
       if @bookmark.save
-        format.html { redirect_to :back, notice: 'Bookmark was successfully created.' }
+        format.html { redirect_to :back }
         format.json { render :show, status: :created, location: @bookmark }
       else
         format.html { render :new }
@@ -57,7 +57,7 @@ class BookmarksController < ApplicationController
   def destroy
     @bookmark.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Bookmark was successfully destroyed.' }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
