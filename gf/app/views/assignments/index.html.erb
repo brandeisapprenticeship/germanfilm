@@ -4,7 +4,7 @@
 <!--create assignment button -->
 <% if current_user.admin? %>
 <div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'Create New Assignment', new_assignment_path, style:"color:#7538CF" %> </button>
+  <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'neue Hausaufgabe erstellen', new_assignment_path, style:"color:#7538CF" %> </button>
 </div>
 <%end%>
 <!-- table for assignments -->
@@ -13,10 +13,10 @@
   <table class="table">
     <thead>
     <tr>
-      <th style="color:white">Film Title </th>
-      <th style="color:white">Due Date </th>
-      <th style="color:white"> View Submissions</th>
-      <th style="color:white"><%if current_user.admin? %> Edit Assignment <%else%> Submit Assignment <%end%></th>
+      <th style="color:white">Filmtitel </th>
+      <th style="color:white">Abgabetermin </th>
+      <th style="color:white"> Beiträge sehen</th>
+      <th style="color:white"><%if current_user.admin? %> Edit Assignment <%else%> Hausaufgabe absenden <%end%></th>
     </tr>
      </thead>
 
@@ -28,16 +28,16 @@
       <tr>
         <td> <%= assignment.name %></td>
         <td> <%= assignment.deadline.strftime("%A, %B, %d at %I:%M %p") %></td>
-        <td ><%= link_to 'Link to Class Submissions', {:controller => "submissions", :action => "index", :assignment_id => assignment.id}, style:"color:#E8EE79"%></td>
+        <td ><%= link_to 'Link zu den Beiträgen aller Studenten', {:controller => "submissions", :action => "index", :assignment_id => assignment.id}, style:"color:#E8EE79"%></td>
         <% if current_user.admin? %> 
         <td><%= link_to 'Edit Assignment', edit_assignment_path(assignment), style:"color:#E8EE79" %></td>
         <% else %>
         <!-- doesn't work: -->
         <%if Submission.where(assignment_id: assignment.id, user_id: current_user.id).blank?%>
-          <td><%=link_to 'Submit Assignment', {:controller => "submissions", :action => "new", :assignment_id => assignment.id}, style:"color:#E8EE79"%></td>
+          <td><%=link_to 'Hausaufgabe absenden', {:controller => "submissions", :action => "new", :assignment_id => assignment.id}, style:"color:#E8EE79"%></td>
         <% else %>
           <%@submission = Submission.where(assignment_id: assignment.id, user_id: current_user.id).first%>
-          <td><%=link_to 'Edit Submission', edit_submission_path(@submission), style:"color:#E8EE79"%></td>
+          <td><%=link_to 'editieren des Beitrags', edit_submission_path(@submission), style:"color:#E8EE79"%></td>
         <%end%>
         <%end%>
         <!--<td><%= link_to 'Destroy Assignment', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->

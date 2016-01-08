@@ -17,7 +17,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "German Culture Through Film", assignments_path, class:"navbar-brand", style:"color:#EFDA2E" %>
+      <%= link_to "Deutsche Kultur durch Film", assignments_path, class:"navbar-brand", style:"color:#EFDA2E" %>
     </div>
 
 
@@ -26,18 +26,18 @@
       <% if user_signed_in? %>
       <ul class="nav-navbar-nav">
         
-         <li><%= link_to "Home", assignments_path , style:"color:white"%></li>
+         <li><%= link_to "Homepage", assignments_path , style:"color:white"%></li>
              <% if !current_user.admin?%>
-                 <li><%= link_to "My Submissions", submissions_mysubmiss_path, style:"color:white" %></li>
-                 <li><%= link_to "Class Vocabulary",  assignments_classvocab_path, style:"color:white" %></li>
+                 <li><%= link_to "meine Beiträge", submissions_mysubmiss_path, style:"color:white" %></li>
+                 <li><%= link_to "gemeinsamer Wortschatz",  assignments_classvocab_path, style:"color:white" %></li>
                  <!-- change path!: -->
-                 <li><%= link_to "My Bookmarks", bookmarks_path, style:"color:white" %></li> 
+                 <li><%= link_to "meine Lesezeichen", bookmarks_path, style:"color:white" %></li> 
              <%end%>
             <% if current_user.admin? %>
                   <!-- change path!: -->
-                  <li><%= link_to "Grade Book", assignments_gradebook_path, style:"color:white" %></li> 
+                  <li><%= link_to "Notenheft", assignments_gradebook_path, style:"color:white" %></li> 
            <% end %>
-         <li id="navbar-right"> <%= link_to('Sign Out', destroy_user_session_path, :method => :delete, style:"color:white;font-family: verdana") %> </li>
+         <li id="navbar-right"> <%= link_to('abmelden', destroy_user_session_path, :method => :delete, style:"color:white;font-family: verdana") %> </li>
          <%end%>
        
       </ul>
@@ -49,7 +49,7 @@
 </div>
 <footer class="footer">
       <div class="container">
-        <p class="text-muted">Please contact <a href='mailto:brandeisapprenticeship@gmail.com'>brandeisapprenticeship@gmail.com</a> with any questions</p>
+        <p class="text-muted">bei Fragen kontaktieren Sie bitte <a href='mailto:brandeisapprenticeship@gmail.com'>brandeisapprenticeship@gmail.com</a></p>
       </div>
     </footer>
 </body>

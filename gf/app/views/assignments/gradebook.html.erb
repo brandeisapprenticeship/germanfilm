@@ -8,12 +8,12 @@
   <table class="table">
     <thead>
     <tr>
-      <th style="color:white">Student Name </th>
+      <th style="color:white">Name </th>
       <th style="color:white">Email </th>
       <% @assignments.each do |assignment| %>
-          <th style="color:white"> Grade for <%= assignment.name%> </th>
+          <th style="color:white"> Note für<%= assignment.name%> </th>
       <%end%>
-      <th style="color:white"> Average Grade </th>
+      <th style="color:white"> Durchschnittsnote </th>
     </tr>
      </thead>
 

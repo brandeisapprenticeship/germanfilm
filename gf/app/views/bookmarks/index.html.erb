@@ -2,7 +2,7 @@
 <p id="notice"><%= notice %></p>
 
 <% @assignments.each do |assignment| %>
-  <h2> Assignment:  <%= assignment.name%></h2>
+  <h2> Hausaufgabe:  <%= assignment.name%></h2>
   <br>
   <% @bookmarks.each do |bookmark| %>
     <%if bookmark.submission.assignment == assignment%>
@@ -13,7 +13,7 @@
          </audio>
 
         <table border="3px solid black" style="white-space: pre-wrap" padding="200px" >
-          <thead ><tr><h1> Notecard: </h1></tr></thead>
+          <thead ><tr><h3> Karteikarte: </h3></tr></thead>
           <tbody>
             <tr>
             <td width="500px" height="300px" style="background: white"><%= bookmark.submission.notecard.html_safe %></td>
