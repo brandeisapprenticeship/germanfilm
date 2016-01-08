@@ -4,7 +4,7 @@
 	<th>
 
 		<%if current_user.id == @submission.user_id%>  <!-- needs to be for author only -->
-    <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'Edit Submission', edit_submission_path(@submission), style:"color:#7538CF" %> </button> 
+    <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'editieren des Beitrags', edit_submission_path(@submission), style:"color:#7538CF" %> </button> 
     <%end%>
 
     <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'zurück zu den Beiträgen aller Studenten', {:controller => "submissions", :action => "index", :assignment_id => @submission.assignment_id}, style:"color:#7538CF" %> </button>
@@ -17,12 +17,12 @@
     <div class="form-group">
       <%= f.hidden_field  :user_id, value: current_user.id %>
       <%=f.hidden_field :submission_id, value: @submission.id %>
-      <%= f.submit "Bookmark This!", class:"btn btn-default", style:"background-color:#E8D879; color:#7538CF"%>
+      <%= f.submit "Lesezeichen setzen!", class:"btn btn-default", style:"background-color:#E8D879; color:#7538CF"%>
     </div>
     <% end %>
   <%elsif (@submission.user_id != current_user.id && Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
     <% @bookmark = Bookmark.where(submission_id: @submission.id, user_id: current_user.id).first%>
-      <%= link_to 'Remove from Bookmarks', @bookmark, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default",style:"background-color:#E8D879; color:#7538CF "%>
+      <%= link_to 'Lesezeichen entfernen', @bookmark, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default",style:"background-color:#E8D879; color:#7538CF "%>
   <%end%>
 </div>
 
@@ -128,11 +128,11 @@
       <div class="panel-body">
         <%=form_for(@submission) do |f|%>
           <%if current_user.admin?%>
-            <%= f.label :grade %><br>
+            <%= f.label :Note %><br>
             <%= f.number_field :grade, :step => 0.5 %>
             <%= f.submit "Note speichern" %>
           <%else%>
-            <%= f.label :grade %><br>
+            <%= f.label :Note %><br>
             <%= f.number_field :grade, :step => 0.5, :disabled => true%>
           <%end%>
         <%end%>

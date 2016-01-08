@@ -16,7 +16,7 @@
       <th style="color:white">Filmtitel </th>
       <th style="color:white">Abgabetermin </th>
       <th style="color:white"> Beiträge sehen</th>
-      <th style="color:white"><%if current_user.admin? %> Edit Assignment <%else%> Hausaufgabe absenden <%end%></th>
+      <th style="color:white"><%if current_user.admin? %> Hausaufgabe bearbeiten <%else%> Hausaufgabe absenden <%end%></th>
     </tr>
      </thead>
 
@@ -30,7 +30,7 @@
         <td> <%= assignment.deadline.strftime("%A, %B, %d at %I:%M %p") %></td>
         <td ><%= link_to 'Link zu den Beiträgen aller Studenten', {:controller => "submissions", :action => "index", :assignment_id => assignment.id}, style:"color:#E8EE79"%></td>
         <% if current_user.admin? %> 
-        <td><%= link_to 'Edit Assignment', edit_assignment_path(assignment), style:"color:#E8EE79" %></td>
+        <td><%= link_to 'Hausaufgabe bearbeiten', edit_assignment_path(assignment), style:"color:#E8EE79" %></td>
         <% else %>
         <!-- doesn't work: -->
         <%if Submission.where(assignment_id: assignment.id, user_id: current_user.id).blank?%>

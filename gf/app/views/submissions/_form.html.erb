@@ -30,7 +30,7 @@
 
   <!-- audio -->
 <div class="form-group">
-    <%= f.label :audio, class:'control-label col-md-2' %>
+    <%= f.label :audio, 'audio', class:'control-label col-md-2' %>
     <div class='col-md-10'>
       <br>
       <%= audio_tag(@submission.audio_url) if @submission.audio? %>
