@@ -31,12 +31,12 @@
                  <li><%= link_to "meine Beiträge", submissions_mysubmiss_path, style:"color:white" %></li>
                  <li><%= link_to "gemeinsamer Wortschatz",  assignments_classvocab_path, style:"color:white" %></li>
                  <!-- change path!: -->
-                 <li><%= link_to "meine Lesezeichen", bookmarks_path, style:"color:white" %></li> 
              <%end%>
             <% if current_user.admin? %>
                   <!-- change path!: -->
                   <li><%= link_to "Notenheft", assignments_gradebook_path, style:"color:white" %></li> 
            <% end %>
+          <li><%= link_to "meine Lesezeichen", bookmarks_path, style:"color:white" %></li>
          <li id="navbar-right"> <%= link_to('abmelden', destroy_user_session_path, :method => :delete, style:"color:white;font-family: verdana") %> </li>
          <%end%>
        
