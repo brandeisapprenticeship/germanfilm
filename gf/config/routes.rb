@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   resources :grade_comments
   resources :bookmarks
   get 'submissions/mysubmiss'
