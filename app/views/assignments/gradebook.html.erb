@@ -9,7 +9,6 @@
     <thead>
     <tr>
       <th style="color:white">Name </th>
-      <th style="color:white">Email </th>
       <% @assignments.each do |assignment| %>
           <th style="color:white"> Note für <%= assignment.name%> </th>
       <%end%>
@@ -23,7 +22,6 @@
    <% @users.each do |user| %>
       <tr>
         <td> <%= user.name %></td>
-        <td> <%= user.email %></td>
         <%sum = 0%>
         <%@assignments.each do |assignment| %>
           <%@submission = Submission.where(assignment_id: assignment.id, user_id: user.id)%>
