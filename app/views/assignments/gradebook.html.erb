@@ -23,17 +23,22 @@
       <tr>
         <td> <%= user.name %></td>
         <% sum = 0%>
+        <% grades=Array.new %>
         <%@assignments.each do |assignment| %>
           <%@submission = Submission.where(assignment_id: assignment.id, user_id: user.id)%>
           <%if @submission.exists? && !@submission.first.grades.empty? %>
-            <td><%= @submission.first.grades.first.grade %></td>
-            <% sum = sum + @submission.first.grades.first.grade
-            %>
+            <% current_grade=@submission.first.grades.first.grade %>
+            <td><%= current_grade %></td>
+            <% grades << current_grade %>
           <%else%>
             <td></td>
           <%end%>
         <%end%>
-        <td><%=sum / @assignments.count unless @assignments.count == 0%></td>
+        <%
+        factored_assignments=[grades.size,@max_assignments].min
+
+        %>
+        <td><%=grades.sort.last(factored_assignments).inject(:+) / factored_assignments unless factored_assignments == 0%></td>
 
        <br>
       </tr>

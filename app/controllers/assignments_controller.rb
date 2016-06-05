@@ -70,6 +70,7 @@ class AssignmentsController < ApplicationController
     @users = User.where(admin: false)
     @assignments = Assignment.all
     @submission = Submission.where(assignment_id: @assignment_id)
+    @max_assignments = 5
   end
 
   def classvocab
