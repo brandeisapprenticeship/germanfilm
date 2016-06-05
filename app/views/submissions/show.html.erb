@@ -126,40 +126,31 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
-        <%=form_for(@submission) do |f|%>
-          <%if current_user.admin?%>
-            <%= f.label :Note %><br>
-            <%= f.number_field :grade, :step => 0.5 %>
-            <%= f.submit "Note speichern" %>
-          <%else%>
-            <%= f.label :Note %><br>
-            <%= f.number_field :grade, :step => 0.5, :disabled => true%>
-          <%end%>
-        <%end%>
-        <br>
         <div class="form-group">
-          <%if @gradecomments.empty?%>
-          <%= form_for(GradeComment.new) do |f| %>
-            <%if current_user.admin?%>
-              <%= f.text_area :comment, size: "30x10", maxlength: 400  %>
+          <%if current_user.admin?%>
+            <%= form_for(@grade) do |f| %>
+              <div class='form-group'>
+                <%= f.label :grade, "Note", {:class=>'control-label'} %>
+                <%= f.number_field :grade, :step => 0.5, :class=>'form-control' %>
+              </div>
+              <div class='form-group'>
+                <%= f.label :comment, "Kommentar", {:class=>'control-label'} %>
+                <%= f.text_area :comment,rows:10, cols:30, maxlength: 400, class:'form-control'  %>
+              </div>
               <%= f.hidden_field :user_id, value: current_user.id%>
               <%= f.hidden_field :submission_id, value: @submission.id%>
-              <%= f.submit "Kommentar speichern" %>
-            <%else%>
-              <h5>ohne Kommentar</h5>
+              <div class='form-group'>
+                <%= f.submit "speichern", class:'btn btn-primary' %>
+              </div>
             <%end%>
-          <%end%>
           <%else%>
-          <%= form_for(@gradecomments.first) do |f| %>
-            <%if current_user.admin?%>
-              <%= f.text_area :comment, size: "30x10", maxlength: 400 %>
-              <%= f.hidden_field :user_id, value: current_user.id%>
-              <%= f.hidden_field :submission_id, value: @submission.id%>
-              <%= f.submit "Kommentar speichern"%>
-            <%else%>
-              <%= f.text_area :comment, size: "30x10", maxlength: 400, readonly: true%>
-            <%end%>
-          <%end%>
+            <% if !@grade.new_record? %>
+              <p><b>Note:</b> <%= @grade.grade %></p>
+              <p><b>Kommentar:</b></p>
+              <p><%= simple_format@grade.comment %></p>
+            <% else %>
+              <p>ohne Kommentar</p>
+            <% end %>
           <%end%>
         </div>
         <%end%>

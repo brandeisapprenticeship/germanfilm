@@ -12,7 +12,11 @@ class SubmissionsController < ApplicationController
   # GET /submissions/1.json
   def show
     @comments = Comment.where(submission_id: @submission.id)
-    @gradecomments = GradeComment.where(submission_id: @submission.id)
+    if @submission.grades.empty?
+      @grade=@submission.grades.new
+    else
+      @grade=@submission.grades.first
+    end
   end
 
   # GET /submissions/new

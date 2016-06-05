@@ -22,12 +22,13 @@
    <% @users.each do |user| %>
       <tr>
         <td> <%= user.name %></td>
-        <%sum = 0%>
+        <% sum = 0%>
         <%@assignments.each do |assignment| %>
           <%@submission = Submission.where(assignment_id: assignment.id, user_id: user.id)%>
-          <%if @submission.exists?%>
-            <td><%= @submission.first.grade %></td>
-            <%sum = sum + @submission.first.grade%>
+          <%if @submission.exists? && !@submission.first.grades.empty? %>
+            <td><%= @submission.first.grades.first.grade %></td>
+            <% sum = sum + @submission.first.grades.first.grade
+            %>
           <%else%>
             <td></td>
           <%end%>
