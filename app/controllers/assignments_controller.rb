@@ -71,6 +71,7 @@ class AssignmentsController < ApplicationController
     @assignments = Assignment.all
     @submission = Submission.where(assignment_id: @assignment_id)
     @max_assignments = 5
+    @assignment_grades = Array.new
   end
 
   def classvocab

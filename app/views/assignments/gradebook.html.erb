@@ -12,6 +12,7 @@
       <% @assignments.each do |assignment| %>
           <th style="color:white"> Note für <%= assignment.name%> </th>
       <%end%>
+      <th style='color:white'>Total comments</th>
       <th style="color:white"> Durchschnittsnote </th>
     </tr>
      </thead>
@@ -29,7 +30,14 @@
           <%if @submission.exists? && !@submission.first.grades.empty? %>
             <% current_grade=@submission.first.grades.first.grade %>
             <td><%= current_grade %></td>
-            <% grades << current_grade %>
+            <%
+            grades << current_grade
+            if @assignment_grades[assignment.id]==nil
+              @assignment_grades[assignment.id]=[current_grade]
+            else
+              @assignment_grades[assignment.id] << current_grade
+            end
+            %>
           <%else%>
             <td></td>
           <%end%>
@@ -38,12 +46,34 @@
         factored_assignments=[grades.size,@max_assignments].min
 
         %>
+        <td><%= user.comments.count %>
         <td><%=grades.sort.last(factored_assignments).inject(:+) / factored_assignments unless factored_assignments == 0%></td>
 
        <br>
       </tr>
 
     <%end%>
+      <tr>
+        <td>Average</td>
+        <%@assignments.each do |assignment| 
+          current_assignment=@assignment_grades[assignment.id]
+          %>
+          <td><%= current_assignment.inject(:+)/current_assignment.size %></td>
+        <% end %>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>Median</td>
+        <%@assignments.each do |assignment| 
+          current_assignment=@assignment_grades[assignment.id].sort
+          num_assignments=current_assignment.length
+          %>
+          <td><%= (current_assignment[(num_assignments - 1) / 2] + current_assignment[num_assignments / 2]) / 2.0 %></td>
+        <% end %>
+        <td>-</td>
+        <td>-</td>
+      </tr>
   </tbody>
 </table>
 
