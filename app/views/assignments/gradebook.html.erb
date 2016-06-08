@@ -39,7 +39,14 @@
             end
             %>
           <%else%>
-            <td></td>
+            <% 
+            if assignment.deadline.past?
+              grades << 0 %>
+              <td>0</td>
+            <% else %>
+              <td></td>
+            <% end %>
+            
           <%end%>
         <%end%>
         <%
@@ -47,7 +54,8 @@
 
         %>
         <td><%= user.comments.count %>
-        <td><%=grades.sort.last(factored_assignments).inject(:+) / factored_assignments unless factored_assignments == 0%></td>
+        <td><%=grades.sort.last(factored_assignments).inject(:+) / factored_assignments unless factored_assignments == 0%>
+        </td>
 
        <br>
       </tr>
