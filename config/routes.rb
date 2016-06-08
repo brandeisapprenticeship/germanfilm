@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :bookmarks
   get 'submissions/mysubmiss'
   get 'assignments/gradebook'
+  get '/assignments/:id/comments', to: 'assignments#comments', as:'view_comments'
+  get '/assignments/comments', to: 'assignments#comments'
   get 'assignments/classvocab'
   resources :comments
   resources :submissions

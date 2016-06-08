@@ -73,6 +73,11 @@ class AssignmentsController < ApplicationController
     @max_assignments = 5
     @assignment_grades = Array.new
   end
+  def comments
+    @assignments=Assignment.all
+    @assignment = Assignment.find(params[:id] || @assignments.first.id)
+    @submissions=Submission.where(assignment_id: @assignment.id)
+  end
 
   def classvocab
     @assignments = Assignment.all
