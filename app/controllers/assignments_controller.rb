@@ -70,7 +70,7 @@ class AssignmentsController < ApplicationController
     @users = User.where(admin: false)
     @assignments = Assignment.all
     @submission = Submission.where(assignment_id: @assignment_id)
-    @max_assignments = 5
+    @max_assignments = Setting.max_assignments
     @assignment_grades = Array.new
   end
   def comments
