@@ -10,15 +10,44 @@ body {
     font-family: Verdana, Geneva, sans-serif;
 }
 
+
+
+.navbar-brand{
+    height:auto;
+}
+
+.navbar-toggle{
+    margin-top: $navbar-padding-vertical - 7;
+}
+
+.table > tbody > tr:nth-child(even) > td, .table-striped > tbody > tr:nth-child(even) > th {
+    background-color: lighten($theme-base,10%);
+}
+
+.table > thead > tr > th{
+    color:$theme-dark-text;
+    background-color:$theme-dark;
+}
+
+.table{
+    border-style:solid;
+    border-color:$theme-dark;
+    border-width:4px;
+}
+
+
+
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
     height: 50px;
-    background-color: darken($background-color,10%);
-    border-top-style: solid;
-    border-top-width: 10px;
+    background-color: $theme-dark;
+    color:white;
+    a{
+        color:white;
+    }
 }
 
 

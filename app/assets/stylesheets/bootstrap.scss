@@ -5,8 +5,10 @@
  */
 
 // Core variables and mixins
-@import "bootstrap/variables";
-@import "custom_variables.scss";
+@import "functions.scss";
+@import "custom_variable_bases.scss";
+@import "variables.scss";
+@import "custom_variable_overrides.scss";
 @import "bootstrap/mixins";
 
 // Reset and dependencies

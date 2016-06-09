@@ -1,0 +1,20 @@
+$body-bg: $theme-base;
+
+$link-color:$text-color;
+$link-hover-color:darken($text-color,10%);
+$link-hover-decoration: none;
+
+$navbar-padding-vertical: $navbar-padding-vertical * 2;
+
+$navbar-inverse-bg: $theme-dark;
+$navbar-inverse-border: $navbar-inverse-bg;
+$navbar-inverse-link-color: $theme-dark-text;
+$navbar-inverse-link-hover-color:$navbar-inverse-link-color;
+$navbar-inverse-brand-color: $navbar-inverse-link-color;
+$navbar-inverse-brand-hover-color: $navbar-inverse-link-hover-color;
+
+$table-border-color:transparent;
+
+$btn-primary-color: readable-font-color($btn-primary-bg);
+
+

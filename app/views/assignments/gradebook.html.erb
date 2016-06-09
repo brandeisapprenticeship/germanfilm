@@ -21,33 +21,22 @@ $(function(){
   <div class='page-header'>
     <h1 class='gradebook'>Notenheft</h1>
     <h1 class='comments'>Comments</h1>
-    
-  
-      <%= form_for :save_gradebook, url: save_gradebook_path, :html=>{:class=>'form-inline gradebook'} do |f| %>
-      <div class='form-group'>
-        <%= f.label :max_assignments, "Number of assignments factored into grade:", :class=>'control-label' %>
-        
-          <%= f.number_field :max_assignments, :class=>'form-control', :step=>1, :value=>Setting.max_assignments %>
-          <%= f.submit "save", :class=>'btn btn-default' %>
-
-       </div>
-      <% end %>
     <p>
       <a href='#' id='showComments' class='gradebook' style='color:white;'>Show comments</a>
       <a href='#' id='showGradebook' class='comments' style='color:white;'>Show gradebook</a>
     </p>
   </div>
-  <div class='row'>
+  <div class='row gradebook'>
   <div class='col-md-12'>
-    <table class="table gradebook">
+    <table class="table">
       <thead>
       <tr>
-        <th style="color:white">Name </th>
+        <th>Name </th>
         <% @assignments.each do |assignment| %>
-            <th style="color:white"> Note für <%= assignment.name%> </th>
+            <th> Note für <%= assignment.name%> </th>
         <%end%>
         <th style='color:white'>Total comments</th>
-        <th style="color:white"> Durchschnittsnote </th>
+        <th> Durchschnittsnote </th>
       </tr>
        </thead>
 
@@ -118,8 +107,22 @@ $(function(){
         </tr>
     </tbody>
   </table>
+  </div>
+  <div class='col-md-12'>
+    <%= form_for :save_gradebook, url: save_gradebook_path, :html=>{:class=>'form-inline gradebook'} do |f| %>
+      <div class='form-group'>
+        <%= f.label :max_assignments, "Number of assignments factored into grade:", :class=>'control-label' %>
+        
+          <%= f.number_field :max_assignments, :class=>'form-control', :step=>1, :value=>Setting.max_assignments %>
+          <%= f.submit "save", :class=>'btn btn-primary' %>
 
-  <table class='comments table'>
+       </div>
+      <% end %>
+  </div>
+  </div>
+  <div class='row comments'>
+<div class='col-md-12'>
+  <table class='table'>
     <thead style='color:white'>
       <tr>
         <th>Student</th>
