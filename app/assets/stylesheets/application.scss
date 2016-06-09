@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "custom";
+@import "audioplayer";
 
 
 
@@ -19,4 +20,5 @@
  *= require_tree .
  *= require_self
  *= require bootstrap-datepicker
+ 
  */
