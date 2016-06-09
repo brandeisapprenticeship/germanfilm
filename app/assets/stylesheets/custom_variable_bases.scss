@@ -1,5 +1,10 @@
 $theme-base: #6A8F8E;
 $theme-dark: darken($theme-base,30%);
 $theme-dark-text: lighten($theme-dark,75%);
+$theme-dark-link:darken($theme-dark-text,30%);
+
+$text-color:$theme-dark;
+
+$link-color:darken(saturate(darken($theme-base,17%),20%),5%);
 
 $brand-primary: $theme-dark;

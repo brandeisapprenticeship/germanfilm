@@ -1,7 +1,8 @@
 $body-bg: $theme-base;
 
-$link-color:$text-color;
-$link-hover-color:darken($text-color,10%);
+
+
+$link-hover-color:darken($link-color,10%);
 $link-hover-decoration: none;
 
 $navbar-padding-vertical: $navbar-padding-vertical * 2;

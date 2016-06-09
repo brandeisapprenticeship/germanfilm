@@ -21,7 +21,7 @@
     <% @submissions.each do |submission| %>
       <tr>
         <td> <%= submission.name %></td>
-        <td><%= link_to submission.title, submission, style:"color:#E8EE79"%></td>
+        <td><%= link_to submission.title, submission %></td>
         <td><%= Bookmark.where(submission_id: submission.id).count %></td>
         <%if current_user.admin?%>
           <%if submission.created_at > @assignment.deadline%>

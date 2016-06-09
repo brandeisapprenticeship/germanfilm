@@ -6,8 +6,8 @@
 <table class="table">
     <thead>
     <tr>
-      <th  style="color:white">Titel des Beitrags </th>
-      <th  style="color:white"> Zahl der Lesezeichen</th>
+      <th  >Titel des Beitrags </th>
+      <th  > Zahl der Lesezeichen</th>
     </tr>
      </thead>
 
@@ -15,7 +15,7 @@
     <%if @submission != nil %>
     <% @submission.each do |submission| %>
       <tr>
-        <td><%= link_to submission.title, submission, style:"color:#E8EE79"%></td>
+        <td><%= link_to submission.title, submission %></td>
         <td id="bookmarkcounter"><%= Bookmark.where(submission_id: submission.id).count%></td>
       </tr>
       <%end%>

@@ -4,10 +4,10 @@
 	<th>
 
 		<%if current_user.id == @submission.user_id%>  <!-- needs to be for author only -->
-    <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'editieren des Beitrags', edit_submission_path(@submission), style:"color:#7538CF" %> </button> 
+   <%= link_to 'editieren des Beitrags', edit_submission_path(@submission), :class=>'btn btn-primary' %>
     <%end%>
 
-    <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'zurück zu den Beiträgen aller Studenten', {:controller => "submissions", :action => "index", :assignment_id => @submission.assignment_id}, style:"color:#7538CF" %> </button>
+    <%= link_to 'zurück zu den Beiträgen aller Studenten', {:controller => "submissions", :action => "index", :assignment_id => @submission.assignment_id}, :class=>'btn btn-primary' %>
   </th>
 </div>
 
@@ -17,12 +17,12 @@
     <div class="form-group">
       <%= f.hidden_field  :user_id, value: current_user.id %>
       <%=f.hidden_field :submission_id, value: @submission.id %>
-      <%= f.submit "Lesezeichen setzen!", class:"btn btn-default", style:"background-color:#E8D879; color:#7538CF"%>
+      <%= f.submit "Lesezeichen setzen!", class:"btn btn-primary" %>
     </div>
     <% end %>
   <%elsif (@submission.user_id != current_user.id && Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
     <% @bookmark = Bookmark.where(submission_id: @submission.id, user_id: current_user.id).first%>
-      <%= link_to 'Lesezeichen entfernen', @bookmark, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default",style:"background-color:#E8D879; color:#7538CF "%>
+      <%= link_to 'Lesezeichen entfernen', @bookmark, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default"%>
   <%end%>
 </div>
 
@@ -32,9 +32,11 @@
 
 
 <h2> audio: </h2>
-<audio controls src=<%=@submission.audio_url%> preload="auto">
-	<!-- <source src= <%=@submission.audio_url%> type="audio/mp4"> <!--needs to be mp3--> -->
-  </audio>
+<% if @submission.audio_url!=nil %>
+  <audio controls src="<%=@submission.audio_url%>" preload="auto"></audio>
+<% else %>
+  <p>No audio attached to submission</p>
+<% end %>
 
   <table border="3px solid black" style="white-space: pre-wrap" padding="200px" >
    <thead ><tr><h2> Karteikarte: </h2></tr></thead>
@@ -117,9 +119,9 @@
 <%if current_user.admin? or @submission.user_id == current_user.id %>
 <div class="panel-group gradeinfo gradevalue" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne" style="background-color:#E8D879">
+    <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color:#7538CF">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           Note
         </a>
       </h4>

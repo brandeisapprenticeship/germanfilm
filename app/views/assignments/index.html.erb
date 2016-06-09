@@ -4,7 +4,7 @@
 <!--create assignment button -->
 <% if current_user.admin? %>
 <div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default" style="background-color:#E8D879"><%= link_to 'neue Hausaufgabe erstellen', new_assignment_path, style:"color:#7538CF" %> </button>
+ <%= link_to 'neue Hausaufgabe erstellen', new_assignment_path, :class=>"btn btn-primary" %>
 </div>
 <%end%>
 <!-- table for assignments -->
@@ -25,20 +25,20 @@
    <% @assignments.each do |assignment| %>
     
       <tr>
-        <td> <%= link_to assignment.name, {:controller => "submissions", :action => "index", :assignment_id => assignment.id}, style:"color:#E8EE79"%></td>
+        <td> <%= link_to assignment.name, {:controller => "submissions", :action => "index", :assignment_id => assignment.id} %></td>
         <td> <%= assignment.deadline.strftime("%A, %B, %d at %I:%M %p") %></td>
         <% if current_user.admin? %> 
-        <td><%= link_to 'Hausaufgabe bearbeiten', edit_assignment_path(assignment), style:"color:#E8EE79" %></td>
+        <td><%= link_to 'Hausaufgabe bearbeiten', edit_assignment_path(assignment)%></td>
         <% else %>
         <!-- doesn't work: -->
         <%if Submission.where(assignment_id: assignment.id, user_id: current_user.id).blank?%>
-          <td><%=link_to 'Hausaufgabe absenden', {:controller => "submissions", :action => "new", :assignment_id => assignment.id}, style:"color:#E8EE79"%></td>
+          <td><%=link_to 'Hausaufgabe absenden', {:controller => "submissions", :action => "new", :assignment_id => assignment.id}%></td>
         <% else %>
           <%@submission = Submission.where(assignment_id: assignment.id, user_id: current_user.id).first%>
-          <td><%=link_to 'editieren des Beitrags', edit_submission_path(@submission), style:"color:#E8EE79"%></td>
+          <td><%=link_to 'editieren des Beitrags', edit_submission_path(@submission)%></td>
         <%end%>
         <%end%>
-        <!--<td><%= link_to 'Destroy Assignment', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        
        <br>
       </tr>
     <% end %> 

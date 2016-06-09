@@ -6,7 +6,7 @@
   <br>
   <% @bookmarks.each do |bookmark| %>
     <%if bookmark.submission.assignment == assignment%>
-          <h3><%= link_to bookmark.submission.title, bookmark.submission, style:"color:#E8EE79"%></h3>
+          <h3><%= link_to bookmark.submission.title, bookmark.submission%></h3>
           <h5><%= bookmark.submission.name%></h5>
           <audio controls>
           <source src= <%=bookmark.submission.audio_url%> type="audio/mp4"> <!--needs to be mp3-->

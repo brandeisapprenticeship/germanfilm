@@ -22,8 +22,8 @@ $(function(){
     <h1 class='gradebook'>Notenheft</h1>
     <h1 class='comments'>Comments</h1>
     <p>
-      <a href='#' id='showComments' class='gradebook' style='color:white;'>Show comments</a>
-      <a href='#' id='showGradebook' class='comments' style='color:white;'>Show gradebook</a>
+      <a href='#' id='showComments' class='gradebook' >Show comments</a>
+      <a href='#' id='showGradebook' class='comments' >Show gradebook</a>
     </p>
   </div>
   <div class='row gradebook'>
@@ -35,7 +35,7 @@ $(function(){
         <% @assignments.each do |assignment| %>
             <th> Note für <%= assignment.name%> </th>
         <%end%>
-        <th style='color:white'>Total comments</th>
+        <th >Total comments</th>
         <th> Durchschnittsnote </th>
       </tr>
        </thead>
@@ -123,7 +123,7 @@ $(function(){
   <div class='row comments'>
 <div class='col-md-12'>
   <table class='table'>
-    <thead style='color:white'>
+    <thead >
       <tr>
         <th>Student</th>
         <% @assignments.each do |assignment| %>

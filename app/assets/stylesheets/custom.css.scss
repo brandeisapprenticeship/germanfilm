@@ -44,9 +44,13 @@ body {
     /* Set the fixed height of the footer here */
     height: 50px;
     background-color: $theme-dark;
-    color:white;
+    color:$theme-dark-text;
+    p{
+        @extend .text-center;
+        padding-top: 15px;
+    }
     a{
-        color:white;
+        color:$theme-dark-link;
     }
 }
 
