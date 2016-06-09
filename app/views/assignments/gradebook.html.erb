@@ -4,86 +4,101 @@
 
 <!--create assignment button -->
 <% if current_user.admin? %>
+  <div class='page-header'>
+    <h1>Notenheft</h1>
+  
+      <%= form_for :save_gradebook, url: save_gradebook_path, :html=>{:class=>'form-inline'} do |f| %>
+      <div class='form-group'>
+        <%= f.label :max_assignments, "Number of assignments factored into grade:", :class=>'control-label' %>
+        
+          <%= f.number_field :max_assignments, :class=>'form-control', :step=>1, :value=>Setting.max_assignments %>
+          <%= f.submit "save", :class=>'btn btn-default' %>
 
-  <table class="table">
-    <thead>
-    <tr>
-      <th style="color:white">Name </th>
-      <% @assignments.each do |assignment| %>
-          <th style="color:white"> Note für <%= assignment.name%> </th>
-      <%end%>
-      <th style='color:white'>Total comments</th>
-      <th style="color:white"> Durchschnittsnote </th>
-    </tr>
-     </thead>
-
- 
-
-  <tbody>
-   <% @users.each do |user| %>
+       </div>
+      <% end %>
+    
+  </div>
+  <div class='row'>
+  <div class='col-md-12'>
+    <table class="table">
+      <thead>
       <tr>
-        <td> <%= user.name %></td>
-        <% sum = 0%>
-        <% grades=Array.new %>
-        <%@assignments.each do |assignment| %>
-          <%@submission = Submission.where(assignment_id: assignment.id, user_id: user.id)%>
-          <%if @submission.exists? && !@submission.first.grades.empty? %>
-            <% current_grade=@submission.first.grades.first.grade %>
-            <td><%= current_grade %></td>
-            <%
-            grades << current_grade
-            if @assignment_grades[assignment.id]==nil
-              @assignment_grades[assignment.id]=[current_grade]
-            else
-              @assignment_grades[assignment.id] << current_grade
-            end
-            %>
-          <%else%>
-            <% 
-            if assignment.deadline.past?
-              grades << 0 %>
-              <td>0</td>
-            <% else %>
-              <td></td>
-            <% end %>
-            
-          <%end%>
+        <th style="color:white">Name </th>
+        <% @assignments.each do |assignment| %>
+            <th style="color:white"> Note für <%= assignment.name%> </th>
         <%end%>
-        <%
-        factored_assignments=[grades.size,@max_assignments].min
-
-        %>
-        <td><%= user.comments.count %>
-        <td><%=grades.sort.last(factored_assignments).inject(:+) / factored_assignments unless factored_assignments == 0%>
-        </td>
-
-       <br>
+        <th style='color:white'>Total comments</th>
+        <th style="color:white"> Durchschnittsnote </th>
       </tr>
+       </thead>
 
-    <%end%>
-      <tr>
-        <td>Average</td>
-        <%@assignments.each do |assignment| 
-          current_assignment=@assignment_grades[assignment.id]
+   
+
+    <tbody>
+     <% @users.each do |user| %>
+        <tr>
+          <td> <%= user.name %></td>
+          <% sum = 0%>
+          <% grades=Array.new %>
+          <%@assignments.each do |assignment| %>
+            <%@submission = Submission.where(assignment_id: assignment.id, user_id: user.id)%>
+            <%if @submission.exists? && !@submission.first.grades.empty? %>
+              <% current_grade=@submission.first.grades.first.grade %>
+              <td><%= current_grade %></td>
+              <%
+              grades << current_grade
+              if @assignment_grades[assignment.id]==nil
+                @assignment_grades[assignment.id]=[current_grade]
+              else
+                @assignment_grades[assignment.id] << current_grade
+              end
+              %>
+            <%else%>
+              <% 
+              if assignment.deadline.past?
+                grades << 0 %>
+                <td>0</td>
+              <% else %>
+                <td></td>
+              <% end %>
+              
+            <%end%>
+          <%end%>
+          <%
+          factored_assignments=[grades.size,@max_assignments].min
+
           %>
-          <td><%= current_assignment.inject(:+)/current_assignment.size %></td>
-        <% end %>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>Median</td>
-        <%@assignments.each do |assignment| 
-          current_assignment=@assignment_grades[assignment.id].sort
-          num_assignments=current_assignment.length
-          %>
-          <td><%= (current_assignment[(num_assignments - 1) / 2] + current_assignment[num_assignments / 2]) / 2.0 %></td>
-        <% end %>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-  </tbody>
-</table>
+          <td><%= user.comments.count %></td>
+          <td><%=grades.sort.last(factored_assignments).inject(:+) / factored_assignments unless factored_assignments == 0%>
+          </td>
 
-<br>
+         
+        </tr>
+
+      <%end%>
+        <tr>
+          <td>Average</td>
+          <%@assignments.each do |assignment| 
+            current_assignment=@assignment_grades[assignment.id]
+            %>
+            <td><%= current_assignment.inject(:+)/current_assignment.size %></td>
+          <% end %>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>Median</td>
+          <%@assignments.each do |assignment| 
+            current_assignment=@assignment_grades[assignment.id].sort
+            num_assignments=current_assignment.length
+            %>
+            <td><%= (current_assignment[(num_assignments - 1) / 2] + current_assignment[num_assignments / 2]) / 2.0 %></td>
+          <% end %>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+</div>
 <%end%>

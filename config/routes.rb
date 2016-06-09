@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/assignments/:id/comments', to: 'assignments#comments', as:'view_comments'
   get '/assignments/comments', to: 'assignments#comments'
   get 'assignments/classvocab'
+  post 'assignments/save_gradebook', to:'assignments#save_gradebook', as: 'save_gradebook'
   resources :comments
   resources :submissions
   resources :assignments

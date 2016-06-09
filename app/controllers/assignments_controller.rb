@@ -82,12 +82,20 @@ class AssignmentsController < ApplicationController
   def classvocab
     @assignments = Assignment.all
   end
+
+  def save_gradebook
+    params.require(:save_gradebook)
+    Setting.max_assignments=params[:save_gradebook][:max_assignments].to_i
+    redirect_to assignments_gradebook_path
+
+  end
   
   
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_assignment
       @assignment = Assignment.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
