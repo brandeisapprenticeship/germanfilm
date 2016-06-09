@@ -1,13 +1,28 @@
 
+<script type='text/javascript'>
+function toggleView(){
+  $('.gradebook').toggle();
+  $('.comments').toggle();
+}
+$(function(){
+  $('.gradebook').show();
+  $('.comments').hide();
 
+  $('#showGradebook, #showComments').click(function(event){
+    event.preventDefault();
+    toggleView();
+  });
+});
+</script>
 <p id="notice"><%= notice %></p>
 
 <!--create assignment button -->
 <% if current_user.admin? %>
   <div class='page-header'>
-    <h1>Notenheft</h1>
+    <h1 class='gradebook'>Notenheft</h1>
+    <h1 class='comments'>Comments</h1>
   
-      <%= form_for :save_gradebook, url: save_gradebook_path, :html=>{:class=>'form-inline'} do |f| %>
+      <%= form_for :save_gradebook, url: save_gradebook_path, :html=>{:class=>'form-inline gradebook'} do |f| %>
       <div class='form-group'>
         <%= f.label :max_assignments, "Number of assignments factored into grade:", :class=>'control-label' %>
         
@@ -16,11 +31,14 @@
 
        </div>
       <% end %>
-    
+    <p>
+      <a href='#' id='showComments' class='gradebook' style='color:white;'>Show comments</a>
+      <a href='#' id='showGradebook' class='comments' style='color:white;'>Show gradebook</a>
+    </p>
   </div>
   <div class='row'>
   <div class='col-md-12'>
-    <table class="table">
+    <table class="table gradebook">
       <thead>
       <tr>
         <th style="color:white">Name </th>
@@ -98,6 +116,35 @@
           <td>-</td>
         </tr>
     </tbody>
+  </table>
+
+  <table class='comments table'>
+    <thead style='color:white'>
+      <tr>
+        <th>Student</th>
+        <% @assignments.each do |assignment| %>
+        <th><%= assignment.name %></th>
+        <%end%>
+        <th>Total comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <% @assignments.each do |assignment| %>
+            <td><%
+             comments= 0
+             assignment.submissions.each do |submission|
+                comments = comments +  submission.comments.where(user_id:user.id).count
+            end
+             %>
+            <%= comments %>
+             </td>
+          <% end %>
+          <td><%= user.comments.count %></td>
+        </tr>
+      <%end%>
   </table>
 </div>
 </div>
