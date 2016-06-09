@@ -70,12 +70,24 @@ class AssignmentsController < ApplicationController
     @users = User.where(admin: false)
     @assignments = Assignment.all
     @submission = Submission.where(assignment_id: @assignment_id)
-    @max_assignments = 5
+    @max_assignments = Setting.max_assignments
     @assignment_grades = Array.new
+  end
+  def comments
+    @assignments=Assignment.all
+    @assignment = Assignment.find(params[:id] || @assignments.first.id)
+    @submissions=Submission.where(assignment_id: @assignment.id)
   end
 
   def classvocab
     @assignments = Assignment.all
+  end
+
+  def save_gradebook
+    params.require(:save_gradebook)
+    Setting.max_assignments=params[:save_gradebook][:max_assignments].to_i
+    redirect_to assignments_gradebook_path
+
   end
   
   
@@ -83,6 +95,7 @@ class AssignmentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_assignment
       @assignment = Assignment.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
