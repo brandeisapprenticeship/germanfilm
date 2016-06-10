@@ -82,9 +82,10 @@ body {
     font-style: italic;
 }
 
-.table #bookmarkcounter {
-    color: #E8EE79;
+.card{
+    margin-bottom:$grid-gutter-width / 2;
 }
+
 
 .flip {
   -webkit-perspective: 800;
