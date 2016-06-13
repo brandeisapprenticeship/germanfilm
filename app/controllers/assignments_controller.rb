@@ -80,7 +80,7 @@ class AssignmentsController < ApplicationController
   end
 
   def classvocab
-    @assignments = Assignment.all
+    @assignments = Assignment.all.reverse
   end
 
   def save_gradebook
