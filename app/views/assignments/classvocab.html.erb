@@ -1,10 +1,7 @@
-<h1>gemeinsamer Wortschatz</h1>
+<div class='page-header'>
+	<h1>gemeinsamer Wortschatz</h1>
+</div>
 
-<script type='text/javascript'>
-$(function(){
-	$('.collapse').first().collapse('show');
-});
-</script>
 <div class='panel-group' id='accordion' role='tablist' aria-multiselectable='true'>
 <%@assignments.each do |assignment|%>
 
@@ -65,8 +62,13 @@ $(function(){
 	
 
 <script>
-    $('.flip').click(function(){
-        $(this).find('.card').toggleClass('flipped');
+    
+    $(function(){
 
-    });
+
+		$('.flip').click(function(){
+        	$(this).find('.card').toggleClass('flipped');
+
+    	});
+	});
 </script>
