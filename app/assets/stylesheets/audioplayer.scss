@@ -3,10 +3,10 @@
 			@extend .audio-base;
 			color: #fff;
 			text-shadow: 1px 1px 0 #000;
-			border: 1px solid #222;
+			border: 1px solid lighten($theme-dark,10%);
 			position: relative;
 			z-index: 1;
-			background: #333;
+			background: $theme-dark;
 		}
 
 
@@ -135,7 +135,7 @@
 			.audioplayer-bar
 			{
 				height: 0.875em; /* 14 */
-				background-color: #222;
+				background-color: lighten($theme-dark,15%);
 				cursor: pointer;
 				z-index: 1;
 				top: 50%;
@@ -157,12 +157,12 @@
 				}
 				.audioplayer-bar-loaded
 				{
-					background-color: #333;
+					background-color: lighten($theme-dark,10%);
 					z-index: 1;
 				}
 				.audioplayer-bar-played
 				{
-					background: #007fd1;
+					background: darken($theme-dark,5%);
 					z-index: 2;
 				}
 
@@ -279,7 +279,7 @@
 							position: absolute;
 							bottom: 0;
 							left: 0;
-							background: #007fd1;
+							background: $theme-dark;
 						}
 				.audioplayer-novolume .audioplayer-volume
 				{
