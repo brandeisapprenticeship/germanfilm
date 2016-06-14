@@ -1,197 +1,164 @@
 <p id="notice"><%= notice %></p>
 
-<div class="btn-group" role="group" aria-label="..."  >
+
+
+<div id="bookmark">
+	<%if (@submission.user_id != current_user.id && !Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
+	<%= form_for(Bookmark.new) do |f| %>
+	<div class="form-group">
+		<%= f.hidden_field  :user_id, value: current_user.id %>
+		<%=f.hidden_field :submission_id, value: @submission.id %>
+		<%= f.submit "Lesezeichen setzen!", class:"btn btn-primary" %>
+	</div>
+	<% end %>
+	<%elsif (@submission.user_id != current_user.id && Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
+	<% @bookmark = Bookmark.where(submission_id: @submission.id, user_id: current_user.id).first%>
+	<%= link_to 'Lesezeichen entfernen', @bookmark, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default"%>
+	<%end%>
+</div>
+
+
+<div class='page-header'>
+	<h1><%= @submission.title %></h1>
+	<p class="h4" id="author-user">Autor/in: <%= @submission.name%></p>
+	<div class="btn-group" role="group" aria-label="..."  >
 	<th>
 
 		<%if current_user.id == @submission.user_id%>  <!-- needs to be for author only -->
-   <%= link_to 'editieren des Beitrags', edit_submission_path(@submission), :class=>'btn btn-primary' %>
-    <%end%>
+		<%= link_to 'editieren des Beitrags', edit_submission_path(@submission), :class=>'btn btn-primary' %>
+		<%end%>
 
-    <%= link_to 'zurück zu den Beiträgen aller Studenten', {:controller => "submissions", :action => "index", :assignment_id => @submission.assignment_id}, :class=>'btn btn-primary' %>
-  </th>
+		<%= link_to 'zurück zu den Beiträgen aller Studenten', {:controller => "submissions", :action => "index", :assignment_id => @submission.assignment_id}, :class=>'btn btn-primary' %>
+	</th>
+</div>
 </div>
 
-<div id="bookmark">
-  <%if (@submission.user_id != current_user.id && !Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
-    <%= form_for(Bookmark.new) do |f| %>
-    <div class="form-group">
-      <%= f.hidden_field  :user_id, value: current_user.id %>
-      <%=f.hidden_field :submission_id, value: @submission.id %>
-      <%= f.submit "Lesezeichen setzen!", class:"btn btn-primary" %>
-    </div>
-    <% end %>
-  <%elsif (@submission.user_id != current_user.id && Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
-    <% @bookmark = Bookmark.where(submission_id: @submission.id, user_id: current_user.id).first%>
-      <%= link_to 'Lesezeichen entfernen', @bookmark, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default"%>
-  <%end%>
+<div class='row'>
+	<div class='col-md-6'>
+		<h2> Audio: </h2>
+		<% if @submission.audio_url!=nil %>
+		<audio controls src="<%=@submission.audio_url%>" preload="auto"></audio>
+		<% else %>
+		<p>No audio attached to submission</p>
+		<% end %>
+
+		<h2> Karteikarte: </h2>
+
+		<div class='index-card'>
+			<div>
+				<%= @submission.notecard.html_safe %>
+			</div>
+		</div>
+	</div>
+	<div class='col-md-6'>
+		<h2> Wortschatz: </h2>
+		<% for i in 1..5 %>
+		<% german=@submission["vocab_ger_"+"#{i}"] %>
+		<% english=@submission["vocab_english_"+"#{i}"] %>
+		<div class="flip">
+			<div class="card">
+				<div class="face front">
+					<div class="well well-sm inner"><%=german%></div>
+				</div>
+				<div class="face back">
+					<div class="well well-sm inner"><%=english%></div>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
 </div>
 
 
-<h1 class="submission-info"> <%= @submission.title %></h1>
-<h4 class="submission-info" id="author-user">Autor/in: <%= @submission.name%></h4>
 
 
-<h2> audio: </h2>
-<% if @submission.audio_url!=nil %>
-  <audio controls src="<%=@submission.audio_url%>" preload="auto"></audio>
-<% else %>
-  <p>No audio attached to submission</p>
-<% end %>
-
-  <table border="3px solid black" style="white-space: pre-wrap" padding="200px" >
-   <thead ><tr><h2> Karteikarte: </h2></tr></thead>
-   <tbody>
-    <tr>
-      <td width="500px" height="300px" style="background: white"><%= @submission.notecard.html_safe %></td>
-    </tr>
-  </tbody>
-  <br>
-</table>
-<br>
-
-<h2> Wortschatz: </h2>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-2">
-            <div class="flip">
-                <div class="card">
-                    <div class="face front">
-                        <div class="well well-sm inner"><%=@submission.vocab_ger_1%></div>
-                    </div>
-                    <div class="face back">
-                        <div class="well well-sm inner"><%=@submission.vocab_english_1%></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="flip">
-                <div class="card">
-                    <div class="face front">
-                        <div class="well well-sm inner"><%=@submission.vocab_ger_2%></div>
-                    </div>
-                    <div class="face back">
-                        <div class="well well-sm inner"><%=@submission.vocab_english_2%></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="flip">
-                <div class="card">
-                    <div class="face front">
-                        <div class="well well-sm inner"><%=@submission.vocab_ger_3%></div>
-                    </div>
-                    <div class="face back">
-                        <div class="well well-sm inner"><%=@submission.vocab_english_3%></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="flip">
-                <div class="card">
-                    <div class="face front">
-                        <div class="well well-sm inner"><%=@submission.vocab_ger_4%></div>
-                    </div>
-                    <div class="face back">
-                        <div class="well well-sm inner"><%=@submission.vocab_english_4%></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="flip">
-                <div class="card">
-                    <div class="face front">
-                        <div class="well well-sm inner"><%=@submission.vocab_ger_5%></div>
-                    </div>
-                    <div class="face back">
-                        <div class="well well-sm inner"><%=@submission.vocab_english_5%></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <%if current_user.admin? or @submission.user_id == current_user.id %>
 <div class="panel-group gradeinfo gradevalue" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Note
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        <div class="form-group">
-          <%if current_user.admin?%>
-            <%= form_for(@grade) do |f| %>
-              <div class='form-group'>
-                <%= f.label :grade, "Note", {:class=>'control-label'} %>
-                <%= f.number_field :grade, :step => 0.5, :class=>'form-control' %>
-              </div>
-              <div class='form-group'>
-                <%= f.label :comment, "Kommentar", {:class=>'control-label'} %>
-                <%= f.text_area :comment,rows:10, cols:30, maxlength: 400, class:'form-control'  %>
-              </div>
-              <%= f.hidden_field :user_id, value: current_user.id%>
-              <%= f.hidden_field :submission_id, value: @submission.id%>
-              <div class='form-group'>
-                <%= f.submit "speichern", class:'btn btn-primary' %>
-              </div>
-            <%end%>
-          <%else%>
-            <% if !@grade.new_record? %>
-              <p><b>Note:</b> <%= @grade.grade %></p>
-              <p><b>Kommentar:</b></p>
-              <p><%= simple_format@grade.comment %></p>
-            <% else %>
-              <p>ohne Kommentar</p>
-            <% end %>
-          <%end%>
-        </div>
-        <%end%>
-      </div>
-    </div>
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingOne">
+			<h4 class="panel-title">
+				<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					Note
+				</a>
+			</h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			<div class="panel-body">
+				<div class="form-group">
+					<%if current_user.admin?%>
+					<%= form_for(@grade) do |f| %>
+					<div class='form-group'>
+						<%= f.label :grade, "Note", {:class=>'control-label'} %>
+						<%= f.number_field :grade, :step => 0.5, :class=>'form-control' %>
+					</div>
+					<div class='form-group'>
+						<%= f.label :comment, "Kommentar", {:class=>'control-label'} %>
+						<%= f.text_area :comment,rows:10, cols:30, maxlength: 400, class:'form-control'  %>
+					</div>
+					<%= f.hidden_field :user_id, value: current_user.id%>
+					<%= f.hidden_field :submission_id, value: @submission.id%>
+					<div class='form-group'>
+						<%= f.submit "speichern", class:'btn btn-primary' %>
+					</div>
+					<%end%>
+					<%else%>
+					<% if !@grade.new_record? %>
+					<p><b>Note:</b> <%= @grade.grade %></p>
+					<p><b>Kommentar:</b></p>
+					<p><%= simple_format@grade.comment %></p>
+					<% else %>
+					<p>ohne Kommentar</p>
+					<% end %>
+					<%end%>
+				</div>
+				<%end%>
+			</div>
+		</div>
 
-  </div>
+	</div>
 
 
 </div>
 
-<br>
-<div style="padding: 50px">
-<h2>Kommentare:</h2>
-<%@comments.each do |comment|%>
-<div id="comments">
-  <%=comment.comment%>
-  <br><br>
-  <div id="author-user">Autor/in des Kommentars: <%=User.find(comment.user_id).name%></div>
-</div>
-<hr style="height: 5px"/>
-<%end%>
-<br>
-<%=form_for(Comment.new) do |f|%>
-  <%=f.label :comment, 'Kommentar hinzufügen'%><br>
-  <%=f.text_area :comment, size: "100x5" %><br>
-  <%=f.hidden_field :user_id, value: current_user.id%>
-  <%=f.hidden_field :submission_id, value: @submission.id%>
+<hr>
 
-  <%=f.submit "Kommentar speichern"%>
-<%end%>
+<div class='row'>
+	<div class='col-md-12'>
+		<h2>Kommentare:</h2>
+		<%@comments.each do |comment|%>
+		<div class='panel panel-primary'>
+			
+			<div class='panel-body'>
+				<%=comment.comment%>
+			</div>
+			<div class='panel-footer '>
+				Autor/in des Kommentars: <%=User.find(comment.user_id).name%>
+			</div>
+		</div>
+		
+		<%end%>
+
+		<%=form_for(Comment.new) do |f|%>
+		<div class='form-group'>
+			<%=f.label :comment, 'Kommentar hinzufügen', class:'control-label'%>
+			<%=f.text_area :comment, size: "100x5", class: "form-control" %>
+		</div>
+		<%=f.hidden_field :user_id, value: current_user.id%>
+		<%=f.hidden_field :submission_id, value: @submission.id%>
+		<div class='form-group'>
+			<%=f.submit "Kommentar speichern", :class=>'btn btn-primary'%>
+		</div>
+		<%end%>
+	</div>
 </div>
-<br>
-</div>
+
 
 <script>
-    $('.flip').click(function(){
-        $(this).find('.card').toggleClass('flipped');
+	$('.flip').click(function(){
+		$(this).find('.card').toggleClass('flipped');
 
-    });
+	});
 </script>
 

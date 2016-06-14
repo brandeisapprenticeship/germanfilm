@@ -124,3 +124,17 @@ perspective: 800;
     transform: rotatey(-180deg);
 }
   .inner{margin:0px !important;}
+
+.index-card {
+  background: white;
+  max-height: 300px;
+  width: 100%;
+  position: relative;
+  overflow: auto;
+  background-color:white;
+  @extend .text-center;
+  padding:20px;
+}
+
+
+
