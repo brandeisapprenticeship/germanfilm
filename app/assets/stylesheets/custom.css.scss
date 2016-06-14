@@ -188,4 +188,14 @@ perspective: 800;
     @extend .audio-base;
 }
 
+.alert-error{
+  @extend .alert-danger;
+}
+.alert-alert{
+  @extend .alert-warning;
+}
+.alert-notice{
+  @extend .alert-success;
+}
+
 
