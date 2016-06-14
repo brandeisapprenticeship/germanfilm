@@ -43,7 +43,7 @@ $(function(){
 			                </div>
 			            </div>
 			        </div>
-				     <% if current_card == cards_per_row %>
+				      <% if current_card == cards_per_row || (submission == @submissions.last && i==5) %>
 						</div>
 					<% end %>
 
