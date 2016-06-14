@@ -44,13 +44,13 @@
 		<% if @submission.audio_url!=nil %>
 		<audio controls src="<%=@submission.audio_url%>" preload="auto"></audio>
 		<% else %>
-		<p>No audio attached to submission</p>
+		<p class='no-audio'>No audio attached to submission</p>
 		<% end %>
 
 		<h2> Karteikarte: </h2>
 
 		<div class='index-card'>
-			<div>
+			<div class='content'>
 				<%= @submission.notecard.html_safe %>
 			</div>
 		</div>

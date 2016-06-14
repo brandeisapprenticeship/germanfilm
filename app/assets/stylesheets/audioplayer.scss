@@ -1,6 +1,6 @@
 .audioplayer
 		{
-			height: 2.5em; /* 40 */
+			@extend .audio-base;
 			color: #fff;
 			text-shadow: 1px 1px 0 #000;
 			border: 1px solid #222;

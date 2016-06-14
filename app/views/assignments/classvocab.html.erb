@@ -5,9 +5,9 @@ $(function(){
 	$('.collapse').first().collapse('show');
 });
 </script>
-
-<%@assignments.each do |assignment|%>
 <div class='panel-group' id='accordion' role='tablist' aria-multiselectable='true'>
+<%@assignments.each do |assignment|%>
+
 	<div class='panel panel-primary'>
 		<div class='panel-heading' role='tab' id='assignment-heading-<%= assignment.id%>'>
 			<h2 class='panel-title h4'>
@@ -59,8 +59,9 @@ $(function(){
 			</div>
 		</div>
 	</div>
-</div>
+
 <%end%>
+</div>
 	
 
 <script>
