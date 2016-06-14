@@ -2,34 +2,39 @@
 
 
 
-<div id="bookmark">
+
 	<%if (@submission.user_id != current_user.id && !Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
 	<%= form_for(Bookmark.new) do |f| %>
 	<div class="form-group">
 		<%= f.hidden_field  :user_id, value: current_user.id %>
 		<%=f.hidden_field :submission_id, value: @submission.id %>
-		<%= f.submit "Lesezeichen setzen!", class:"btn btn-primary" %>
+		<%= f.submit "Lesezeichen setzen!", class:"btn btn-primary"%>
 	</div>
 	<% end %>
-	<%elsif (@submission.user_id != current_user.id && Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
-	<% @bookmark = Bookmark.where(submission_id: @submission.id, user_id: current_user.id).first%>
-	<%= link_to 'Lesezeichen entfernen', @bookmark, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default"%>
-	<%end%>
-</div>
+	<% end %>
+
 
 
 <div class='page-header'>
 	<h1><%= @submission.title %></h1>
 	<p class="h4" id="author-user">Autor/in: <%= @submission.name%></p>
 	<div class="btn-group" role="group" aria-label="..."  >
-	<th>
 
 		<%if current_user.id == @submission.user_id%>  <!-- needs to be for author only -->
 		<%= link_to 'editieren des Beitrags', edit_submission_path(@submission), :class=>'btn btn-primary' %>
 		<%end%>
 
 		<%= link_to 'zurück zu den Beiträgen aller Studenten', {:controller => "submissions", :action => "index", :assignment_id => @submission.assignment_id}, :class=>'btn btn-primary' %>
-	</th>
+
+		<%if (@submission.user_id != current_user.id && Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
+		<% @bookmark = Bookmark.where(submission_id: @submission.id, user_id: current_user.id).first%>
+		<%= link_to 'Lesezeichen entfernen', @bookmark, method: :delete, class:"btn btn-primary"%>
+		<%end%>
+
+		<%if (@submission.user_id != current_user.id && !Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
+			<button class='btn btn-primary' id='create-bookmark'>Lesezeichen setzen!</button>
+		<% end %>
+	
 </div>
 </div>
 
@@ -69,10 +74,37 @@
 	</div>
 </div>
 
+<hr>
 
+<div class='row'>
+	<div class='col-md-12'>
+		<h2>Kommentare:</h2>
+		<%@comments.each do |comment|%>
+		<div class='panel panel-primary'>
+			
+			<div class='panel-body'>
+				<%=comment.comment%>
+			</div>
+			<div class='panel-footer '>
+				Autor/in des Kommentars: <%=User.find(comment.user_id).name%>
+			</div>
+		</div>
+		
+		<%end%>
 
-
-
+		<%=form_for(Comment.new) do |f|%>
+		<div class='form-group'>
+			<%=f.label :comment, 'Kommentar hinzufügen', class:'control-label'%>
+			<%=f.text_area :comment, size: "100x5", class: "form-control" %>
+		</div>
+		<%=f.hidden_field :user_id, value: current_user.id%>
+		<%=f.hidden_field :submission_id, value: @submission.id%>
+		<div class='form-group'>
+			<%=f.submit "Kommentar speichern", :class=>'btn btn-primary'%>
+		</div>
+		<%end%>
+	</div>
+</div>
 
 <%if current_user.admin? or @submission.user_id == current_user.id %>
 <div class="panel-group gradeinfo gradevalue" id="accordion" role="tablist" aria-multiselectable="true">
@@ -122,37 +154,6 @@
 
 </div>
 
-<hr>
-
-<div class='row'>
-	<div class='col-md-12'>
-		<h2>Kommentare:</h2>
-		<%@comments.each do |comment|%>
-		<div class='panel panel-primary'>
-			
-			<div class='panel-body'>
-				<%=comment.comment%>
-			</div>
-			<div class='panel-footer '>
-				Autor/in des Kommentars: <%=User.find(comment.user_id).name%>
-			</div>
-		</div>
-		
-		<%end%>
-
-		<%=form_for(Comment.new) do |f|%>
-		<div class='form-group'>
-			<%=f.label :comment, 'Kommentar hinzufügen', class:'control-label'%>
-			<%=f.text_area :comment, size: "100x5", class: "form-control" %>
-		</div>
-		<%=f.hidden_field :user_id, value: current_user.id%>
-		<%=f.hidden_field :submission_id, value: @submission.id%>
-		<div class='form-group'>
-			<%=f.submit "Kommentar speichern", :class=>'btn btn-primary'%>
-		</div>
-		<%end%>
-	</div>
-</div>
 
 
 <script>
@@ -160,5 +161,12 @@
 		$(this).find('.card').toggleClass('flipped');
 
 	});
+
+	$('#create-bookmark').click(function(event){
+		event.preventDefault();
+		$('#new_bookmark').submit();
+	})
+
+	$('#new_bookmark .btn').hide();
 </script>
 
