@@ -1,6 +1,7 @@
 # config/app.yml for rails-settings-cached
 defaults: &defaults
   max_assignments: 5
+  site_title: Deutsche Kultur durch Film
 
 development:
   <<: *defaults
