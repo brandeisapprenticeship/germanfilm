@@ -20,7 +20,7 @@ body {
     margin-top: $navbar-padding-vertical - 7;
 }
 
-.table > tbody > tr:nth-child(even) > td, .table-striped > tbody > tr:nth-child(even) > th {
+.table > tbody > tr:nth-child(even), .table > tbody > tr:nth-child(even) {
     background-color: lighten($theme-base,10%);
 }
 

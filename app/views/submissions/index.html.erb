@@ -27,20 +27,21 @@
         <td><%= Bookmark.where(submission_id: submission.id).count %></td>
         <%if current_user.admin?%>
           <%if submission.created_at > @assignment.deadline%>
-            <td style="background-color:#E8EE79; color:red"> <%=submission.created_at.strftime("%m/%d/%Y %I:%M %p")%></td>
-            <td style="background-color:#E8EE79; color:red"> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
+            <td class='danger'> <%=submission.created_at.strftime("%m/%d/%Y %I:%M %p")%></td>
+            <td class='danger'> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
           <%else%>
             <td> <%=submission.created_at.strftime("%m/%d/%Y %I:%M %p")%></td>
               <%if submission.updated_at > @assignment.deadline%>
-                <td style="background-color:#E8EE79; color:red"> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
+                <td class='danger'> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
               <%else%>
                 <td> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
               <%end%>
           <%end%>
+          <td>
           <%if !submission.grades.empty? %>
-            <td><%= submission.grades.first.grade %></td>
+            <%= submission.grades.first.grade %>
           <%end%>
-
+          </td>
         <%end%>
       </tr>
     <% end %>
