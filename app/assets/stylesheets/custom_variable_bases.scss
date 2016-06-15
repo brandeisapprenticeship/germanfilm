@@ -24,7 +24,7 @@ $state-info-text:                darken($state-info-bg, 40%) !default;
 $state-info-border:              darken(adjust-hue($state-info-bg, -10), 7%) !default;
 
 $state-warning-bg:               $brand-warning !default;
-$state-warning-text:             darken($state-warning-bg, 40%) !default;
+$state-warning-text:             darken($state-warning-bg, 60%) !default;
 $state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%) !default;
 
 $state-danger-bg:                $brand-danger !default;
