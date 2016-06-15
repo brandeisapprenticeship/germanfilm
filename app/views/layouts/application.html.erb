@@ -4,11 +4,7 @@
   <title><%= Setting.site_title %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script>
-  $(function(){
-    $( 'audio' ).audioPlayer();
-  });
-</script>
+  
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -71,5 +67,10 @@
         <p>bei Fragen kontaktieren Sie bitte <a href='mailto:brandeisapprenticeship@gmail.com'>brandeisapprenticeship@gmail.com</a></p>
       </div>
     </footer>
+    <script>
+  $(function(){
+    $( 'audio' ).audioPlayer();
+  });
+</script>
 </body>
 </html>

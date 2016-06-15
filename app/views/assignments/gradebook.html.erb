@@ -84,7 +84,7 @@ $(function(){
         </tr>
 
       <%end%>
-        <tr>
+        <tr class='bold'>
           <td>Average</td>
           <%@assignments.each do |assignment| 
             current_assignment=@assignment_grades[assignment.id]
@@ -94,7 +94,7 @@ $(function(){
           <td>-</td>
           <td>-</td>
         </tr>
-        <tr>
+        <tr class='bold'>
           <td>Median</td>
           <%@assignments.each do |assignment| 
             current_assignment=@assignment_grades[assignment.id].sort
