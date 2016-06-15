@@ -198,4 +198,8 @@ perspective: 800;
   @extend .alert-success;
 }
 
+.help-block {
+  color: lighten($text-color, 10%); // lighten the text some for contrast
+}
+
 

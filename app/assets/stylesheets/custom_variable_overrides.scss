@@ -19,3 +19,7 @@ $table-border-color:transparent;
 $btn-primary-color: readable-font-color($btn-primary-bg);
 
 $audio-player-height:2.5em;
+
+$page-header-border-color:    darken($theme-base,7%) !default;
+
+$hr-border:                   darken($theme-base,7%) !default;
