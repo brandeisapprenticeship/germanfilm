@@ -1,5 +1,5 @@
 <div class='page-header'>
-	<h1>meine Lesezeichen</h1>
+	<h1><%= t('bookmarks.title') %></h1>
 </div>
 <div class='row'>
 	<div class='col-md-12'>
@@ -32,7 +32,7 @@
 										<% if bookmark.submission.audio_url!=nil %>
 												<audio controls src="<%=bookmark.submission.audio_url%>" preload="auto"></audio>
 												<% else %>
-												<p class='no-audio'>No audio attached to submission</p>
+												<p class='no-audio'><%= t('submissions.no-audio') %></p>
 												<% end %>
 												<hr class='gray'>
 											<div class='index-card'>
@@ -55,7 +55,7 @@
 									
 								<%end%>
 								<% if current_bookmarks.length == 0 %>
-									<p>No bookmarks yet</p>
+									<p><%= t('bookmarks.no-bookmarks') %></p>
 								<% end %>
 							</div>
 						</div>

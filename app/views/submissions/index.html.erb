@@ -1,20 +1,20 @@
+<div class='page-header'>
+  <h1><%= t('submissions.all-submissions-for') %> <%=@assignment.name%></h1>
+  <p><%=@assignment.description.html_safe%></p>
+</div>
 
-
-<h1>Beiträge aller Studenten zu <%=@assignment.name%></h1>
-<p><%=@assignment.description.html_safe%></p>
-
-<h4> fällig am: <%= @assignment.deadline.strftime("%m/%d/%Y %I:%M %p")%> </h4>
+<p class='h4'> <%= t('submissions.due-on') %>: <%= @assignment.deadline.strftime("%m/%d/%Y %I:%M %p")%> </p>
 
 <table class="table">
     <thead>
     <tr>
-      <th>Name </th>
-      <th>Titel des Beitrags </th>
-      <th> Zahl der Lesezeichen</th>
+      <th><%= t('user.student-name') %> </th>
+      <th><%= t('submissions.submission-title') %> </th>
+      <th><%= t('bookmarks.number-of-bookmarks') %></th>
       <%if current_user.admin?%>
-      <th> eingereicht: </th>
-      <th> aktualisiert:</th>
-      <th>Bewertung (1 - 10)</th>
+      <th> <%= t('submissions.submitted-at') %>: </th>
+      <th> <%= t('submissions.updated-at') %>:</th>
+      <th><%= t('gradebook.grade-out-of-10') %></th>
       <%end%>
     </tr>
      </thead>

@@ -16,7 +16,7 @@
 
 <br>
 <div class="form-group">
-            <%= f.label :name,"Filmtitel", class:'control-label col-md-2' %>
+            <%= f.label :name,t('assignments.film-title'), class:'control-label col-md-2' %>
             <div class='col-md-10'>
               <%= f.text_field :name, class:'form-control' %>
               <br>
@@ -24,16 +24,16 @@
           </div>
 
   <div class="form-group">
-    <%= f.label :Beschreibung, class:'control-label col-md-2' %>
+    <%= f.label :description, t('assignments.description'), class:'control-label col-md-2' %>
     <div class='col-md-10'>
       <br>
-      <%= f.cktext_area :description, :ckeditor => {:language => 'de'} %>
+      <%= f.cktext_area :description, :ckeditor => {:language => I18n.locale} %>
 
     </div>
   </div>
     <br><br>
   <div class="form-group">
-            <%= f.label :Abgabetermin, class:'control-label col-md-2' %>
+            <%= f.label :deadline, t('assignments.deadline'), class:'control-label col-md-2' %>
             <div class='col-md-10'>
               <br>
               <%= f.datetime_select :deadline, class:'form-control' %>
@@ -63,7 +63,7 @@ Deadline:
 </div> -->
 
   <div class="actions">
-    <%= f.submit 'Hausaufgabe erstellen'%>
+    <%= f.submit t('assignments.save-assignment')%>
 
   </div>
 <% end %>

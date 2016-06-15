@@ -8,7 +8,7 @@
 	<div class="form-group">
 		<%= f.hidden_field  :user_id, value: current_user.id %>
 		<%=f.hidden_field :submission_id, value: @submission.id %>
-		<%= f.submit "Lesezeichen setzen!", class:"btn btn-primary"%>
+		<%= f.submit t('bookmarks.create-bookmark'), class:"btn btn-primary"%>
 	</div>
 	<% end %>
 	<% end %>
@@ -17,22 +17,22 @@
 
 <div class='page-header'>
 	<h1><%= @submission.title %></h1>
-	<p class="h4" id="author-user">Autor/in: <%= @submission.name%></p>
+	<p class="h4" id="author-user"><%= t('submissions.author') %> <%= @submission.name%></p>
 	<div class="btn-group" role="group" aria-label="..."  >
 
 		<%if current_user.id == @submission.user_id%>  <!-- needs to be for author only -->
-		<%= link_to 'editieren des Beitrags', edit_submission_path(@submission), :class=>'btn btn-primary' %>
+		<%= link_to t('assignments.edit-submission'), edit_submission_path(@submission), :class=>'btn btn-primary' %>
 		<%end%>
 
-		<%= link_to 'zurück zu den Beiträgen aller Studenten', {:controller => "submissions", :action => "index", :assignment_id => @submission.assignment_id}, :class=>'btn btn-primary' %>
+		<%= link_to t('submissions.return-to-class-submissions'), {:controller => "submissions", :action => "index", :assignment_id => @submission.assignment_id}, :class=>'btn btn-primary' %>
 
 		<%if (@submission.user_id != current_user.id && Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
 		<% @bookmark = Bookmark.where(submission_id: @submission.id, user_id: current_user.id).first%>
-		<%= link_to 'Lesezeichen entfernen', @bookmark, method: :delete, class:"btn btn-primary"%>
+		<%= link_to t('bookmarks.delete-bookmark'), @bookmark, method: :delete, class:"btn btn-primary"%>
 		<%end%>
 
 		<%if (@submission.user_id != current_user.id && !Bookmark.where(submission_id: @submission.id, user_id: current_user.id).exists?)%>
-			<button class='btn btn-primary' id='create-bookmark'>Lesezeichen setzen!</button>
+			<button class='btn btn-primary' id='create-bookmark'><%= t('bookmarks.create-bookmark') %></button>
 		<% end %>
 	
 </div>
@@ -44,10 +44,10 @@
 		<% if @submission.audio_url!=nil %>
 		<audio controls src="<%=@submission.audio_url%>" preload="auto"></audio>
 		<% else %>
-		<p class='no-audio'>No audio attached to submission</p>
+		<p class='no-audio'><%= t('submissions.no-audio') %></p>
 		<% end %>
 
-		<h2> Karteikarte: </h2>
+		<h2> <%= t('submissions.notecard') %>: </h2>
 
 		<div class='index-card'>
 			<div class='content'>
@@ -56,7 +56,7 @@
 		</div>
 	</div>
 	<div class='col-md-6'>
-		<h2> Wortschatz: </h2>
+		<h2> <%= t('submissions.vocabulary') %>: </h2>
 		<% for i in 1..5 %>
 		<% german=@submission["vocab_ger_"+"#{i}"] %>
 		<% english=@submission["vocab_english_"+"#{i}"] %>
@@ -78,7 +78,7 @@
 
 <div class='row'>
 	<div class='col-md-12'>
-		<h2>Kommentare:</h2>
+		<h2><%= t('comments.peer.plural') %>:</h2>
 		<%@comments.each do |comment|%>
 		<div class='panel panel-primary'>
 			
@@ -86,7 +86,7 @@
 				<%=comment.comment%>
 			</div>
 			<div class='panel-footer '>
-				Autor/in des Kommentars: <%=User.find(comment.user_id).name%>
+				<%= t('comments.peer.comment-author') %>: <%=User.find(comment.user_id).name%>
 			</div>
 		</div>
 		
@@ -94,13 +94,13 @@
 
 		<%=form_for(Comment.new) do |f|%>
 		<div class='form-group'>
-			<%=f.label :comment, 'Kommentar hinzufügen', class:'control-label'%>
+			<%=f.label :comment, t('comments.peer.add-comment'), class:'control-label'%>
 			<%=f.text_area :comment, size: "100x5", class: "form-control" %>
 		</div>
 		<%=f.hidden_field :user_id, value: current_user.id%>
 		<%=f.hidden_field :submission_id, value: @submission.id%>
 		<div class='form-group'>
-			<%=f.submit "Kommentar speichern", :class=>'btn btn-primary'%>
+			<%=f.submit t('comments.peer.save-comment'), :class=>'btn btn-primary'%>
 		</div>
 		<%end%>
 	</div>
@@ -112,7 +112,7 @@
 		<div class="panel-heading" role="tab" id="headingOne">
 			<h4 class="panel-title">
 				<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					Note
+					<%= t('gradebook.grade') %>
 				</a>
 			</h4>
 		</div>
@@ -122,26 +122,26 @@
 					<%if current_user.admin?%>
 					<%= form_for(@grade) do |f| %>
 					<div class='form-group'>
-						<%= f.label :grade, "Note", {:class=>'control-label'} %>
+						<%= f.label :grade, t('gradebook.grade'), {:class=>'control-label'} %>
 						<%= f.number_field :grade, :step => 0.5, :class=>'form-control' %>
 					</div>
 					<div class='form-group'>
-						<%= f.label :comment, "Kommentar", {:class=>'control-label'} %>
+						<%= f.label :comment, t('comments.instructor.singular'), {:class=>'control-label'} %>
 						<%= f.text_area :comment,rows:10, cols:30, maxlength: 400, class:'form-control'  %>
 					</div>
 					<%= f.hidden_field :user_id, value: current_user.id%>
 					<%= f.hidden_field :submission_id, value: @submission.id%>
 					<div class='form-group'>
-						<%= f.submit "speichern", class:'btn btn-primary' %>
+						<%= f.submit t('comments.instructor.save-comment'), class:'btn btn-primary' %>
 					</div>
 					<%end%>
 					<%else%>
 					<% if !@grade.new_record? %>
-					<p><b>Note:</b> <%= @grade.grade %></p>
-					<p><b>Kommentar:</b></p>
-					<p><%= simple_format@grade.comment %></p>
+					<p><b><%= t('gradebook.grade') %>:</b> <%= @grade.grade %></p>
+					<p><b><%= t('comments.instructor.singular') %>:</b></p>
+					<p><%= simple_format @grade.comment %></p>
 					<% else %>
-					<p>ohne Kommentar</p>
+					<p><i><%= t('comments.instructor.no-comment') %></i></p>
 					<% end %>
 					<%end%>
 				</div>

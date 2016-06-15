@@ -25,19 +25,19 @@
         <div id="navbar" class="navbar-collapse collapse">
           <% if user_signed_in? %>
             <ul class="nav navbar-nav">
-              <li><%= link_to "Homepage", assignments_path %></li>
+              <li><%= link_to t('home.title'), assignments_path %></li>
             <% if !current_user.admin?%>
-              <li><%= link_to "meine Beiträge", submissions_mysubmiss_path %></li>
-              <li><%= link_to "gemeinsamer Wortschatz",  assignments_classvocab_path %></li>
+              <li><%= link_to t('submissions.title'), submissions_mysubmiss_path %></li>
+              <li><%= link_to t('vocab.title'),  assignments_classvocab_path %></li>
             <%end%>
             <% if current_user.admin? %>
-              <li><%= link_to "Notenheft", assignments_gradebook_path %></li> 
+              <li><%= link_to t('gradebook.title'), assignments_gradebook_path %></li> 
            <% end %>
-              <li><%= link_to "meine Lesezeichen", bookmarks_path %></li>
+              <li><%= link_to t('bookmarks.title'), bookmarks_path %></li>
               
              </ul>
              <ul class="nav navbar-nav navbar-right">
-            <li> <%= link_to('abmelden', destroy_user_session_path, :method => :delete) %> </li>
+            <li> <%= link_to(t('user.sign-out'), destroy_user_session_path, :method => :delete) %> </li>
           </ul>
          <%end%>
 
@@ -64,7 +64,7 @@
 </div>
 <footer class="footer">
       <div class="container">
-        <p>bei Fragen kontaktieren Sie bitte <a href='mailto:brandeisapprenticeship@gmail.com'>brandeisapprenticeship@gmail.com</a></p>
+        <%= Setting.footer_message.html_safe %>
       </div>
     </footer>
     <script>

@@ -6,14 +6,14 @@ $(function(){
 });
 </script>
 <div class='page-header'>
-	<h1>Comments on <%= @assignment.name %></h1>
-	<p>Select assignment: <%= collection_select :assignment, "id",  @assignments, :id, :name, {:selected => @assignment.id}, {:class=>'form-control'} %></p>
-	<p><%= link_to "Return to gradebook", assignments_gradebook_path %></p>
+	<h1><%= t('comments.peer.comments-on') %> <%= @assignment.name %></h1>
+	<p><%= t('assignments.select-assignment') %>: <%= collection_select :assignment, "id",  @assignments, :id, :name, {:selected => @assignment.id}, {:class=>'form-control'} %></p>
+	<p><%= link_to t('gradebook.return-to-gradebook'), assignments_gradebook_path %></p>
 </div>
 <div class='row'>
 	<% @submissions.each do |submission| %>
 		<div class='col-md-12'>
-			<h2><%= submission.title %> by <%= User.find(submission.user_id).name %> <small><%= link_to "view", submission %></small></h2>
+			<h2><%= submission.title %> by <%= User.find(submission.user_id).name %> <small><%= link_to t('submission.view'), submission %></small></h2>
 			<ul>
 				<% submission.comments.each do |comment| %>
 					<li><b><%= comment.user.name %></b>: <%= comment.comment %></li>

@@ -1,12 +1,12 @@
 <div class='page-header'>
-  <h1>Hausaufgaben</h1>
+  <h1><%= t('assignments.title') %></h1>
 </div>
 
 
 <!--create assignment button -->
 <% if current_user.admin? %>
 <div class="btn-group" role="group" aria-label="...">
- <%= link_to 'neue Hausaufgabe erstellen', new_assignment_path, :class=>"btn btn-primary" %>
+ <%= link_to t('assignments.create-new-assignment'), new_assignment_path, :class=>"btn btn-primary" %>
 </div>
 <%end%>
 <!-- table for assignments -->
@@ -15,9 +15,9 @@
   <table class="table">
     <thead>
     <tr>
-      <th>Filmtitel </th>
-      <th>Abgabetermin </th>
-      <th><%if current_user.admin? %> Hausaufgabe bearbeiten <%else%> Hausaufgabe absenden <%end%></th>
+      <th><%= t('assignments.film-title') %> </th>
+      <th><%= t('assignments.deadline') %> </th>
+      <th><%if current_user.admin? %> <%= t('assignments.edit-assignment') %> <%else%> <%= t('assignments.submit-assignment') %> <%end%></th>
     </tr>
      </thead>
 
@@ -30,14 +30,14 @@
         <td> <%= link_to assignment.name, {:controller => "submissions", :action => "index", :assignment_id => assignment.id} %></td>
         <td> <%= assignment.deadline.strftime("%A, %B, %d at %I:%M %p") %></td>
         <% if current_user.admin? %> 
-        <td><%= link_to 'Hausaufgabe bearbeiten', edit_assignment_path(assignment)%></td>
+        <td><%= link_to t('assignments.edit-assignment'), edit_assignment_path(assignment)%></td>
         <% else %>
         <!-- doesn't work: -->
         <%if Submission.where(assignment_id: assignment.id, user_id: current_user.id).blank?%>
-          <td><%=link_to 'Hausaufgabe absenden', {:controller => "submissions", :action => "new", :assignment_id => assignment.id}%></td>
+          <td><%=link_to t('assignments.submit-assignment'), {:controller => "submissions", :action => "new", :assignment_id => assignment.id}%></td>
         <% else %>
           <%@submission = Submission.where(assignment_id: assignment.id, user_id: current_user.id).first%>
-          <td><%=link_to 'editieren des Beitrags', edit_submission_path(@submission)%></td>
+          <td><%=link_to t('assignments.edit-submission'), edit_submission_path(@submission)%></td>
         <%end%>
         <%end%>
         

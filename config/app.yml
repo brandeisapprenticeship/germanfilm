@@ -2,6 +2,7 @@
 defaults: &defaults
   max_assignments: 5
   site_title: Deutsche Kultur durch Film
+  footer_message: "<p>bei Fragen kontaktieren Sie bitte <a href='mailto:brandeisapprenticeship@gmail.com'>brandeisapprenticeship@gmail.com</a></p>"
 
 development:
   <<: *defaults
