@@ -1,69 +1,29 @@
 <%= form_for(@assignment) do |f| %>
-  <% if @assignment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
 
-      <ul>
-      <% @assignment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
-
-
-<br>
 <div class="form-group">
-            <%= f.label :name,t('assignments.film-title'), class:'control-label col-md-2' %>
-            <div class='col-md-10'>
+            <%= f.label :name,t('assignments.film-title'), class:'control-label' %>
+  
               <%= f.text_field :name, class:'form-control' %>
-              <br>
-            </div>
+
           </div>
 
   <div class="form-group">
-    <%= f.label :description, t('assignments.description'), class:'control-label col-md-2' %>
-    <div class='col-md-10'>
-      <br>
+    <%= f.label :description, t('assignments.description'), class:'control-label' %>
+    
       <%= f.cktext_area :description, :ckeditor => {:language => I18n.locale} %>
-
-    </div>
   </div>
-    <br><br>
+
   <div class="form-group">
-            <%= f.label :deadline, t('assignments.deadline'), class:'control-label col-md-2' %>
-            <div class='col-md-10'>
-              <br>
+            <%= f.label :deadline, t('assignments.deadline'), class:'control-label' %>
+            <div class='clearfix'></div>
               <%= f.datetime_select :deadline, class:'form-control' %>
-            </div>
+          
           </div>
 
-<!-- <div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">Film Title:</span>
-  <input type="text" class="form-control" placeholder="Film Title" aria-describedby="basic-addon1">
-</div>
-<br>
-Description: <br>
-<textarea rows="10" cols="100">
 
-</textarea>
-<br> <br>
 
-Deadline:
-<div ng-controller="DatepickerDemoCtrl">
-        <div class="col-md-6">
-            <p class="input-group">
-              <input type="text" data-provide='datepicker' uib-datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-            </p>
-        </div>
-    </div>
-   
-</div> -->
-
-  <div class="actions">
-    <%= f.submit t('assignments.save-assignment')%>
+  <div class="form-group">
+    <%= f.submit t('assignments.save-assignment'), class:'btn btn-primary'%>
 
   </div>
 <% end %>

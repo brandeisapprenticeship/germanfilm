@@ -5,12 +5,15 @@
 
 <!--create assignment button -->
 <% if current_user.admin? %>
-<div class="btn-group" role="group" aria-label="...">
- <%= link_to t('assignments.create-new-assignment'), new_assignment_path, :class=>"btn btn-primary" %>
-</div>
+  <div class='row'>
+    <div class='col-md-12'>
+      <p><%= link_to t('assignments.create-new-assignment'), new_assignment_path, :class=>"btn btn-primary" %></p>
+    </div>
+  </div>
 <%end%>
 <!-- table for assignments -->
-
+<div class='row'>
+  <div class='col-md-12'>
   <!-- Table -->
   <table class="table">
     <thead>
@@ -41,4 +44,5 @@
     <% end %> 
   </tbody>
 </table>
-
+</div>
+</div>
