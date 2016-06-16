@@ -60,9 +60,9 @@ de:
         no-comment: "ohne Kommentar"
         save-comment: "Kommentar speichern"
       peer:
-        singular: "Beitrag"
-        plural: "Beiträge"
-        comments-on: "Beiträge zu"
+        singular: "Kommentare"
+        plural: "Kommentare"
+        comments-on: "Kommentare zu"
         comment-author: "Autor/in des Kommentars"
         save-comment: "Kommentar speichern"
         add-comment: "Kommentar hinzufügen"
