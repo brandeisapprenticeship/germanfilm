@@ -1,4 +1,9 @@
-# German Film Platform
+# Russian Film Platform
+
+
+This is a version of the German Film Platform customized for a Russian class
+
+---------
 
 This platform was originally designed by [Amy Sheinhait](https://github.com/ashein2) and [Bess Alshvang](https://github.com/elal22) for use in a college-level film-based German language learning class. It was updated by [Zak Kolar](https://github.com/zakkolar) with several fixes including layout tweaks, user specified changes, translation capabilities, and other miscellaneous changes.
 
