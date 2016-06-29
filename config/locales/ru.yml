@@ -1,0 +1,98 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+ru:
+  home:
+    title: "Главная"
+  assignments:
+      title: "TRANSLATE ME [assignments]"
+      create-new-assignment: "Создать новое задание"
+      new-assignment: "TRANSLATE ME [new assignment]"
+      save-assignment: "TRANSLATE ME [save assignment]"
+      film-title: "Название фильма или произведения"
+      deadline: "Крайний срок"
+      edit-assignment: "Редактировать задание"
+      submit-assignment: "Сдать задание"
+      edit-submission: "Редактировать сданное задание"
+      description: "Описание"
+      no-submissions: "TRANSLATE ME [no submissions]"
+      select-assignment: "TRANSLATE ME [select assignment]"
+  submissions:
+      title: "Мои задания"
+      submission-title: "TRANSLATE ME [submission title]"
+      audio: "TRANSLATE ME [audio]"
+      only-mp3: "TRANSLATE ME [only mp3]"
+      notecard: "TRANSLATE ME [notecard]"
+      vocabulary: "TRANSLATE ME [vocabulary]"
+      language-expression: ""
+      english-translation: "Перевод на английский"
+      save-submission: "создать задание"
+      all-submissions-for: ""
+      due-on: "Срок сдачи"
+      submitted-at: "Сдано"
+      updated-at: "Обновлено"
+      no-audio: "TRANSLATE ME [no audio]"
+      author: "TRANSLATE ME [author]"
+      view-submission: "Просмотреть сданные задания"
+      return-to-class-submissions: "Перейти в список заданий"
+  comments:
+      instructor:
+        singular: "TRANSLATE ME [comment]"
+        plural: "TRANSLATE ME [comments]"
+        no-comment: "TRANSLATE ME [no comment]"
+        save-comment: "Сохранить оценку"
+      peer:
+        singular: "TRANSLATE ME [comment]"
+        plural: "TRANSLATE ME [plural]"
+        comments-on: "TRANSLATE ME [comments on]"
+        comment-author: "TRANSLATE ME [comment author]"
+        save-comment: "TRANSLATE ME [save comment]"
+        add-comment: "TRANSLATE ME [add comment]"
+  gradebook:
+    title: "Классный журнал"
+    show-comments: "TRANSLATE ME [show comments]"
+    show-gradebook: "TRANSLATE ME [show gradebook]"
+    grade-for: "Оценка для"
+    total-comments: "TRANSLATE ME [total comments]"
+    average-grade: "Средний балл"
+    average: "TRANSLATE ME [average]"
+    median: "TRANSLATE ME [median]"
+    grade-out-of-10: "Оценка из 10"
+    number-of-assignments: "TRANSLATE ME [number of assignments]"
+    grade: "Оценка"
+    return-to-gradebook: "TRANSLATE ME [return to gradebook]"
+  bookmarks:
+    title: "Мои закладки"
+    no-bookmarks: "TRANSLATE ME [no bookmarks]"
+    number-of-bookmarks: "TRANSLATE ME [number of bookmarks]"
+    create-bookmark: "Добавить в закладки"
+    delete-bookmark: "Удалить из закладок"
+  vocab:
+    title: "Лексика курса"
+  user:
+    sign-out: "TRANSLATE ME [sign out]"
+    sign-in: "Вход"
+    sign-up: "Подписаться"
+    email: "Электронная почта"
+    password: "Пароль"
+    remember: "Запомнить"
+    forgot-password: "Забыли пароль?"
+    student-name: "Имя и фамилия"
