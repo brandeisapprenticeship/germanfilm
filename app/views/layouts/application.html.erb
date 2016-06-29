@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= Setting.site_title %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to Setting.site_title , assignments_path, class:"navbar-brand" %>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <% if user_signed_in? %>
+            <ul class="nav navbar-nav">
+              <li><%= link_to t('home.title'), assignments_path %></li>
+            <% if !current_user.admin?%>
+              <li><%= link_to t('submissions.title'), submissions_mysubmiss_path %></li>
+              <li><%= link_to t('vocab.title'),  assignments_classvocab_path %></li>
+            <%end%>
+            <% if current_user.admin? %>
+              <li><%= link_to t('gradebook.title'), assignments_gradebook_path %></li> 
+           <% end %>
+              <li><%= link_to t('bookmarks.title'), bookmarks_path %></li>
+              
+             </ul>
+             <ul class="nav navbar-nav navbar-right">
+            <li> <%= link_to(t('user.sign-out'), destroy_user_session_path, :method => :delete) %> </li>
+          </ul>
+         <%end%>
+
+          
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+
+
+
+
+
+
+<div class="container">
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>">
+    <a href="#" data-dismiss="alert" class="close">×</a>
+    <p><%= value %></p>
+  </div>
+<% end %>
+<%= yield %>
+</div>
+<footer class="footer">
+      <div class="container">
+        <%= Setting.footer_message.html_safe %>
+      </div>
+    </footer>
+    <script>
+  $(function(){
+    $( 'audio' ).audioPlayer();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<div class='page-header'>
+  <h1><%= t('submissions.all-submissions-for') %> <%=@assignment.name%></h1>
+  <p><%=@assignment.description.html_safe%></p>
+</div>
+
+<p class='h4'> <%= t('submissions.due-on') %>: <%= @assignment.deadline.strftime("%m/%d/%Y %I:%M %p")%> </p>
+
+<table class="table">
+    <thead>
+    <tr>
+      <th><%= t('user.student-name') %> </th>
+      <th><%= t('submissions.submission-title') %> </th>
+      <th><%= t('bookmarks.number-of-bookmarks') %></th>
+      <%if current_user.admin?%>
+      <th> <%= t('submissions.submitted-at') %>: </th>
+      <th> <%= t('submissions.updated-at') %>:</th>
+      <th><%= t('gradebook.grade-out-of-10') %></th>
+      <%end%>
+    </tr>
+     </thead>
+
+  <tbody>
+    <% @submissions.each do |submission| %>
+      <tr>
+        <td> <%= submission.name %></td>
+        <td><%= link_to submission.title, submission %></td>
+        <td><%= Bookmark.where(submission_id: submission.id).count %></td>
+        <%if current_user.admin?%>
+          <%if submission.created_at > @assignment.deadline%>
+            <td class='danger'> <%=submission.created_at.strftime("%m/%d/%Y %I:%M %p")%></td>
+            <td class='danger'> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
+          <%else%>
+            <td> <%=submission.created_at.strftime("%m/%d/%Y %I:%M %p")%></td>
+              <%if submission.updated_at > @assignment.deadline%>
+                <td class='danger'> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
+              <%else%>
+                <td> <%=submission.updated_at.strftime("%m/%d/%Y %I:%M %p")%></td>
+              <%end%>
+          <%end%>
+          <td>
+          <%if !submission.grades.empty? %>
+            <%= submission.grades.first.grade %>
+          <%end%>
+          </td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+

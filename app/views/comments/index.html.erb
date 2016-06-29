@@ -1,0 +1,28 @@
+e
+
+<h1>Listing Comments</h1>
+
+<br>
+
+<table class="table">
+    <thead>
+    <tr>
+      <th>Comment </th>
+      <th></th>
+    </tr>
+     </thead>
+
+ 
+
+  <tbody>
+   <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td> <%=comment.comment%></td>
+        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Comment', new_comment_path %>

@@ -1,0 +1,32 @@
+$theme-base: lighten(#6A8F8E,5%);
+$theme-dark: darken($theme-base,20%);
+$theme-dark-text: lighten($theme-dark,75%);
+$theme-dark-link:darken($theme-dark-text,30%);
+
+$text-color:darken($theme-dark,10%);
+
+$link-color:darken(saturate(darken($theme-base,17%),20%),7%);
+
+$brand-primary: $theme-dark;
+
+$brand-success:         #A2CFA0 !default;
+$brand-info:            #8893AA !default;
+$brand-warning:         #FFEBC5 !default;
+$brand-danger:          #FDC4C5 !default;
+
+// $state-success-bg:               #8AA899 !default;
+$state-success-bg:               $brand-success !default;
+$state-success-text:             darken($state-success-bg, 40%) !default;
+$state-success-border:           darken(adjust-hue($state-success-bg, -10), 5%) !default;
+
+$state-info-bg:                  $brand-info !default;
+$state-info-text:                darken($state-info-bg, 40%) !default;
+$state-info-border:              darken(adjust-hue($state-info-bg, -10), 7%) !default;
+
+$state-warning-bg:               $brand-warning !default;
+$state-warning-text:             darken($state-warning-bg, 60%) !default;
+$state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%) !default;
+
+$state-danger-bg:                $brand-danger !default;
+$state-danger-text:              darken($state-danger-bg, 40%) !default;
+$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%) !default;

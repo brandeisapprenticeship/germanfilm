@@ -1,0 +1,158 @@
+
+<script type='text/javascript'>
+function toggleView(){
+  $('.gradebook').toggle();
+  $('.comments').toggle();
+}
+$(function(){
+  $('.gradebook').show();
+  $('.comments').hide();
+
+  $('#showGradebook, #showComments').click(function(event){
+    event.preventDefault();
+    toggleView();
+  });
+});
+</script>
+
+
+<!--create assignment button -->
+<% if current_user.admin? %>
+  <div class='page-header'>
+    <h1 class='gradebook'><%= t('gradebook.title') %></h1>
+    <h1 class='comments'><%= t('comments.peer.plural') %></h1>
+    <p>
+      <a href='#' id='showComments' class='gradebook' ><%= t('gradebook.show-comments') %> </a>
+      <a href='#' id='showGradebook' class='comments' ><%= t('gradebook.show-gradebook') %></a>
+    </p>
+  </div>
+  <div class='row gradebook'>
+  <div class='col-md-12'>
+    <table class="table">
+      <thead>
+      <tr>
+        <th><%= t('user.student-name') %></th>
+        <% @assignments.each do |assignment| %>
+            <th> <%= t('gradebook.grade-for') %> <%= assignment.name%> </th>
+        <%end%>
+        <th ><%= t('gradebook.total-comments') %></th>
+        <th> <%= t('gradebook.average-grade') %></th>
+      </tr>
+       </thead>
+
+   
+
+    <tbody>
+     <% @users.each do |user| %>
+        <tr>
+          <td> <%= user.name %></td>
+          <% sum = 0%>
+          <% grades=Array.new %>
+          <%@assignments.each do |assignment| %>
+            <%@submission = Submission.where(assignment_id: assignment.id, user_id: user.id)%>
+            <%if @submission.exists? && !@submission.first.grades.empty? %>
+              <% current_grade=@submission.first.grades.first.grade %>
+              <td><%= current_grade %></td>
+              <%
+              grades << current_grade
+              if @assignment_grades[assignment.id]==nil
+                @assignment_grades[assignment.id]=[current_grade]
+              else
+                @assignment_grades[assignment.id] << current_grade
+              end
+              %>
+            <%else%>
+              <% 
+              if assignment.deadline.past?
+                grades << 0 %>
+                <td>0</td>
+              <% else %>
+                <td></td>
+              <% end %>
+              
+            <%end%>
+          <%end%>
+          <%
+          factored_assignments=[grades.size,@max_assignments].min
+
+          %>
+          <td><%= user.comments.count %></td>
+          <td><%=grades.sort.last(factored_assignments).inject(:+) / factored_assignments unless factored_assignments == 0%>
+          </td>
+
+         
+        </tr>
+
+      <%end%>
+        <tr class='bold'>
+          <td><%= t('gradebook.average') %></td>
+          <%@assignments.each do |assignment| 
+            current_assignment=@assignment_grades[assignment.id]
+            %>
+            <td><%= current_assignment.inject(:+)/current_assignment.size unless current_assignment==nil %></td>
+          <% end %>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr class='bold'>
+          <td><%= t('gradebook.median') %></td>
+          <%@assignments.each do |assignment| 
+            current_assignment=@assignment_grades[assignment.id]
+            if current_assignment!=nil
+              current_assignment.sort!
+              num_assignments=current_assignment.length
+            end
+            %>
+            <td><%= (current_assignment[(num_assignments - 1) / 2] + current_assignment[num_assignments / 2]) / 2.0  unless current_assignment==nil%></td>
+          <% end %>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class='col-md-12'>
+    <%= form_for :save_gradebook, url: save_gradebook_path, :html=>{:class=>'form-inline gradebook'} do |f| %>
+      <div class='form-group'>
+        <%= f.label :max_assignments, t('gradebook.number-of-assignments'), :class=>'control-label' %>
+        
+          <%= f.number_field :max_assignments, :class=>'form-control', :step=>1, :value=>Setting.max_assignments %>
+          <%= f.submit "save", :class=>'btn btn-primary' %>
+
+       </div>
+      <% end %>
+  </div>
+  </div>
+  <div class='row comments'>
+<div class='col-md-12'>
+  <table class='table'>
+    <thead >
+      <tr>
+        <th><%= t('user.student-name') %></th>
+        <% @assignments.each do |assignment| %>
+        <th><%= assignment.name %></th>
+        <%end%>
+        <th><%= t('gradebook.total-comments') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <% @assignments.each do |assignment| %>
+            <td><%
+             comments= 0
+             assignment.submissions.each do |submission|
+                comments = comments +  submission.comments.where(user_id:user.id).count
+            end
+             %>
+            <%= comments %>
+             </td>
+          <% end %>
+          <td><%= user.comments.count %></td>
+        </tr>
+      <%end%>
+  </table>
+</div>
+</div>
+<%end%>

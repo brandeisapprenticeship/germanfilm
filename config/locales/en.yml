@@ -1,0 +1,98 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  home:
+    title: "Homepage"
+  assignments:
+      title: "Assignments"
+      create-new-assignment: "Create new assignment"
+      new-assignment: "New assignment"
+      save-assignment: "Save assignment"
+      film-title: "Film title"
+      deadline: "Deadline"
+      edit-assignment: "Edit assignment"
+      submit-assignment: "Submit assignment"
+      edit-submission: "Edit submission"
+      description: "Description"
+      no-submissions: "No submissions yet"
+      select-assignment: "Select assignment"
+  submissions:
+      title: "My submissions"
+      submission-title: "Submission title"
+      audio: "audio"
+      only-mp3: "only mp3"
+      notecard: "Notecard"
+      vocabulary: "Vocabulary"
+      language-expression: "Expression"
+      english-translation: "English translation"
+      save-submission: "Save submission"
+      all-submissions-for: "All submissions for"
+      due-on: "due on"
+      submitted-at: "Submitted at"
+      updated-at: "Updated at"
+      no-audio: "There is no audio for this submission"
+      author: "Author:"
+      view-submission: "View submission"
+      return-to-class-submissions: "Return to class submissions"
+  comments:
+      instructor:
+        singular: "Instructor comment"
+        plural: "Instructor comments"
+        no-comment: "No comment"
+        save-comment: "Save comment"
+      peer:
+        singular: "Peer comment"
+        plural: "Peer comments"
+        comments-on: "Comments on"
+        comment-author: "Comment author"
+        save-comment: "Save comment"
+        add-comment: "Add comment"
+  gradebook:
+    title: "Gradebook"
+    show-comments: "Show comments"
+    show-gradebook: "Show gradebook"
+    grade-for: "Grade for"
+    total-comments: "Total comments"
+    average-grade: "Average"
+    average: "Average"
+    median: "Median"
+    grade-out-of-10: "Grade (1-10)"
+    number-of-assignments: "Number of assignments to factor into grade"
+    grade: "Grade"
+    return-to-gradebook: "Return to gradebook"
+  bookmarks:
+    title: "My bookmarks"
+    no-bookmarks: "No bookmarks yet"
+    number-of-bookmarks: "Number of bookmarks"
+    create-bookmark: "Create bookmark"
+    delete-bookmark: "Delete bookmark"
+  vocab:
+    title: "Class Vocabulary"
+  user:
+    sign-out: "Sign out"
+    sign-in: "Sign in"
+    sign-up: "Sign up"
+    email: "Email"
+    password: "Password"
+    remember: "Remember me"
+    forgot-password: "Forgot password?"
+    student-name: "Name"

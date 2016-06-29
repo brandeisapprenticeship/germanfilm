@@ -1,0 +1,48 @@
+<div class='page-header'>
+  <h1><%= t('assignments.title') %></h1>
+</div>
+
+
+<!--create assignment button -->
+<% if current_user.admin? %>
+  <div class='row'>
+    <div class='col-md-12'>
+      <p><%= link_to t('assignments.create-new-assignment'), new_assignment_path, :class=>"btn btn-primary" %></p>
+    </div>
+  </div>
+<%end%>
+<!-- table for assignments -->
+<div class='row'>
+  <div class='col-md-12'>
+  <!-- Table -->
+  <table class="table">
+    <thead>
+    <tr>
+      <th><%= t('assignments.film-title') %> </th>
+      <th><%= t('assignments.deadline') %> </th>
+      <th><%if current_user.admin? %> <%= t('assignments.edit-assignment') %> <%else%> <%= t('assignments.submit-assignment') %> <%end%></th>
+    </tr>
+     </thead>
+  <tbody>
+   <% @assignments.each do |assignment| %>
+    
+      <tr>
+        <td> <%= link_to assignment.name, {:controller => "submissions", :action => "index", :assignment_id => assignment.id} %></td>
+        <td> <%= assignment.deadline.strftime("%A, %B, %d at %I:%M %p") %></td>
+        <% if current_user.admin? %> 
+        <td><%= link_to t('assignments.edit-assignment'), edit_assignment_path(assignment)%></td>
+        <% else %>
+        <!-- doesn't work: -->
+        <%if Submission.where(assignment_id: assignment.id, user_id: current_user.id).blank?%>
+          <td><%=link_to t('assignments.submit-assignment'), {:controller => "submissions", :action => "new", :assignment_id => assignment.id}%></td>
+        <% else %>
+          <%@submission = Submission.where(assignment_id: assignment.id, user_id: current_user.id).first%>
+          <td><%=link_to t('assignments.edit-submission'), edit_submission_path(@submission)%></td>
+        <%end%>
+        <%end%>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>
+</div>
+</div>

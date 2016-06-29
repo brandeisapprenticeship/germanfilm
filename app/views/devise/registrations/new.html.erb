@@ -1,0 +1,52 @@
+<div class="page-header">
+<h1 class="text-center"><%= t('user.sign-up') %></h1>
+</div>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html=>{:class=>'form-horizontal'}) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+    <%= f.label :name, "name (first and last)", class:'control-label col-md-4' %>
+    <div class='col-md-4'>
+    <%= f.text_field :name, autofocus: true, class:'form-control' %>
+  </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, "Email", class:'control-label col-md-4' %>
+    <div class='col-md-4'>
+    <%= f.email_field :email, autofocus: true, class:'form-control' %>
+  </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password, "t('user.password')", class:'control-label col-md-4'  %>
+    <div class='col-md-4'>
+    <%= f.password_field :password, autocomplete: "off", class:'form-control' %>
+    <% if @minimum_password_length %>
+    <span class='help-block'>(<%= @minimum_password_length %> characters minimum)</span>
+    <% end %>
+  </div>
+</div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, class:'control-label col-md-4'  %>
+    <div class='col-md-4'>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control' %>
+  </div>
+</div>
+
+  <div class="form-group">
+    <div class="col-md-4 col-md-offset-4">
+    <%= f.submit t('user.sign-up'), class:'btn btn-primary' %>
+  </div>
+
+</div>
+  <div class="form-group">
+    <div class="col-md-4 col-md-offset-4">
+      <%= render "devise/shared/links" %>
+  </div>
+</div>
+<% end %>
+
+
+

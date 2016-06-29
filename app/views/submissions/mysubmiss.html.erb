@@ -1,0 +1,23 @@
+<div class='page-header'>
+  <h1><%= t('submissions.title') %></h1>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+      <th><%= t('submissions.submission-title') %> </th>
+      <th><%= t('bookmarks.number-of-bookmarks') %></th>
+    </tr>
+     </thead>
+
+  <tbody>
+    <%if @submission != nil %>
+    <% @submission.each do |submission| %>
+      <tr>
+        <td><%= link_to submission.title, submission %></td>
+        <td id="bookmarkcounter"><%= Bookmark.where(submission_id: submission.id).count%></td>
+      </tr>
+      <%end%>
+  <%end%>
+  </tbody>
+</table>

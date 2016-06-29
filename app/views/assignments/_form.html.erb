@@ -1,0 +1,29 @@
+<%= form_for(@assignment) do |f| %>
+
+<div class="form-group">
+            <%= f.label :name,t('assignments.film-title'), class:'control-label' %>
+  
+              <%= f.text_field :name, class:'form-control' %>
+
+          </div>
+
+  <div class="form-group">
+    <%= f.label :description, t('assignments.description'), class:'control-label' %>
+    
+      <%= f.cktext_area :description, :ckeditor => {:language => I18n.locale} %>
+  </div>
+
+  <div class="form-group">
+            <%= f.label :deadline, t('assignments.deadline'), class:'control-label' %>
+            <div class='clearfix'></div>
+              <%= f.datetime_select :deadline, class:'form-control' %>
+          
+          </div>
+
+
+
+  <div class="form-group">
+    <%= f.submit t('assignments.save-assignment'), class:'btn btn-primary'%>
+
+  </div>
+<% end %>
