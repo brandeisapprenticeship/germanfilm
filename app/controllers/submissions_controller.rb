@@ -92,6 +92,6 @@ class SubmissionsController < ApplicationController
     def submission_params
        params.require(:submission).permit(:title, :notecard, 
         :vocab_english_1,:vocab_english_2,:vocab_english_3, :vocab_english_4,:vocab_english_5,:vocab_ger_1,:vocab_ger_2,:vocab_ger_3,:vocab_ger_4,:vocab_ger_5, 
-        :name, :audio, :grade, :assignment_id, :user_id)
+        :name, :audio, :grade, :assignment_id, :user_id, :video)
     end
 end

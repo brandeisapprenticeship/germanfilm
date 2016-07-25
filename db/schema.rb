@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608232809) do
+ActiveRecord::Schema.define(version: 20160725032410) do
 
   create_table "assignments", force: :cascade do |t|
     t.datetime "created_at",                null: false
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20160608232809) do
     t.integer  "assignment_id",   limit: 4
     t.integer  "user_id",         limit: 4
     t.string   "audio",           limit: 255
+    t.string   "video",           limit: 255
   end
 
   create_table "users", force: :cascade do |t|

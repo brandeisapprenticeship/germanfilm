@@ -29,10 +29,10 @@
 									<div class='col-md-<%= column_size %>'>
 										<h3><%= link_to bookmark.submission.title, bookmark.submission%></h3>
 										<p><%= bookmark.submission.user.name%></p>
-										<% if bookmark.submission.audio_url!=nil %>
-												<audio controls src="<%=bookmark.submission.audio_url%>" preload="auto"></audio>
+										<% if bookmark.submission.video!=nil %>
+												<%= bookmarksubmission.video_embed_code.html_safe %>
 												<% else %>
-												<p class='no-audio'><%= t('submissions.no-audio') %></p>
+												<p class='no-audio'><%= t('submissions.no-video') %></p>
 												<% end %>
 												<hr class='gray'>
 											<div class='index-card'>
